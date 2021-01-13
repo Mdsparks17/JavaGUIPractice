@@ -12,7 +12,10 @@ public class Main {
     
     public static void main(String[] args) {
         
-        CalculatorForm form = new CalculatorForm();
+//        CalculatorForm form = new CalculatorForm();
+//        form.setVisible(true);
+
+        AMETForm form = new AMETForm();
         form.setVisible(true);
     }
 }
