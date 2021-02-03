@@ -117,7 +117,7 @@ public class OverlayFileOptionsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        form.overlay_opt = overlayComboBox.getSelectedItem().toString();
+        form.overlay_opt = form.textFormat(overlayComboBox.getSelectedItem().toString());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed

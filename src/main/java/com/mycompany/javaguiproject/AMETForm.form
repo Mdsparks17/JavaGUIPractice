@@ -97,7 +97,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jTabbedPane1" pref="582" max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="runProgramButton" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -125,10 +125,17 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="projectModelRunSpecificationComboBox" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="projectModelRunSpecificationComboBox1" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                               <Component id="databaseSpecificationComboBox" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                               <Component id="databaseSpecificationLabel" alignment="0" min="-2" pref="231" max="-2" attributes="0"/>
                               <Component id="projectModelRunSpecificationLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="projectModelRunSpecificationLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="projectModelRunSpecificationComboBox2" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="projectModelRunSpecificationComboBox3" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="projectModelRunSpecificationComboBox4" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="projectModelRunSpecificationComboBox5" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="projectModelRunSpecificationComboBox6" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="projectModelRunSpecificationComboBox7" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="173" max="32767" attributes="0"/>
                           <Component id="projectDetailsPanel" min="-2" max="-2" attributes="0"/>
@@ -145,7 +152,21 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="projectModelRunSpecificationLabel" min="-2" pref="24" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="projectModelRunSpecificationComboBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="projectModelRunSpecificationComboBox1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="projectModelRunSpecificationLabel1" min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="projectModelRunSpecificationComboBox2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="projectModelRunSpecificationComboBox3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="projectModelRunSpecificationComboBox4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="projectModelRunSpecificationComboBox5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="projectModelRunSpecificationComboBox6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="projectModelRunSpecificationComboBox7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Component id="projectDetailsPanel" alignment="0" max="32767" attributes="0"/>
@@ -156,29 +177,29 @@
                 <Component class="javax.swing.JComboBox" name="databaseSpecificationComboBox">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="1">
+                        <StringItem index="0" value="Query not set up"/>
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="databaseSpecificationComboBoxActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="projectModelRunSpecificationComboBox">
+                <Component class="javax.swing.JComboBox" name="projectModelRunSpecificationComboBox1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="1">
+                        <StringItem index="0" value="(select a database first)"/>
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projectModelRunSpecificationComboBox1ActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -251,6 +272,86 @@
                       <Font name="Tahoma" size="16" style="1"/>
                     </Property>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="projectModelRunSpecificationLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Additional Project IDs:"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="16" style="1"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="projectModelRunSpecificationComboBox2">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value=" "/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="projectModelRunSpecificationComboBox3">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value=" "/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="projectModelRunSpecificationComboBox4">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value=" "/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="projectModelRunSpecificationComboBox5">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value=" "/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="projectModelRunSpecificationComboBox6">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value=" "/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="projectModelRunSpecificationComboBox7">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value=" "/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -540,6 +641,7 @@
                                   <Component id="siteIDLoadInfoLabel" alignment="0" min="-2" pref="417" max="-2" attributes="0"/>
                                   <Component id="siteIDInfoLabel" alignment="0" min="-2" pref="417" max="-2" attributes="0"/>
                                   <Component id="siteIDLoadTextField" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <Component id="soccergoalBugleButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="24" max="32767" attributes="0"/>
                           </Group>
@@ -558,6 +660,8 @@
                               <Component id="siteIDLoadInfoLabel" min="-2" pref="51" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="siteIDLoadTextField" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                              <Component id="soccergoalBugleButton1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -601,6 +705,14 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="siteIDLoadTextField">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="soccergoalBugleButton1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Geography Criteria"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="geographyCriteriaActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1821,7 +1933,7 @@
                 <Component class="javax.swing.JComboBox" name="programComboBox">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="68">
+                      <StringArray count="70">
                         <StringItem index="0" value="Choose AMET Script to Execute"/>
                         <StringItem index="1" value="    - Scatter Plots -"/>
                         <StringItem index="2" value="Multiple Networks Model/Ob Scatterplot (select stats only)"/>
@@ -1840,56 +1952,58 @@
                         <StringItem index="15" value="Multi Simulation Scatter plot (single network, mult runs)"/>
                         <StringItem index="16" value="Soil Scatter plot (single network, mult runs)"/>
                         <StringItem index="17" value="    - Time Series Plots -"/>
-                        <StringItem index="18" value="Dygraph Time-series Plot "/>
-                        <StringItem index="19" value="Plotly Muli-simulation Timeseries"/>
-                        <StringItem index="20" value="Multi-Network Time-series Plot (mult. net., single run)"/>
-                        <StringItem index="21" value="Multi-Species Time-series Plot (mult. species, single run)"/>
-                        <StringItem index="22" value="Model-to-Model Time-series Plot (single net., multi run)"/>
-                        <StringItem index="23" value="Year-long Monthly Statistics Plot (single network)"/>
-                        <StringItem index="24" value="    - Spatial Plots -"/>
-                        <StringItem index="25" value="Species Statistics and Spatial Plots (multi networks)"/>
-                        <StringItem index="26" value="Interactive Species Statistics and Spatial Plots (multi networks)"/>
-                        <StringItem index="27" value="Spatial Plot (multi networks)"/>
-                        <StringItem index="28" value="Interactive Spatial Plot (multi networks)"/>
-                        <StringItem index="29" value="Model/Model Diff Spatial Plot (multi network, multi run)"/>
-                        <StringItem index="30" value="Interactive Model/Model Diff Spatial Plot (multi network, multi run)"/>
-                        <StringItem index="31" value="Model/Model Species Diff Spatial Plot (multi network, multi run)"/>
-                        <StringItem index="32" value="Spatial Plot of Bias/Error Difference (multi network, multi run)"/>
-                        <StringItem index="33" value="Interactive Spatial Plot of Bias/Error Difference (multi networks)"/>
-                        <StringItem index="34" value="Ratio Spatial Plot to total PM2.5 (multi network, multi run)"/>
-                        <StringItem index="35" value="    - Box Plots -"/>
-                        <StringItem index="36" value="Boxplot (single network, multi run)"/>
-                        <StringItem index="37" value="GGPlot Boxplot (single network, multi run)"/>
-                        <StringItem index="38" value="Plotly Boxplot (single network, multi run)"/>
-                        <StringItem index="39" value="Day of Week Boxplot (single network, multiple runs)"/>
-                        <StringItem index="40" value="Hourly Boxplot (single network, multiple runs)"/>
-                        <StringItem index="41" value="8hr Average Boxplot (single network, hourly data, can be slow)"/>
-                        <StringItem index="42" value="Roselle Boxplot (single network, multiple simulations)"/>
-                        <StringItem index="43" value="    - Stacked Bar Plots -"/>
-                        <StringItem index="44" value="PM2.5 Stacked Bar Plot (CSN or IMPROVE, multi run)"/>
-                        <StringItem index="45" value="PM2.5 Stacked Bar Plot AE6 (CSN or IMPROVE, multi run)"/>
-                        <StringItem index="46" value="Interactive Stacked Bar Plot"/>
-                        <StringItem index="47" value="GGPlot Stacked Bar Plot"/>
-                        <StringItem index="48" value="Stacked Bar Plot Time Series"/>
-                        <StringItem index="49" value="Soil Stacked Bar Plot (CSN or IMPROVE,multi run)"/>
-                        <StringItem index="50" value="Soil Stacked Bar Plot Multi (CSN and IMPROVE,single run)"/>
-                        <StringItem index="51" value="Multi-Panel Stacked Bar Plot (full year data required)"/>
-                        <StringItem index="52" value="Multi-Panel Stacked Bar Plot AE6 (full year data)"/>
-                        <StringItem index="53" value="Multi-Panel, Mulit Run Stacked Bar Plot AE6 (full year data)"/>
-                        <StringItem index="54" value="    - Misc Scripts -"/>
-                        <StringItem index="55" value="Kelly Plot (single species, single network, full year data)"/>
-                        <StringItem index="56" value="Multisim Kelly Plot (single species, single network, multi sim)"/>
-                        <StringItem index="57" value="Species Statistics (multi species, single network)"/>
-                        <StringItem index="58" value="Create raw data csv file (single network, single simulation)"/>
-                        <StringItem index="59" value="&quot;Soccergoal&quot; plot (multiple networks)"/>
-                        <StringItem index="60" value="&quot;Bugle&quot; plot (multiple networks)"/>
-                        <StringItem index="61" value="Histogram (single network/species only)"/>
-                        <StringItem index="62" value="CDF, Q-Q, Taylor Plots (single network, multi run)"/>
-                        <StringItem index="63" value="    - Experimental Scripts (may not work correctly) -"/>
-                        <StringItem index="64" value="Create PAVE/VERDI Obs Overlay File (hourly/daily data only)"/>
-                        <StringItem index="65" value="Log-Log Model/Ob Scatterplot (multiple networks)"/>
-                        <StringItem index="66" value="Spectral Analysis (single network, single run, experimental)"/>
-                        <StringItem index="67" value="PM Ratio Spatial Plot (multi network, single run)"/>
+                        <StringItem index="18" value="Time-Series Plot (single network, multiple sites averages)"/>
+                        <StringItem index="19" value="Dygraph Time-series Plot"/>
+                        <StringItem index="20" value="Plotly Multi-simulation Timeseries"/>
+                        <StringItem index="21" value="Plotly Multi-network Timeseries"/>
+                        <StringItem index="22" value="Multi-Network Time-series Plot (mult. net., single run)"/>
+                        <StringItem index="23" value="Multi-Species Time-series Plot (mult. species, single run)"/>
+                        <StringItem index="24" value="Model-to-Model Time-series Plot (single net., multi run)"/>
+                        <StringItem index="25" value="Year-long Monthly Statistics Plot (single network)"/>
+                        <StringItem index="26" value="    - Spatial Plots -"/>
+                        <StringItem index="27" value="Species Statistics and Spatial Plots (multi networks)"/>
+                        <StringItem index="28" value="Interactive Species Statistics and Spatial Plots (multi networks)"/>
+                        <StringItem index="29" value="Spatial Plot (multi networks)"/>
+                        <StringItem index="30" value="Interactive Spatial Plot (multi networks)"/>
+                        <StringItem index="31" value="Model/Model Diff Spatial Plot (multi network, multi run)"/>
+                        <StringItem index="32" value="Interactive Model/Model Diff Spatial Plot (multi network, multi run)"/>
+                        <StringItem index="33" value="Model/Model Species Diff Spatial Plot (multi network, multi run)"/>
+                        <StringItem index="34" value="Spatial Plot of Bias/Error Difference (multi network, multi run)"/>
+                        <StringItem index="35" value="Interactive Spatial Plot of Bias/Error Difference (multi networks)"/>
+                        <StringItem index="36" value="Ratio Spatial Plot to total PM2.5 (multi network, multi run)"/>
+                        <StringItem index="37" value="    - Box Plots -"/>
+                        <StringItem index="38" value="Boxplot (single network, multi run)"/>
+                        <StringItem index="39" value="GGPlot Boxplot (single network, multi run)"/>
+                        <StringItem index="40" value="Plotly Boxplot (single network, multi run)"/>
+                        <StringItem index="41" value="Day of Week Boxplot (single network, multiple runs)"/>
+                        <StringItem index="42" value="Hourly Boxplot (single network, multiple runs)"/>
+                        <StringItem index="43" value="8hr Average Boxplot (single network, hourly data, can be slow)"/>
+                        <StringItem index="44" value="Roselle Boxplot (single network, multiple simulations)"/>
+                        <StringItem index="45" value="    - Stacked Bar Plots -"/>
+                        <StringItem index="46" value="PM2.5 Stacked Bar Plot (CSN or IMPROVE, multi run)"/>
+                        <StringItem index="47" value="PM2.5 Stacked Bar Plot AE6 (CSN or IMPROVE, multi run)"/>
+                        <StringItem index="48" value="Interactive Stacked Bar Plot"/>
+                        <StringItem index="49" value="GGPlot Stacked Bar Plot"/>
+                        <StringItem index="50" value="Stacked Bar Plot Time Series"/>
+                        <StringItem index="51" value="Soil Stacked Bar Plot (CSN or IMPROVE,multi run)"/>
+                        <StringItem index="52" value="Soil Stacked Bar Plot Multi (CSN and IMPROVE,single run)"/>
+                        <StringItem index="53" value="Multi-Panel Stacked Bar Plot (full year data required)"/>
+                        <StringItem index="54" value="Multi-Panel Stacked Bar Plot AE6 (full year data)"/>
+                        <StringItem index="55" value="Multi-Panel, Mulit Run Stacked Bar Plot AE6 (full year data)"/>
+                        <StringItem index="56" value="    - Misc Scripts -"/>
+                        <StringItem index="57" value="Kelly Plot (single species, single network, full year data)"/>
+                        <StringItem index="58" value="Multisim Kelly Plot (single species, single network, multi sim)"/>
+                        <StringItem index="59" value="Species Statistics (multi species, single network)"/>
+                        <StringItem index="60" value="Create raw data csv file (single network, single simulation)"/>
+                        <StringItem index="61" value="&quot;Soccergoal&quot; plot (multiple networks)"/>
+                        <StringItem index="62" value="&quot;Bugle&quot; plot (multiple networks)"/>
+                        <StringItem index="63" value="Histogram (single network/species only)"/>
+                        <StringItem index="64" value="CDF, Q-Q, Taylor Plots (single network, multi run)"/>
+                        <StringItem index="65" value="    - Experimental Scripts (may not work correctly) -"/>
+                        <StringItem index="66" value="Create PAVE/VERDI Obs Overlay File (hourly/daily data only)"/>
+                        <StringItem index="67" value="Log-Log Model/Ob Scatterplot (multiple networks)"/>
+                        <StringItem index="68" value="Spectral Analysis (single network, single run, experimental)"/>
+                        <StringItem index="69" value="PM Ratio Spatial Plot (multi network, single run)"/>
                       </StringArray>
                     </Property>
                   </Properties>

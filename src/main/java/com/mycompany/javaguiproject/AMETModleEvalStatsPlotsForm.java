@@ -442,9 +442,9 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         form.run_info_text = form.checkBoxFormat(includeRunInfoCheckBox);
         //TODO: precipitation
-        form.all_valid_amon = form.checkBoxFormat(includeValidObservationsCheckBox);
-        form.coverage_limit = minCompleteTextField.getText();
-        form.num_obs_limit = minObservationsTextField.getText();
+        form.all_valid = form.checkBoxFormat(includeValidObservationsCheckBox);
+        form.coverage_limit = form.textFormat(minCompleteTextField.getText());
+        form.num_obs_limit = form.textFormat(minObservationsTextField.getText());
         form.inc_whiskers = form.checkBoxFormat(includeWhiskersCheckBox);
         form.inc_ranges = form.checkBoxFormat(includeRangeCheckBox);
         form.inc_median_lines = form.checkBoxFormat(includeMedianLinesCheckBox);
@@ -452,15 +452,16 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         form.overlap_boxes = form.checkBoxFormat(overlapBoxesCheckBox);
         form.inc_FRM_adj = form.checkBoxFormat(includeCSNFRMCheckBox);
         form.use_median = form.checkBoxFormat(useMedianCheckBox);
-        form.avg_func_name = chooseAveragingComboBox.getSelectedItem().toString();
+        form.avg_func_name = form.textFormat(chooseAveragingComboBox.getSelectedItem().toString());
+        form.avg_func = form.textFormat(chooseAveragingComboBox.getSelectedItem().toString());
         form.inc_legend = form.checkBoxFormat(includeLegendCheckBox);
         form.inc_points = form.checkBoxFormat(includePointsCheckBox);
         form.inc_bias = form.checkBoxFormat(includeBiasCheckBox);
         form.inc_rmse = form.checkBoxFormat(includeRMSECheckBox);
         form.inc_corr = form.checkBoxFormat(includeCorrelationCheckBox);
         form.use_var_mean = form.checkBoxFormat(subtractPeriodCheckBox);
-        form.obs_per_day_limit = specifyMinimumTextField.getText();
-        form.line_width = specifyTimeTextArea.getText();
+        form.obs_per_day_limit = form.textFormat(specifyMinimumTextField.getText());
+        form.line_width = form.textFormat(specifyTimeTextArea.getText());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed

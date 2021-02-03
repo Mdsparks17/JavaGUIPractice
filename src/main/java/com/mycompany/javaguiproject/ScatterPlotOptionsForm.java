@@ -117,6 +117,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
         symbolComboBox7 = new javax.swing.JComboBox<>();
         saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        averageStatsCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -164,6 +165,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         meanModelCheckBox.setText("Mean Model ");
 
+        indexOfAgreementCheckBox.setSelected(true);
         indexOfAgreementCheckBox.setText("Index of Agreement ");
 
         correlationCheckBox.setText("Correlation");
@@ -172,8 +174,10 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         rmseCheckBox.setText("RMSE");
 
+        systematicRMSECheckBox.setSelected(true);
         systematicRMSECheckBox.setText("Systematic RMSE");
 
+        unsysematicRMSECheckBox.setSelected(true);
         unsysematicRMSECheckBox.setText("Unsystematic RMSE ");
 
         normMeanBiasCheckBox.setText(" Norm Mean Bias (NMB, %) ");
@@ -188,8 +192,10 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         meanErrorCheckBox.setText(" Mean Error (ME) ");
 
+        medianBiasCheckBox.setSelected(true);
         medianBiasCheckBox.setText(" Median Bias (MdnB) ");
 
+        medianErrorCheckBox.setSelected(true);
         medianErrorCheckBox.setText(" Median Error (MdnE) ");
 
         fractionalBiasCheckBox.setText(" Fractional Bias (FB, %) ");
@@ -277,9 +283,11 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         color1Label.setText("Color 1");
 
-        colorComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox1.setSelectedIndex(11);
 
-        colorComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox2.setSelectedIndex(11);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -292,7 +300,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 .addComponent(colorComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(colorComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,15 +312,17 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         color2Label.setText("Color 2");
 
-        colorComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox3.setSelectedIndex(3);
 
-        colorComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox4.setSelectedIndex(3);
 
         color3Label.setText("Color 3");
 
-        colorComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
 
-        colorComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -337,9 +347,11 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         color4Label.setText("Color 4");
 
-        colorComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox7.setSelectedIndex(15);
 
-        colorComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox8.setSelectedIndex(15);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -364,9 +376,11 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         color5Label.setText("Color 5");
 
-        colorComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox9.setSelectedIndex(6);
 
-        colorComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox10.setSelectedIndex(6);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -391,9 +405,11 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         jLabel8.setText("Color 6");
 
-        colorComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox11.setSelectedIndex(9);
 
-        colorComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox12.setSelectedIndex(9);
 
         javax.swing.GroupLayout color6LabelLayout = new javax.swing.GroupLayout(color6Label);
         color6Label.setLayout(color6LabelLayout);
@@ -418,9 +434,11 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         jLabel9.setText("Color 7");
 
-        colorComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox13.setSelectedIndex(10);
 
-        colorComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox14.setSelectedIndex(10);
 
         javax.swing.GroupLayout color7LabelLayout = new javax.swing.GroupLayout(color7Label);
         color7Label.setLayout(color7LabelLayout);
@@ -445,9 +463,11 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         color8Label.setText("Color 8");
 
-        colorComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox15.setSelectedIndex(16);
 
-        colorComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "None" }));
+        colorComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Lgt Blue", "Drk Blue", "Red", "Lgt Red", "Yellow", "Drk Yellow", "Lgt Green", "Green", "Orange", "Brown", "Lgt Grey", "Med Grey", "Drk Grey", "Black", "Drk Green", "Purple", "None" }));
+        colorComboBox16.setSelectedIndex(16);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -503,7 +523,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                     .addComponent(colorComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -513,7 +533,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 .addComponent(color7Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout plotColorPanelLayout = new javax.swing.GroupLayout(plotColorPanel);
@@ -521,20 +541,18 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
         plotColorPanelLayout.setHorizontalGroup(
             plotColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plotColorPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(plotColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(plotColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         plotColorPanelLayout.setVerticalGroup(
             plotColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plotColorPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         plotColorLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -644,7 +662,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 .addComponent(network5Label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(symbolComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -666,7 +684,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 .addComponent(network6Label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(symbolComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -709,7 +727,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                     .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(plotSymbolpanelLayout.createSequentialGroup()
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 67, Short.MAX_VALUE))
                     .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -731,7 +749,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         saveButton.setText("Save");
@@ -748,12 +766,14 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
             }
         });
 
+        averageStatsCheckBox.setText("Use averages for statistic calculations (scatter plots only)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -766,11 +786,16 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                             .addComponent(scatterPlotOptionsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(plotColorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plotColorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plotSymbolsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plotSymbolpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(averageStatsCheckBox)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(plotColorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(plotColorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(49, 49, 49)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(plotSymbolsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(plotSymbolpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -778,35 +803,32 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scatterPlotOptionsLabel)
-                    .addComponent(plotColorLabel))
+                    .addComponent(plotColorLabel)
+                    .addComponent(plotSymbolsLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(plotOptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(statisticsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(saveButton)
-                            .addComponent(cancelButton))
-                        .addGap(23, 23, 23))
+                        .addComponent(statisticsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(plotColorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(plotColorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(plotSymbolpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(plotSymbolsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(plotSymbolpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(averageStatsCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton)
+                    .addComponent(cancelButton))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -822,14 +844,167 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
         form.bin_by_mod = form.checkBoxFormat(modelValuesCheckBox);
         form.inc_error =  form.checkBoxFormat(errorCheckBox);
         form.trend_line = form.checkBoxFormat(trendLineCheckBox);
-        form.stats_flags = ""; //TODO: set up stat flags functionality
-        form.plot_colors = ""; //TODO: set up plot colors functionality
-        form.plot_colors2 = ""; //TODO: set up plot colors2 functionality
-        form.plot_symbols = ""; //TODO: set up plot symbols functionality
+        form.stats_flags = statFlagFormat();
+        form.plot_colors = plotColors1Format();
+        form.plot_colors2 = plotColors2Format();
+        form.plot_symbols = plotSymbolsFormat();
+        form.use_avg_stats = form.checkBoxFormat(averageStatsCheckBox);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private String statFlagFormat() {
+        String str = "c("
+                + form.checkBoxFormat(numberOfPairsCheckBox) + ","
+                + form.checkBoxFormat(meanObsCheckBox) + ","
+                + form.checkBoxFormat(meanModelCheckBox) + ","
+                + form.checkBoxFormat(indexOfAgreementCheckBox) + ","
+                + form.checkBoxFormat(correlationCheckBox) + ","
+                + form.checkBoxFormat(rSquaredCheckBox) + ","
+                + form.checkBoxFormat(rmseCheckBox) + ","
+                + form.checkBoxFormat(systematicRMSECheckBox) + ","
+                + form.checkBoxFormat(unsysematicRMSECheckBox) + ","
+                + form.checkBoxFormat(normMeanBiasCheckBox) + ","
+                + form.checkBoxFormat(normMeanErrorCheckBox) + ","
+                + form.checkBoxFormat(normMedianBiasCheckBox) + ","
+                + form.checkBoxFormat(normMedianErrorCheckBox) + ","
+                + form.checkBoxFormat(meanBiasCheckBox) + ","
+                + form.checkBoxFormat(meanErrorCheckBox) + ","
+                + form.checkBoxFormat(medianBiasCheckBox) + ","
+                + form.checkBoxFormat(medianErrorCheckBox) + ","
+                + form.checkBoxFormat(fractionalBiasCheckBox) + ","
+                + form.checkBoxFormat(fractionalErrorCheckBox) + ",";
+        return str + ")";
+    }
+    
+    private String plotColors1Format() {
+        String str = "c("
+                + "\"" + colorFormat(colorComboBox1.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox3.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox5.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox7.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox9.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox11.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox13.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox15.getSelectedItem().toString()) + "\"";
+        return str;
+    }
+    private String plotColors2Format() {
+        String str = "c("
+                + "\"" + colorFormat(colorComboBox2.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox4.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox6.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox8.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox10.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox12.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox14.getSelectedItem().toString()) + "\","
+                + "\"" + colorFormat(colorComboBox16.getSelectedItem().toString()) + "\"";
+        return str + ")";
+    }
+    private String plotSymbolsFormat() {
+        String str = "c("
+                + symbolFormat(symbolComboBox1.getSelectedItem().toString()) + ","
+                + symbolFormat(symbolComboBox2.getSelectedItem().toString()) + ","
+                + symbolFormat(symbolComboBox3.getSelectedItem().toString()) + ","
+                + symbolFormat(symbolComboBox4.getSelectedItem().toString()) + ","
+                + symbolFormat(symbolComboBox5.getSelectedItem().toString()) + ","
+                + symbolFormat(symbolComboBox6.getSelectedItem().toString()) + ","
+                + symbolFormat(symbolComboBox7.getSelectedItem().toString());
+        return str + ")";
+    }
+    
+    private String colorFormat(String str) {
+        String color = "";
+        switch(str) {
+            case "Blue":
+                color = "blue";
+                break;
+            case "Lgt Blue":
+                color = "skyblue2";
+                break;
+            case "Drk Blue":
+                color = "darkblue";
+                break;
+            case "Red":
+                color = "red";
+                break;
+            case "Lgt Red":
+                color = "red1";
+                break;
+            case "Drk Red":
+                color = "darkred";
+                break;
+            case "Yellow":
+                color = "yellow";
+                break;
+            case "Drk Yellow":
+                color = "yellow3";
+                break;
+            case "Lgt Green":
+                color = "green1";
+                break;
+            case "Green":
+                color = "green";
+                break;
+            case "Drk Green":
+                color = "green4";
+                break;
+            case "Orange":
+                color = "orange3";
+                break;
+            case "Brown":
+                color = "brown";
+                break;
+            case "Purple":
+                color = "purple";
+                break;
+            case "Lgt Grey":
+                color = "grey60";
+                break;
+            case "Med Grey":
+                color = "grey45";
+                break;
+            case "Drk Grey":
+                color = "grey25";
+                break;
+            case "Black":
+                color = "black";
+                break;
+        }
+        return color;
+    }
+    private String symbolFormat(String str) {
+        String symbol = "";
+        System.out.println(str);
+        switch(str) {
+            case "Circle":
+                symbol = "16";
+                break;
+            case "Triangle":
+                symbol = "17";
+                break;
+            case "Square":
+                symbol = "15";
+                break;
+            case "Diamond":
+                symbol = "18";
+                break;
+            case "Star":
+                symbol = "11";
+                break;
+            case "Burst":
+                symbol = "8";
+                break;
+            case "X":
+                symbol = "4";
+                break;
+            default:
+                System.out.println("error");
+                symbol = "0";
+        }
+        return symbol;
+    }
+    
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         setVisible(false);
         dispose();
@@ -838,6 +1013,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox averageStatsCheckBox;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel color1Label;
     private javax.swing.JLabel color2Label;

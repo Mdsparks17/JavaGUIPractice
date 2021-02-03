@@ -9,13 +9,13 @@ package com.mycompany.javaguiproject;
  *
  * @author Mdspa
  */
-public class AMETPlotAxisOptions extends javax.swing.JFrame {
+public class AMETPlotAxisOptionsForm extends javax.swing.JFrame {
 
     /**
      * Creates new form AMETPlotAxisOptions
      */
     AMETForm form;
-    public AMETPlotAxisOptions(AMETForm form) {
+    public AMETPlotAxisOptionsForm(AMETForm form) {
         this.form = form;
         initComponents();
     }
@@ -248,8 +248,18 @@ public class AMETPlotAxisOptions extends javax.swing.JFrame {
         ametPlotAxisOptionsInfoLabel.setOpaque(false);
 
         saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -292,6 +302,26 @@ public class AMETPlotAxisOptions extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        form.x_axis_min = form.textFormat(xMinTextField.getText());
+        form.x_axis_max = form.textFormat(xMaxTextField.getText());
+        form.y_axis_min = form.textFormat(yMinTextField.getText());
+        form.y_axis_max = form.textFormat(yMaxTextField.getText());
+        form.bias_y_axis_min = form.textFormat(biasYMinTextField.getText());
+        form.bias_y_axis_max = form.textFormat(biasYMaxTextField.getText());
+        form.density_zlim = form.textFormat(densityTextField.getText());
+        form.num_dens_bins = form.textFormat(densityNumBinsTextField.getText());
+        form.max_limit = form.textFormat(skillPlotMaxTextField.getText());
+        form.x_label_angle = form.textFormat(xLabelAngleTextField.getText());
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

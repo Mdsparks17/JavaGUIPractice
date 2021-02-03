@@ -517,26 +517,26 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        form.num_ints = numIntervalTextField.getText();
-        form.rmse_range_max = rmseRangeMaxTextField.getText();
-        form.perc_error_max = errorRangeMaxTextField.getText();
-        form.abs_error_max = absErrorRangeMaxTextField.getText();
-        form.perc_range_min = rangeMinTextField.getText();
-        form.perc_range_max = rangeMaxTextField.getText();
-        form.abs_range_min = absRangeMinTextField.getText();
-        form.abs_range_max = absRangeMaxTextField.getText();
-        form.diff_range_min = differenceMinTextField.getText();
-        form.diff_range_max = differenceMaxTextField.getText();
-        form.hist_max = histogramMaxTextField.getText();
-        form.quantile_min = quantileMinTextField.getText();
-        form.quantile_max = quantileMaxTextField.getText();
+        form.num_ints = form.textFormat(numIntervalTextField.getText());
+        form.rmse_range_max = form.textFormat(rmseRangeMaxTextField.getText());
+        form.perc_error_max = form.textFormat(errorRangeMaxTextField.getText());
+        form.abs_error_max = form.textFormat(absErrorRangeMaxTextField.getText());
+        form.perc_range_min = form.textFormat(rangeMinTextField.getText());
+        form.perc_range_max = form.textFormat(rangeMaxTextField.getText());
+        form.abs_range_min = form.textFormat(absRangeMinTextField.getText());
+        form.abs_range_max = form.textFormat(absRangeMaxTextField.getText());
+        form.diff_range_min = form.textFormat(differenceMinTextField.getText());
+        form.diff_range_max = form.textFormat(differenceMaxTextField.getText());
+        form.hist_max = form.textFormat(histogramMaxTextField.getText());
+        form.quantile_min = form.textFormat(quantileMinTextField.getText());
+        form.quantile_max = form.textFormat(quantileMaxTextField.getText());
         form.greyscale = form.checkBoxFormat(greyscaleCheckBox);
         form.inc_counties = form.checkBoxFormat(countiesCheckBox);
-        form.symbsizfac = symbolSizeTextField.getText();
-        form.plot_radius = symbolSpatialPlotTextField.getText();
-        form.outlier_radius = symbolOutlierTextField.getText();
-        form.fill_opacity = opacityTextField.getText();
-        form.map_type = spatialPlotOptionsComboBox.getSelectedItem().toString();
+        form.symbsizfac = form.textFormat(symbolSizeTextField.getText());
+        form.plot_radius = form.textFormat(symbolSpatialPlotTextField.getText());
+        form.outlier_radius = form.textFormat(symbolOutlierTextField.getText());
+        form.fill_opacity = form.textFormat(opacityTextField.getText());
+        form.map_type = form.textFormat(spatialPlotOptionsComboBox.getSelectedItem().toString());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed

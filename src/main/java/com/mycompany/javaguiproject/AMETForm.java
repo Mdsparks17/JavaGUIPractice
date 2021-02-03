@@ -12,160 +12,161 @@ import javax.swing.UIManager;
  * @author Mdspa
  */
 public class AMETForm extends javax.swing.JFrame {
-    //variable info and set defaults
-    public String query = "";
-    public String pid = "";
-    public String dbase = "";
-    public String run_name1 = "";
-    public String run_name2 = "";
-    public String run_name3 = "";
-    public String run_name4 = "";
-    public String run_name5 = "";
-    public String run_name6 = "";
-    public String run_name7 = "";
-    public String species_in = "";
-    public String custom_species = "";
-    public String custom_species_name = "";
-    public String custom_units = "";
-    public String inc_csn = "'n'";
-    public String inc_improve = "'n'";
-    public String inc_castnet = "'n'";
-    public String inc_castnet_hr = "'n'";
-    public String inc_castnet_daily = "'n'";
-    public String inc_castnet_drydep = "'n'";
-    public String inc_capmon = "'n'";
-    public String inc_naps = "'n'";
-    public String inc_naps_daily_o3 = "'n'";
-    public String inc_nadp = "'n'";
-    public String inc_airmon_dep = "'n'";
-    public String inc_amon = "'n'";
-    public String inc_aqs_hourly = "'n'";
-    public String inc_aqs_daily_o3 = "'n'";
-    public String inc_aqs_daily = "'n'";
-    public String inc_aqs_daily_oaqps = "'n'";
-    public String inc_aqs_daily_pm = "'n'";
-    public String inc_search = "'n'";
-    public String inc_search_daily = "'n'";
-    public String inc_aeronet = "'n'";
-    public String inc_fluxnet = "'n'";
-    public String inc_noaa_esrl_o3 = "'n'";
-    public String inc_toar = "'n'";
-    public String inc_mdn = "'n'";
-    public String inc_tox = "'n'";
-    public String inc_mod = "'n'";
-    public String inc_admn = "'n'";
-    public String inc_aganet = "'n'";
-    public String inc_airbase_hourly = "'n'";
-    public String inc_airbase_daily = "'n'";
-    public String inc_aurn_hourly = "'n'";
-    public String inc_aurn_daily = "'n'";
-    public String inc_emep_hourly = "'n'";
-    public String inc_emep_daily = "'n'";
-    public String inc_emep_daily_o3 = "'n'";
-    public String inc_calnex = "'n'";
-    public String inc_soas = "'n'";
-    public String inc_special = "'n'";
-    public String dates = "";
-    public String averaging = "none";
-    public String site = "";
-    public String state = "";
-    public String rpo = "";
-    public String pca = "";
-    public String clim_reg = "";
-    public String world_reg = "";
-    public String loc_setting = "";
-    public String conf_line = "";
-    public String pca_flag = "";
-    public String bin_by_mod = "";
-    public String inc_error = "";
-    public String trend_line = "";
-    public String coverage_limit = "";
-    public String all_valid = "";
-    public String all_valid_amon = "";
-    public String aggregate_data = "";
-    public String num_obs_limit = "";
-    public String soccerplot_opt = "";
-    public String overlay_opt = ""; //OverlayFileOptionsForm
-    public String png_res = "";
-    public String x_axis_min = "";
-    public String x_axis_max = "";
-    public String y_axis_min = "";
-    public String y_axis_max = "";
-    public String nmb_max = "";
-    public String nme_max = "";
-    public String mb_max = "";
-    public String me_min = "";
-    public String me_max = "";
-    public String rmse_min = "";
-    public String rmse_max = "";
-    public String nmb_int = "";
-    public String nme_int = "";
-    public String bias_y_axis_min = "";
-    public String bias_y_axis_max = "";
-    public String density_zlim = "";
-    public String num_dens_bins = "";
-    public String max_limit = "";
-    public String x_label_angle = "";
-    public String inc_ranges = "";
-    public String inc_whiskers = "";
-    public String inc_median_lines = "";
-    public String remove_mean = "";
-    public String overlap_boxes = "";
-    public String avg_func = "";
-    public String avg_func_name = "";
-    public String stat_func = "";
-    public String line_width = "";
-    public String custom_title = "";
-    public String map_leg_size = "";
-    public String stat_file = "";
-    public String num_ints = "";
-    public String perc_error_max = "";
-    public String abs_error_max = "";
-    public String perc_range_min = "";
-    public String perc_range_max = "";
-    public String abs_range_min = "";
-    public String abs_range_max = "";
-    public String diff_range_min = "";
-    public String diff_range_max = "";
-    public String rmse_range_max = "";
-    public String hist_max = "";
-    public String quantile_min = "";
-    public String quantile_max = "";
-    public String symbsizfac = "";
-    public String plot_radius = "";
-    public String outlier_radius = "";
-    public String fill_opacity = "";
-    public String remove_negatives = "";
-    public String use_avg_stats = "";
-    public String common_sites = "";
-    public String inc_legend = "";
-    public String inc_points = "";
-    public String inc_bias = "";
-    public String inc_rmse = "";
-    public String inc_corr = "";
-    public String use_var_mean = "";
-    public String plot_cor = "";
-    public String inc_FRM_adj = "";
-    public String use_median = "";
-    public String stats_flags = "";
-    public String run_info_text = "";
-    public String png_from_html = "";
-    public String plot_colors = "";
-    public String plot_colors2 = "";
-    public String plot_symbols = "";
-    public String year_start = "";
-    public String year_end = "";
-    public String month_start = "";
-    public String month_end = "";
-    public String day_start = "";
-    public String day_end = "";
-    public String greyscale = "";
-    public String inc_counties = "";
-    public String obs_per_day_limit = "";
-    public String figdir = "";
-    public String map_type = "";
-    public String img_height = "";
-    public String img_width = "";
+    //variable initialization and setting defaults
+    public String run_program = "";
+    public String query = "\"\""; //AMETForm
+    public String pid = "\"\""; //AMETForm
+    public String dbase = "\"\""; //AMETForm
+    public String run_name1 = "\"\""; //AMETForm
+    public String run_name2 = "\"\""; //AMETForm
+    public String run_name3 = "\"\""; //AMETForm
+    public String run_name4 = "\"\""; //AMETForm
+    public String run_name5 = "\"\""; //AMETForm
+    public String run_name6 = "\"\""; //AMETForm
+    public String run_name7 = "\"\""; //AMETForm
+    public String species_in = "\"\""; //AMETForm
+    public String custom_species = "\"\""; //AdvancedSpeciesForm
+    public String custom_species_name = "\"\""; //AdvancedSpeciesForm
+    public String custom_units = "\"\""; //AdvancedSpeciesForm
+    public String inc_csn = "\"\""; //AMETForm
+    public String inc_improve = "\"\""; //AMETForm
+    public String inc_castnet = "\"\""; //AMETForm
+    public String inc_castnet_hr = "\"\""; //AMETForm
+    public String inc_castnet_daily = "\"\""; //AMETForm
+    public String inc_castnet_drydep = "\"\""; //AMETForm
+    public String inc_capmon = "\"\""; //AMETForm
+    public String inc_naps = "\"\""; //AMETForm
+    public String inc_naps_daily_o3 = "\"\""; //AMETForm
+    public String inc_nadp = "\"\""; //AMETForm
+    public String inc_airmon_dep = "\"\""; //AMETForm
+    public String inc_amon = "\"\""; //AMETForm
+    public String inc_aqs_hourly = "\"\""; //AMETForm
+    public String inc_aqs_daily_o3 = "\"\""; //AMETForm
+    public String inc_aqs_daily = "\"\""; //AMETForm
+    public String inc_aqs_daily_oaqps = "\"\""; //AMETForm
+    public String inc_aqs_daily_pm = "\"\""; //AMETForm
+    public String inc_search = "\"\""; //AMETForm
+    public String inc_search_daily = "\"\""; //AMETForm
+    public String inc_aeronet = "\"\""; //AMETForm
+    public String inc_fluxnet = "\"\""; //AMETForm
+    public String inc_noaa_esrl_o3 = "\"\""; //AMETForm
+    public String inc_toar = "\"\""; //AMETForm
+    public String inc_mdn = "\"\""; //AMETForm
+    public String inc_tox = "\"\""; //AMETForm
+    public String inc_mod = "\"\""; //AMETForm
+    public String inc_admn = "\"\""; //AMETForm
+    public String inc_aganet = "\"\""; //AMETForm
+    public String inc_airbase_hourly = "\"\""; //AMETForm
+    public String inc_airbase_daily = "\"\""; //AMETForm
+    public String inc_aurn_hourly = "\"\""; //AMETForm
+    public String inc_aurn_daily = "\"\""; //AMETForm
+    public String inc_emep_hourly = "\"\""; //AMETForm
+    public String inc_emep_daily = "\"\""; //AMETForm
+    public String inc_emep_daily_o3 = "\"\""; //AMETForm
+    public String inc_calnex = "\"\""; //AMETForm
+    public String inc_soas = "\"\""; //AMETForm
+    public String inc_special = "\"\""; //AMETForm
+    public String dates = "\"\""; //AMETForm
+    public String averaging = "\"n\""; //AMETForm
+    public String site = "\"\"";
+    public String state = "\"\"";
+    public String rpo = "\"\"";
+    public String pca = "\"\"";
+    public String clim_reg = "\"\"";
+    public String world_reg = "\"\"";
+    public String loc_setting = "\"\"";
+    public String conf_line = "\"\"";
+    public String pca_flag = "\"\"";
+    public String bin_by_mod = "\"\"";
+    public String inc_error = "\"\"";
+    public String trend_line = "\"y\"";
+    public String coverage_limit = "75";
+    public String all_valid = "\"y\"";
+    public String all_valid_amon = "\"\"";
+    public String aggregate_data = "\"\"";
+    public String num_obs_limit = "1";
+    public String soccerplot_opt = "1";
+    public String overlay_opt = "\"\""; 
+    public String png_res = "300";
+    public String x_axis_min = "NULL";
+    public String x_axis_max = "NULL";
+    public String y_axis_min = "NULL";
+    public String y_axis_max = "NULL";
+    public String nmb_max = "NULL";
+    public String nme_max = "NULL";
+    public String mb_max = "NULL";
+    public String me_min = "NULL";
+    public String me_max = "NULL";
+    public String rmse_min = "NULL";
+    public String rmse_max = "NULL";
+    public String nmb_int = "NULL";
+    public String nme_int = "NULL";
+    public String bias_y_axis_min = "NULL";
+    public String bias_y_axis_max = "NULL";
+    public String density_zlim = "NULL";
+    public String num_dens_bins = "NULL";
+    public String max_limit = "70";
+    public String x_label_angle = "0";
+    public String inc_ranges = "\"y\"";
+    public String inc_whiskers = "\"\"";
+    public String inc_median_lines = "\"\"";
+    public String remove_mean = "\"\"";
+    public String overlap_boxes = "\"\"";
+    public String avg_func = "\"\"";
+    public String avg_func_name = "\"\"";
+    public String stat_func = "\"\"";
+    public String line_width = "\"1\"";
+    public String custom_title = "\"\"";
+    public String map_leg_size = "\"\"";
+    public String stat_file = "\"\"";
+    public String num_ints = "NULL";
+    public String perc_error_max = "NULL";
+    public String abs_error_max = "NULL";
+    public String perc_range_min = "NULL";
+    public String perc_range_max = "NULL";
+    public String abs_range_min = "NULL";
+    public String abs_range_max = "NULL";
+    public String diff_range_min = "NULL";
+    public String diff_range_max = "NULL";
+    public String rmse_range_max = "\"\"";
+    public String hist_max = "NULL";
+    public String quantile_min = "0.001";
+    public String quantile_max = "0.999";
+    public String symbsizfac = "1";
+    public String plot_radius = "0";
+    public String outlier_radius = "20";
+    public String fill_opacity = "0.8";
+    public String remove_negatives = "\"y\"";
+    public String use_avg_stats = "\"\"";
+    public String common_sites = "\"y\"";
+    public String inc_legend = "\"y\"";
+    public String inc_points = "\"y\"";
+    public String inc_bias = "\"y\"";
+    public String inc_rmse = "\"\"";
+    public String inc_corr = "\"\"";
+    public String use_var_mean = "\"\"";
+    public String plot_cor = "\"\"";
+    public String inc_FRM_adj = "\"y\"";
+    public String use_median = "\"\"";
+    public String stats_flags = "c(\"\",\"\",\"\",\"y\",\"\",\"\",\"\",\"y\",\"y\",\"\",\"\",\"\",\"\",\"\",\"\",\"y\",\"y\",\"\",\"\")";
+    public String run_info_text = "\"y\"";
+    public String png_from_html = "\"\"";
+    public String plot_colors = "c(\"grey60\",\"red\",\"blue\",\"green4\",\"yellow3\",\"orange2\",\"brown\",\"purple\")";
+    public String plot_colors2 = "c(\"grey60\",\"red\",\"blue\",\"green4\",\"yellow3\",\"orange2\",\"brown\",\"purple\")";
+    public String plot_symbols = "c(16,17,15,18,11,8,4)";
+    public String year_start = "\"\"";
+    public String year_end = "\"\"";
+    public String month_start = "\"\"";
+    public String month_end = "\"\"";
+    public String day_start = "\"\"";
+    public String day_end = "\"\"";
+    public String greyscale = "\"\"";
+    public String inc_counties = "\"y\"";
+    public String obs_per_day_limit = "0";
+    public String figdir = "\"\"";
+    public String map_type = "1";
+    public String img_height = "NULL";
+    public String img_width = "NULL";
     
     //creates a new AMETForm
     public AMETForm() {
@@ -175,20 +176,18 @@ public class AMETForm extends javax.swing.JFrame {
     
     //saves variables
     public void saveVariables() {
-//        query;
-//        pid;
+//        pid; //from query
+//        stat_file; //from query
+//        figdir; //special case
         dbase = databaseSpecificationComboBox.getSelectedItem().toString();
-        run_name1 = projectModelRunSpecificationComboBox.getSelectedItem().toString();
-//        run_name2;
-//        run_name3;
-//        run_name4;
-//        run_name5;
-//        run_name6;
-//        run_name7;
-        species_in = speciesComboBox.getSelectedItem().toString();
-//        custom_species;
-//        custom_species_name;
-//        custom_units;
+        run_name1 = textFormat(projectModelRunSpecificationComboBox1.getSelectedItem().toString());
+        run_name2 = textFormat(projectModelRunSpecificationComboBox2.getSelectedItem().toString());
+        run_name3 = textFormat(projectModelRunSpecificationComboBox3.getSelectedItem().toString());
+        run_name4 = textFormat(projectModelRunSpecificationComboBox4.getSelectedItem().toString());
+        run_name5 = textFormat(projectModelRunSpecificationComboBox5.getSelectedItem().toString());
+        run_name6 = textFormat(projectModelRunSpecificationComboBox6.getSelectedItem().toString());
+        run_name7 = textFormat(projectModelRunSpecificationComboBox7.getSelectedItem().toString());
+        species_in = textFormat(speciesComboBox.getSelectedItem().toString());
         inc_csn = checkBoxFormat(csnCheckBox);
         inc_improve = checkBoxFormat(improveCheckBox);
         inc_castnet = checkBoxFormat(castnetCheckBox);
@@ -227,41 +226,54 @@ public class AMETForm extends javax.swing.JFrame {
         inc_calnex = checkBoxFormat(calnexCheckBox);
         inc_soas = checkBoxFormat(soasCheckBox);
         inc_special = checkBoxFormat(specialCheckBox);
-        dates = dateFormat();
-        averaging = temporalAveragingComboBox.getSelectedItem().toString();
+        dates = "";
+        averaging = textFormat(temporalAveragingComboBox.getSelectedItem().toString());
 //        site;
-//        state;
-        rpo = RPOComboBox.getSelectedItem().toString();
-        pca = PCAComboBox.getSelectedItem().toString();
-        clim_reg = climateRegionComboBox.getSelectedItem().toString();
-        world_reg = worldRegionComboBox.getSelectedItem().toString();
-//        loc_setting;
-//        all_valid;
+
+        //state formatting
+        state = stateComboBox.getSelectedItem().toString();
+        if (state.equals("Include all states")) {
+            state = "\"All\"";
+        } else {
+            state = textFormat(stateComboBox.getSelectedItem().toString());
+        }
+        System.out.println(state);
+        
+        rpo = textFormat(RPOComboBox.getSelectedItem().toString());
+        pca = textFormat(PCAComboBox.getSelectedItem().toString());
+        clim_reg = textFormat(climateRegionComboBox.getSelectedItem().toString());
+        world_reg = textFormat(worldRegionComboBox.getSelectedItem().toString());
         aggregate_data = checkBoxFormat(aggrigateDataCheckBox);
-        png_res = pngPlotQualityComboBox.getSelectedItem().toString();
-//        avg_func;
-//        stat_func;
-        custom_title = customTitleTextField.getText();
-//        map_leg_size;
-//        stat_file;
-        remove_negatives = negativeValuesComboBox.getSelectedItem().toString();
-//        use_avg_stats;
-//        common_sites;
-//        use_var_mean;
+        png_res = textFormat(pngPlotQualityComboBox.getSelectedItem().toString());
+        custom_title = textFormat(customTitleTextField.getText());
+        remove_negatives = textFormat(negativeValuesComboBox.getSelectedItem().toString());
         png_from_html = checkBoxFormat(staticPNGCheckBox);
-
-//        year_start;
-//        year_end;
-//        month_start;
-//        month_end;
-//        day_start;
-//        day_end;
-
-//        figdir; //special case
-        img_height = heightTextField.getText();
-        img_width = widthTextField.getText();
+        
+        //date formatting
+        String sd = startDatePicker.getDateStringOrEmptyString();
+        String ed = endDatePicker.getDateStringOrEmptyString();
+        if (!sd.equals("")) {
+            year_start = sd.substring(0, 4);
+            month_start = sd.substring(5, 7);
+            day_start = sd.substring(8, 10);
+        }
+        if (!ed.equals("")) {
+            year_end = ed.substring(0, 4);
+            month_end  = ed.substring(5, 7);
+            day_end  = ed.substring(8, 10);
+        }    
+        
+        img_height = textFormat(heightTextField.getText());
+        img_width = textFormat(widthTextField.getText());
+        
+//        inc_valid_amon; //does not exist?
+//        stat_func; //does not exist?
+//        map_leg_size; //does not exist?
+//        aqs_co_network; //not hooked up/doesnt exist?
+//        near_road; //not hooked up/doesnt exist?
     }
     
+    //checks variables for input errors
     public void checkVariables() {
         //TODO
         //Check if database is selected
@@ -271,19 +283,612 @@ public class AMETForm extends javax.swing.JFrame {
         //Check if time is conflicting
         //Check if program is selected
     }
+    
+    //create run_info.r
+    public void createRunInfo() {
+        NewFile file = new NewFile(true, "./run_info.r");
+        file.openWriter();
+        file.writeTo(""
+                + "### Indicate this as a MET database query ###\n"
+//                + "Met_query<-" + 
+                + "### Use MySQL database for queries\n"
+//                + "AMET_DB<-" + 
+                + "#### Main Database Query String ###\n"
+                + "query<-" + query + "\n"
+                + "### Process ID number ###\n"
+                + "pid<-" + pid + "\n"
+                + "### Database Name ###\n"
+                + "dbase<-" + dbase + "\n"
+                + "### Parameter Occurrence (PO) Code ###\n"
+                + "POCode<-" + "\"\"\n"
+                + "### Directory to write figures ###\n"
+                + "figdir<-" + figdir + "/n"
+                + "### Use only common sites among mulitple simulations ###\n"
+                + "common_sites<-" + common_sites + "\n"
+                + "### Species ###\n"
+                + "species_in<-" + species_in + "\n"
+                + "custom_species<-" + custom_species_name + "\n"
+                + "custom_species_name<-" + custom_species_name + "\n"
+                + "custom_units<-" + custom_units + "\n"
+                + "### Project ID Name 1 ###\n"
+                + "run_name1<-" + run_name1 + "\n"
+                + "### Additional Run Names (used for model-to-model comparisons) ###\n"
+                + "run_name2<-" + run_name2 + "\n"
+                + "run_name3<-" + run_name2 + "\n"
+                + "run_name4<-" + run_name2 + "\n"
+                + "run_name5<-" + run_name2 + "\n"
+                + "run_name6<-" + run_name2 + "\n"
+                + "run_name7<-" + run_name2 + "\n"
+                + "### Array of Observation Network Flags ###\n"
+                + "#inc_networks<-\n"
+                + "inc_csn<-" + inc_csn + "\n"
+                + "inc_improve<-" + inc_improve + "\n"
+                + "inc_castnet<-" + inc_castnet + "\n"
+                + "inc_castnet_hr<-" + inc_castnet_hr + "\n"
+                + "inc_castnet_daily<-" + inc_castnet_daily + "\n"
+                + "inc_castnet_drydep<-" + inc_castnet_drydep + "\n"
+                + "inc_capmon<-" + inc_capmon + "\n"
+                + "inc_naps<-" + inc_naps + "\n"
+                + "inc_naps_daily_o3<-" + inc_naps_daily_o3 + "\n"
+                + "inc_nadp<-" + inc_nadp + "\n"
+                + "inc_airmon_dep<-" + inc_airmon_dep + "\n"
+                + "inc_amon<-" + inc_amon + "\n"
+                + "inc_aqs_hourly<-" + inc_aqs_hourly + "\n"
+                + "inc_aqs_daily_O3<-" + inc_aqs_daily_o3 + "\n"
+                + "inc_aqs_daily<-" + inc_aqs_daily + "\n"
+                + "inc_aqs_daily_pm<-" + inc_aqs_daily_pm + "\n"
+                + "inc_search<-" + inc_search + "\n"
+                + "inc_search_daily<-" + inc_search_daily + "\n"
+                + "inc_aeronet<-" + inc_aeronet + "\n"
+                + "inc_fluxnet<-" + inc_fluxnet + "\n"
+                + "inc_noaa_esrl_o3<-" + inc_noaa_esrl_o3 + "\n"
+                + "inc_toar<-" + inc_toar + "\n"
+                + "inc_mdn<-" + inc_mdn + "\n"
+                + "inc_tox<-" + inc_tox + "\n"
+                + "inc_mod<-" + inc_mod + "\n"
+                + "## European Networks ##\n"
+                + "inc_admn<-" + inc_admn + "\n"
+                + "inc_aganet<-" + inc_aganet + "\n"
+                + "inc_airbase_hourly<-" + inc_airbase_hourly + "\n"
+                + "inc_airbase_daily<-" + inc_airbase_daily + "\n"
+                + "inc_aurn_hourly<-" + inc_aurn_hourly + "\n"
+                + "inc_aurn_daily<-" + inc_aurn_daily + "\n"
+                + "inc_emep_hourly<-" + inc_emep_hourly + "\n"
+                + "inc_emep_daily<-" + inc_emep_daily + "\n"
+                + "inc_emep_daily_o3<-" + inc_emep_daily_o3 + "\n"
+//                + "inc_namn<-" + inc_namn + "\n" //this doesnt exist????
+                + "## Campaigns ##\n"
+                + "inc_calnex<-" + inc_calnex + "\n"
+                + "inc_soas<-" + inc_soas + "\n"
+                + "inc_special<-" + inc_special + "\n"
+                + "### Universal Plot Options ###\n"
+                + "dates<-" + dates + "\n"
+                + "custom_title<-" + custom_title + "\n"
+                + "png_from_html<-" + png_from_html + "\n"
+                + "png_res<-" + png_res + "\n"
+                + "x_label_angle<-" + x_label_angle + "\n"
+                + "### Plotly Options ###\n"
+                + "img_height<-" + img_height + "\n"
+                + "img_width<-" + img_width + "\n"
+                + "### Flag for Time Averaging ###\n"
+                + "averaging<-" + averaging + "\n"
+                + "remove_negatives<-" + remove_negatives + "\n"
+                + "use_avg_stats<-" + use_avg_stats + "\n"
+                + "aggregate_data" + aggregate_data + "\n"
+//                + "merge_statid_POC<-" + merge_statid_POC + "\n"
+                + "### Time Series Plot Options ###\n"
+                + "inc_legend<-" + inc_legend + "\n"
+                + "inc_points<-" + inc_points + "\n"
+                + "inc_bias<-" + inc_bias + "\n"
+                + "inc_rmse<-" + inc_rmse + "\n"
+                + "inc_corr<-" + inc_corr + "\n"
+                + "use_var_mean<-" + use_var_mean + "\n"
+                + "obs_per_day_limit<-" + obs_per_day_limit + "\n"
+                + "avg_func<-" + avg_func + "\n"
+                + "avg_func_name<-" + avg_func_name + "\n"
+                + "line_width<-" + line_width + "\n"
+                + "### Kelly Plot Options ###\n"
+                + "nmb_max<-" + nmb_max + "\n"
+                + "nme_max<-" + nme_max + "\n"
+                + "mb_max<-" + mb_max + "\n"
+                + "me_min<-" + me_min + "\n"
+                + "me_max<-" + me_max + "\n"
+                + "rmse_min<-" + rmse_min + "\n"
+                + "rmse_max<-" + rmse_max + "\n"
+                + "nmb_int<-" + nmb_int + "\n"
+                + "nme_int<-" + nme_int + "\n"
+                + "### Unique color ranges for some plots ###\n"
+//                + "color_ranges<-" + color_ranges + "\n"
+                + "### Monitoring Sites to Include ###\n"
+                + "site<-" + site + "\n"
+                + "### States to Include ###\n"
+                + "state<-" + state + "\n"
+                + "### Regional Planning Organizations to Include ###\n"
+                + "rpo<-" + rpo + "\n"
+                + "### Priciple Component Analysis (PCA) Region ###\n"
+                + "pca<-" + pca + "\n"
+                + "### Climate Region ###\n"
+                + "clim_reg<-" + clim_reg + "\n"
+                + "### Binned Plot Options ###\n"
+                + "pca_flag<-" + pca_flag + "\n"
+//                + "bin_by_mod<-" + bin_by_mods + "\n
+                + "inc_error<-" + inc_error + "\n"
+                + "### Landuse Category\n"
+                + "loc_setting<-" + loc_setting + "\n"
+                + "### Flag to Include or Remove Zero Precipitation Observations ###\n"
+////                + "zeroprecip<-" + zeroprecip + "  \n"
+                + "### Numerical Limit for Data Completeness as minimum number of required observations (used when calulating site statistics or averages)###\n"
+                + "coverage_limit<-" + coverage_limit + "\n"
+                + "all_valid<-" + all_valid + "\n"
+                + "all_valid_amon<-" + all_valid_amon + "\n"
+                + "### Numerical Limit for Data Completeness as minimum number of required observations (used when calulating site statistics or averages)###\n"
+                + "num_obs_limit<-" + num_obs_limit + "\n"
+                + "### Flag for Soccer and Bugle Plots Setting NMB/NME or FB/FE ###\n"
+                + "soccerplot_opt<-" + soccerplot_opt + "\n"
+                + "### Flag for PAVE Overlay; 1=hourly, 2=daily ###\n"
+                + "overlay_opt<-" + overlay_opt + "\n"
+                + "### Flags for Confidence Lines to Plot on Scatterplots ###\n"
+                + "conf_line<-" + conf_line + "\n"
+                + "trend_line<-" + trend_line + "\n"
+                + "### Scatterplot x and y axes limits ###\n"
+                + "x_axis_min<-" + x_axis_min + "\n"
+                + "x_axis_max<-" + x_axis_max + "\n"
+                + "y_axis_min<-" + y_axis_min + "\n"
+                + "y_axis_max<-" + y_axis_max + "\n"
+                + "bias_y_axis_min<-" + bias_y_axis_min + "\n"
+                + "bias_y_axis_max<-" + bias_y_axis_max + "\n"
+                + "density_zlim<-" + density_zlim + "\n"
+                + "num_dens_bins<-" + num_dens_bins + "\n"
+                + "max_limit<-" + max_limit + "\n"
+                + "### Hourly Boxplot Options ###\n"
+                + "inc_whiskers<-" + inc_whiskers + "\n"
+                + "inc_ranges<-" + inc_ranges + "\n"
+                + "inc_median_lines<-" + inc_median_lines + "\n"
+                + "remove_mean<-" + remove_mean + "\n"
+                + "overlap_boxes<-" + overlap_boxes + "\n"
+                + "### File containing list of stations created dynamically by the user ###\n"
+                + "stat_file<-" + stat_file + "\n"
+                + "### Spatial Plot Options ###\n"
+                + "symbsizfac<-" + symbsizfac + "\n"
+                + "plot_radius<-" + plot_radius + "\n"
+                + "outlier_radius<-" + outlier_radius + "\n"
+                + "fill_opacity<-" + fill_opacity + "\n"
+                + "num_ints<-" + num_ints + "\n"
+                + "perc_error_max<-" + perc_error_max + "\n"
+                + "abs_error_max<-" + abs_error_max + "\n"
+                + "rmse_range_max<-" + rmse_range_max + "\n"
+                + "perc_range_min<-" + perc_range_min + "\n"
+                + "perc_range_max<-" + perc_range_max + "\n"
+                + "abs_range_min<-" + abs_range_min + "\n"
+                + "abs_range_max<-" + abs_range_max + "\n"
+                + "diff_range_min<-" + diff_range_min + "\n"
+                + "diff_range_max<-" + diff_range_max + "\n"
+                + "greyscale <-" + greyscale + "\n"
+                + "inc_counties <-" + inc_counties + "\n"
+                + "hist_max<-" + hist_max + "\n"
+                + "map_type<-" + map_type + "\n"
+                + "quantile_min<-" + quantile_min + "\n"
+                + "quantile_max<-" + quantile_max + "\n"
+                + "### Stacked Bar Charts Options ###\n"
+                + "inc_FRM_adj<-" + inc_FRM_adj + "\n"
+                + "use_median<-" + use_median + "\n"
+                + "### Array of flags for which statistics to include on scatter plots ###\n"
+                + "stats_flags<-" + stats_flags + "\n"
+                + "### Flag to include run info text on plots ###\n"
+                + "run_info_text<-" + run_info_text + "\n"
+                + "### Set Scatter Plot Symbols and Colors ###\n"
+                + "plot_colors<-" + plot_colors + "\n"
+                + "plot_colors2<-" + plot_colors2 + "\n"
+                + "plot_symbols<-" + plot_symbols + "\n"
+//                + "plot_chars<-" + plot_chars + "\n"
+                + "### Start and End Year/Month ###\n"
+                + "year_start<-" + year_start + "\n"
+                + "year_end<-" + year_end + "\n"
+                + "month_start<-" + month_start + "\n"
+                + "month_end<-" + month_end + "\n"
+                + "day_start<-" + day_start + "\n"
+                + "day_end<-" + day_end + "\n"
+//                + "start_date<-" + start_date + "\n"
+//                + "end_date<-" + end_date + "\n"
+                + "#############################\n"
+                + "### Setup Networks Arrays ###\n"
+                + "#############################\n"
+                + "network_names <- NULL\n"
+                + "network_label <- NULL\n"
+                + "if (inc_improve == \"y\") {\n"
+                + "   network_names <- c(network_names,\"IMPROVE\")\n"
+                + "   network_label <- c(network_label,\"IMPROVE\")\n"
+                + "}\n"
+                + "if (inc_csn == \"y\") {\n"
+                + "   network_names <- c(network_names,\"CSN\")\n"
+                + "   network_label <- c(network_label,\"CSN\")\n"
+                + "}\n"
+                + "if (inc_castnet == \"y\") {\n"
+                + "   network_names <- c(network_names,\"CASTNET\")\n"
+                + "   network_label <- c(network_label,\"CASTNET\")\n"
+                + "}\n"
+                + "if (inc_castnet_hr == \"y\") {\n"
+                + "   network_names <- c(network_names,\"CASTNET_Hourly\")\n"
+                + "   network_label <- c(network_label,\"CASTNET\")\n"
+                + "}\n"
+                + "if (inc_castnet_daily == \"y\") {\n"
+                + "   network_names <- c(network_names,\"CASTNET_Daily\")\n"
+                + "   network_label <- c(network_label,\"CASTNET\")\n"
+                + "}\n"
+                + "if (inc_castnet_drydep == \"y\") {\n"
+                + "   network_names <- c(network_names,\"CASTNET_Drydep\")\n"
+                + "   network_label <- c(network_label,\"CASTNET\")\n"
+                + "}\n"
+                + "if (inc_capmon == \"y\") {\n"
+                + "   network_names <- c(network_names,\"CAPMON\")\n"
+                + "   network_label <- c(network_label,\"CAPMON\")\n"
+                + "}\n"
+                + "if (inc_naps == \"y\") {\n"
+                + "   network_names <- c(network_names,\"NAPS\")\n"
+                + "   network_label <- c(network_label,\"NAPS\")\n"
+                + "}\n"
+                + "if (inc_naps_daily_o3 == \"y\") {\n"
+                + "   network_names <- c(network_names,\"NAPS_Daily_O3\")\n"
+                + "   network_label <- c(network_label,\"NAPS Daily\")\n"
+                + "}\n"
+                + "if (inc_nadp == \"y\") {\n"
+                + "   network_names <- c(network_names,\"NADP\")\n"
+                + "   network_label <- c(network_label,\"NADP\")\n"
+                + "}\n"
+                + "if (inc_airmon_dep == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AIRMON\")\n"
+                + "   network_label <- c(network_label,\"AIRMON\")\n"
+                + "}\n"
+                + "if (inc_amon == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AMON\")\n"
+                + "   network_label <- c(network_label,\"AMON\")\n"
+                + "}\n"
+                + "if (inc_aqs_hourly == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AQS_Hourly\")\n"
+                + "   network_label <- c(network_label,\"AQS_Hourly\")\n"
+                + "}\n"
+                + "if (inc_aqs_daily_O3 == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AQS_Daily_O3\")\n"
+                + "   network_label <- c(network_label,\"AQS_Daily\")\n"
+                + "}\n"
+                + "if (inc_aqs_daily == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AQS_Daily\")\n"
+                + "   network_label <- c(network_label,\"AQS_Daily\")\n"
+                + "}\n"
+                + "if (inc_aqs_daily_pm == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AQS_Daily_PM\")\n"
+                + "   network_label <- c(network_label,\"AQS_Daily\")\n"
+                + "}\n"
+                + "if (inc_search == \"y\") {\n"
+                + "   network_names <- c(network_names,\"SEARCH\")\n"
+                + "   network_label <- c(network_label,\"SEARCH\")\n"
+                + "}\n"
+                + "if (inc_search_daily == \"y\") {\n"
+                + "   network_names <- c(network_names,\"SEARCH_Daily\")\n"
+                + "   network_label <- c(network_label,\"SEARCH_Daily\")\n"
+                + "}\n"
+                + "if (inc_aeronet == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AERONET\")\n"
+                + "   network_label <- c(network_label,\"AERONET\")\n"
+                + "}\n"
+                + "if (inc_fluxnet == \"y\") {\n"
+                + "   network_names <- c(network_names,\"FLUXNET\")\n"
+                + "   network_label <- c(network_label,\"FluxNet\")\n"
+                + "}\n"
+                + "if (inc_noaa_esrl_o3 == \"y\") {\n"
+                + "   network_names <- c(network_names,\"NOAA_ESRL_O3\")\n"
+                + "   network_label <- c(network_label,\"NOAA ESRL\")\n"
+                + "}\n"
+                + "if (inc_toar == \"y\") {\n"
+                + "   network_names <- c(network_names,\"TOAR\")\n"
+                + "   network_label <- c(network_label,\"TOAR\")\n"
+                + "}\n"
+                + "if (inc_mdn == \"y\") {\n"
+                + "   network_names <- c(network_names,\"MDN\")\n"
+                + "   network_label <- c(network_label,\"MDN\")\n"
+                + "}\n"
+                + "if (inc_tox == \"y\") {\n"
+                + "   network_names <- c(network_names,\"Toxics\")\n"
+                + "   network_label <- c(network_label,\"Toxics\")\n"
+                + "}\n"
+                + "if (inc_mod == \"y\") {\n"
+                + "   network_names <- c(network_names,\"Model_Model\")\n"
+                + "   network_label <- c(network_label,\"Mod v. Mod\")\n"
+                + "}\n"
+                + "if (inc_admn == \"y\") {\n"
+                + "   network_names <- c(network_names,\"ADMN\")\n"
+                + "   network_label <- c(network_label,\"ADMN\")\n"
+                + "}\n"
+                + "if (inc_aganet == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AGANET\")\n"
+                + "   network_label <- c(network_label,\"AGANET\")\n"
+                + "}\n"
+                + "if (inc_airbase_hourly == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AirBase_Hourly\")\n"
+                + "   network_label <- c(network_label,\"AirBase\")\n"
+                + "}\n"
+                + "if (inc_airbase_daily == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AirBase_Daily\")\n"
+                + "   network_label <- c(network_label,\"AirBase\")\n"
+                + "}\n"
+                + "if (inc_aurn_hourly == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AURN_Hourly\")\n"
+                + "   network_label <- c(network_label,\"AURN\")\n"
+                + "}\n"
+                + "if (inc_aurn_daily == \"y\") {\n"
+                + "   network_names <- c(network_names,\"AURN_Daily\")\n"
+                + "   network_label <- c(network_label,\"AURN\")\n"
+                + "}\n"
+                + "if (inc_emep_hourly == \"y\") {\n"
+                + "   network_names <- c(network_names,\"EMEP_Hourly\")\n"
+                + "   network_label <- c(network_label,\"EMEP\")\n"
+                + "}\n"
+                + "if (inc_emep_daily == \"y\") {\n"
+                + "   network_names <- c(network_names,\"EMEP_Daily\")\n"
+                + "   network_label <- c(network_label,\"EMEP\")\n"
+                + "}\n"
+                + "if (inc_calnex == \"y\") {\n"
+                + "   network_names <- c(network_names,\"CALNEX\")\n"
+                + "   network_label <- c(network_label,\"CALNEX\")\n"
+                + "}\n"
+                + "if (inc_soas == \"y\") {\n"
+                + "   network_names <- c(network_names,\"SOAS\")\n"
+                + "   network_label <- c(network_label,\"SOAS\")\n"
+                + "}\n"
+                + "if (inc_special == \"y\") {\n"
+                + "   network_names <- c(network_names,\"Special\")\n"
+                + "   network_label <- c(network_label,\"Special\")\n" 
+                + "}"
+                
+//                + species<-
+//                + species<-
+//                + "total_networks<-" + total_networks + "\n"
+//                + "network1 <-" + network1 + "\n"
+//                + "ametptype <-" + ametptype + "\n"
+        );
+        file.closeWriter();
+    }
+    
     //formats swing checkbox selections for run_info.r
     public String checkBoxFormat(javax.swing.JCheckBox checkBox) {
         if (checkBox.isSelected()) {
-            return "'y'";
+            return "\"y\""; //read as return ""y""
         } else {
-            return "'n'";
+            return "\"\"";
         }
     }
     
-    //formats date
-    public String dateFormat(){
-        //TODO: return a date in the form of "January to December" from date pickers
+    //formats strings to be "" for run_info if empty/not selected
+    public String textFormat(String str){
+        if (str.equals("") || str.equals(" ")) {
+            return "\"\"";
+        } else {
+            return "\"" + str + "\"";
+        }
+    }
+    
+    //assigning program names values to run_program combo box fields
+    public String programFormat(String str) {
+        String name = "";
+        switch(str) {
+            //Scatter Plots
+            case "Multiple Networks Model/Ob Scatterplot (select stats only)":
+                run_program = "AQ_Scatterplot.R";
+                break;
+            case "GGPlot Scatterplot (multi network, single run)":
+                run_program = "AQ_Scatterplot_ggplot.R";
+                break;
+            case "Interactive Multiple Network Scatterplot":
+                run_program = "AQ_Scatterplot_plotly.R";
+                break;
+            case "Interactive Multiple Simulation Scatterplot":
+                run_program = "AQ_Scatterplot_multisim_plotly.R";
+                break;
+            case "Single Network Model/Ob Scatterplot (includes all stats)":
+                run_program = "AQ_Scatterplot_single.R";
+                break;
+            case "Density Scatterplot (single run, single network)":
+                run_program = "AQ_Scatterplot_density.R";
+                break;
+            case "GGPlot Density Scatterplot (single run, single network)":
+                run_program = "AQ_Scatterplot_density_ggplot.R";
+                break;
+            case "Model/Model Scatterplot (multiple networks)":
+                run_program = "AQ_Scatterplot_mtom.R";
+                break;
+            case "Model/Model Density Scatterplot (single network)":
+                run_program = "AQ_Scatterplot_mtom_density.R";
+                break;
+            case "Scatterplot of Percentiles (single network, single run)":
+                run_program = "AQ_Scatterplot_percentiles.R";
+                break;
+            case "Ozone Skill Scatterplot (single network, mult runs)":
+                run_program = "AQ_Scatterplot_skill.R";
+                break;
+            case "Binned MB &amp; RMSE Scatterplots (single net., mult. run)":
+                run_program = "AQ_Scatterplot_bins.R";
+                break;
+            case "Interactive Binned Plot (single net., mult. run)":
+                run_program = "AQ_Scatterplot_bins_plotly.R";
+                break;
+            case "Multi Simulation Scatter plot (single network, mult runs)":
+                run_program = "AQ_Scatterplot_multi.R";
+                break;
+            case "Soil Scatter plot (single network, mult runs)":
+                run_program = "AQ_Scatterplot_soil.R";
+                break;
+            //Time-series plots
+            case "Time-Series Plot (single network, multiple sites averages)":
+                run_program = "AQ_Timeseries.R";
+                break;
+            case "Dygraph Time-series Plot":
+                run_program = "AQ_Timeseries_dygraph.R";
+                break;
+            case "Plotly Multi-simulation Timeseries":
+                run_program = "AQ_Timeseries_plotly.R";
+                break;
+            case "Plotly Multi-network Timeseries":
+                run_program = "AQ_Timeseries_networks_plotly.R";
+                break;
+            case "Multi-Network Time-series Plot (mult. net., single run)":
+                run_program = "AQ_Timeseries_multi_networks.R";
+                break;
+            case "Multi-Species Time-series Plot (mult. species, single run)":
+                run_program = "AQ_Timeseries_multi_species.R";
+                break;
+            case "Model-to-Model Time-series Plot (single net., multi run)":
+                run_program = "AQ_Timeseries_MtoM.R";
+                break;
+            case "Year-long Monthly Statistics Plot (single network)":
+                run_program = "AQ_Monthly_Stat_Plot.R";
+                break;
+            //Spatial Plots
+            case "Species Statistics and Spatial Plots (multi networks)":
+                run_program = "AQ_Stats_Plots.R";
+                break;
+            case "Interactive Species Statistics and Spatial Plots (multi networks)":
+                run_program = "AQ_Stats_Plots_leaflet.R";
+                break;
+            case "Spatial Plot (multi networks)":
+                run_program = "AQ_Plot_Spatial.R";
+                break;
+            case "Interactive Spatial Plot (multi networks)":
+                run_program = "AQ_Plot_Spatial_leaflet.R";
+                break;
+            case "Model/Model Diff Spatial Plot (multi network, multi run)":
+                run_program = "AQ_Plot_Spatial_MtoM.R";
+                break;
+            case "Interactive Model/Model Diff Spatial Plot (multi network, multi run)":
+                run_program = "AQ_Plot_Spatial_MtoM_leaflet.R";
+                break;
+            case "Model/Model Species Diff Spatial Plot (multi network, multi run)":
+                run_program = "AQ_Plot_Spatial_MtoM_Species.R";
+                break;
+            case "Spatial Plot of Bias/Error Difference (multi network, multi run)":
+                run_program = "AQ_Plot_Spatial_Diff.R";
+                break;
+            case "Interactive Spatial Plot of Bias/Error Difference (multi networks)":
+                run_program = "AQ_Plot_Spatial_Diff_leaflet.R";
+                break;
+            case "Ratio Spatial Plot to total PM2.5 (multi network, multi run)":
+                run_program = "AQ_Plot_Spatial_Ratio.R";
+                break;
+            //Boxplot
+            case "Boxplot (single network, multi run)":
+                run_program = "AQ_Boxplot.R";
+                break;
+            case "GGPlot Boxplot (single network, multi run)":
+                run_program = "AQ_Boxplot_ggplot.R";
+                break;
+            case "Plotly Boxplot (single network, multi run)":
+                run_program = "AQ_Boxplot_plotly.R";
+                break;
+            case "Day of Week Boxplot (single network, multiple runs)":
+                run_program = "AQ_Boxplot_DofW.R";
+                break;
+            case "Hourly Boxplot (single network, multiple runs)":
+                run_program = "AQ_Boxplot_Hourly.R";
+                break;
+            case "8hr Average Boxplot (single network, hourly data, can be slow)":
+                run_program = "AQ_Boxplot_MDA8.R";
+                break;
+            case "Roselle Boxplot (single network, multiple simulations)":
+                run_program = "AQ_Boxplot_Roselle.R";
+                break;
+            //Stacked Bar Plots
+            case "PM2.5 Stacked Bar Plot (CSN or IMPROVE, multi run)":
+                run_program = "AQ_Stacked_Barplot.R";
+                break;
+            case "PM2.5 Stacked Bar Plot AE6 (CSN or IMPROVE, multi run)":
+                run_program = "AQ_Stacked_Barplot_AE6.R";
+                break;
+            case "Interactive Stacked Bar Plot":
+                run_program = "AQ_Stacked_Barplot_AE6_plotly.R";
+                break;
+            case "GGPlot Stacked Bar Plot":
+                run_program = "AQ_Stacked_Barplot_AE6_ggplot.R";
+                break;
+            case "Stacked Bar Plot Time Series":
+                run_program = "AQ_Stacked_Barplot_AE6_ts.R";
+                break;
+            case "Soil Stacked Bar Plot (CSN or IMPROVE,multi run)":
+                run_program = "AQ_Stacked_Barplot_soil.R";
+                break;
+            case "Soil Stacked Bar Plot Multi (CSN and IMPROVE,single run)":
+                run_program = "AQ_Stacked_Barplot_soil_multi.R";
+                break;
+            case "Multi-Panel Stacked Bar Plot (full year data required)":
+                run_program = "AQ_Stacked_Barplot_panel.R";
+                break;
+            case "Multi-Panel Stacked Bar Plot AE6 (full year data)":
+                run_program = "AQ_Stacked_Barplot_panel_AE6.R";
+                break;
+            case "Multi-Panel, Mulit Run Stacked Bar Plot AE6 (full year data)":
+                run_program = "AQ_Stacked_Barplot_panel_AE6_multi.R";
+                break;
+            //Misc Plots
+            case "Kelly Plot (single species, single network, full year data)":
+                run_program = "AQ_Kellyplot.R";
+                break;
+            case "Multisim Kelly Plot (single species, single network, multi sim)":
+                run_program = "AQ_Kellyplot_multisim.R";
+                break;
+            case "Species Statistics (multi species, single network)":
+                run_program = "AQ_Stats.R";
+                break;
+            case "Create raw data csv file (single network, single simulation)":
+                run_program = "AQ_Raw_Data.R";
+                break;
+            case "\"Soccergoal\" plot (multiple networks)":
+                run_program = "AQ_Soccerplot.R";
+                break;
+            case "\"Bugle\" plot (multiple networks)":
+                run_program = "AQ_Bugleplot.R";
+                break;
+            case "Histogram (single network/species only)":
+                run_program = "AQ_Histogram.R";
+                break;
+            case "CDF, Q-Q, Taylor Plots (single network, multi run)":
+                run_program = "AQ_Temporal_Plots.R";
+                break;
+            //Expiramental
+            case "Create PAVE/VERDI Obs Overlay File (hourly/daily data only)":
+                run_program = "AQ_Overlay_File.R";
+                break;
+            case "Log-Log Model/Ob Scatterplot (multiple networks)":
+                run_program = "AQ_Scatterplot_log.R";
+                break;
+            case "Spectral Analysis (single network, single run, experimental)":
+                run_program = "AQ_Spectral_Analysis.R";
+                break;
+            case "PM Ratio Spatial Plot (multi network, single run)":
+                run_program = "AQ_Plot_Spatial_Ratio.R";
+                break;
+            default:
+                errorWindow("Not a Valid Program", "This error is thrown when the run program combo box detects an input that is not associated with any program. Please make another selection.");
+        }
         return "";
+    }
+    
+    //general error window call
+    public void errorWindow(String title, String message) {
+        ErrorWindow ew = new ErrorWindow(title, message);
+        ew.setVisible(true);
+    }
+    
+    public String queryGenerator() {
+        String str = " and s.state_id=d.stat_id";
+        //states
+        //zeroprecip
+        //inc_valid
+        //inc_valid_amon
+        //rpo, regions, countries, etc
+        //stat_id
+        //date formatting for query
+        String sd = year_start + month_start + day_start;
+        String ed = year_end + month_end + day_end;
+        str = str + " and d.ob_dates BETWEEN " + sd + " and " + ed + " and d.ob_datee BETWEEN " + sd +  " and " + ed + "";
+        return str;
     }
     
     //Auto-generated code made by the form, DO NOT EDIT, called by the constructor
@@ -297,13 +902,20 @@ public class AMETForm extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         databaseProjectPanel = new javax.swing.JPanel();
         databaseSpecificationComboBox = new javax.swing.JComboBox<>();
-        projectModelRunSpecificationComboBox = new javax.swing.JComboBox<>();
+        projectModelRunSpecificationComboBox1 = new javax.swing.JComboBox<>();
         projectDetailsPanel = new javax.swing.JPanel();
         projectDetailsLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea14 = new javax.swing.JTextArea();
         databaseSpecificationLabel = new javax.swing.JLabel();
         projectModelRunSpecificationLabel = new javax.swing.JLabel();
+        projectModelRunSpecificationLabel1 = new javax.swing.JLabel();
+        projectModelRunSpecificationComboBox2 = new javax.swing.JComboBox<>();
+        projectModelRunSpecificationComboBox3 = new javax.swing.JComboBox<>();
+        projectModelRunSpecificationComboBox4 = new javax.swing.JComboBox<>();
+        projectModelRunSpecificationComboBox5 = new javax.swing.JComboBox<>();
+        projectModelRunSpecificationComboBox6 = new javax.swing.JComboBox<>();
+        projectModelRunSpecificationComboBox7 = new javax.swing.JComboBox<>();
         regionAreaPanel = new javax.swing.JPanel();
         PCALabel = new javax.swing.JLabel();
         stateInfoLabel = new javax.swing.JLabel();
@@ -326,6 +938,7 @@ public class AMETForm extends javax.swing.JFrame {
         siteIDLoadInfoLabel = new javax.swing.JTextArea();
         siteIDInfoLabel = new javax.swing.JTextArea();
         siteIDLoadTextField = new javax.swing.JTextField();
+        soccergoalBugleButton1 = new javax.swing.JButton();
         worldRegionComboBox = new javax.swing.JComboBox<>();
         discoverWindowsComboBox = new javax.swing.JComboBox<>();
         networkSpeciesPanel = new javax.swing.JPanel();
@@ -470,9 +1083,19 @@ public class AMETForm extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        databaseSpecificationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        databaseSpecificationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Query not set up" }));
+        databaseSpecificationComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                databaseSpecificationComboBoxActionPerformed(evt);
+            }
+        });
 
-        projectModelRunSpecificationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        projectModelRunSpecificationComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(select a database first)" }));
+        projectModelRunSpecificationComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectModelRunSpecificationComboBox1ActionPerformed(evt);
+            }
+        });
 
         projectDetailsLabel.setText("Project Details");
         projectDetailsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -508,6 +1131,21 @@ public class AMETForm extends javax.swing.JFrame {
         projectModelRunSpecificationLabel.setText("Project/Model Run Specification");
         projectModelRunSpecificationLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
+        projectModelRunSpecificationLabel1.setText("Additional Project IDs:");
+        projectModelRunSpecificationLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+
+        projectModelRunSpecificationComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        projectModelRunSpecificationComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        projectModelRunSpecificationComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        projectModelRunSpecificationComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        projectModelRunSpecificationComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        projectModelRunSpecificationComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
         javax.swing.GroupLayout databaseProjectPanelLayout = new javax.swing.GroupLayout(databaseProjectPanel);
         databaseProjectPanel.setLayout(databaseProjectPanelLayout);
         databaseProjectPanelLayout.setHorizontalGroup(
@@ -515,10 +1153,17 @@ public class AMETForm extends javax.swing.JFrame {
             .addGroup(databaseProjectPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(databaseProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(projectModelRunSpecificationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projectModelRunSpecificationComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(databaseSpecificationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(databaseSpecificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectModelRunSpecificationLabel))
+                    .addComponent(projectModelRunSpecificationLabel)
+                    .addComponent(projectModelRunSpecificationLabel1)
+                    .addComponent(projectModelRunSpecificationComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projectModelRunSpecificationComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projectModelRunSpecificationComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projectModelRunSpecificationComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projectModelRunSpecificationComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projectModelRunSpecificationComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addComponent(projectDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -532,7 +1177,21 @@ public class AMETForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(projectModelRunSpecificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(projectModelRunSpecificationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(projectModelRunSpecificationComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(projectModelRunSpecificationLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projectModelRunSpecificationComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projectModelRunSpecificationComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projectModelRunSpecificationComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projectModelRunSpecificationComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projectModelRunSpecificationComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projectModelRunSpecificationComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(projectDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -594,6 +1253,13 @@ public class AMETForm extends javax.swing.JFrame {
         siteIDInfoLabel.setWrapStyleWord(true);
         siteIDInfoLabel.setOpaque(false);
 
+        soccergoalBugleButton1.setText("Geography Criteria");
+        soccergoalBugleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                geographyCriteriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout siteIDPanelLayout = new javax.swing.GroupLayout(siteIDPanel);
         siteIDPanel.setLayout(siteIDPanelLayout);
         siteIDPanelLayout.setHorizontalGroup(
@@ -605,7 +1271,8 @@ public class AMETForm extends javax.swing.JFrame {
                     .addComponent(siteIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siteIDLoadInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siteIDInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(siteIDLoadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(siteIDLoadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(soccergoalBugleButton1))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         siteIDPanelLayout.setVerticalGroup(
@@ -621,6 +1288,8 @@ public class AMETForm extends javax.swing.JFrame {
                 .addComponent(siteIDLoadInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(siteIDLoadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111)
+                .addComponent(soccergoalBugleButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1296,7 +1965,7 @@ public class AMETForm extends javax.swing.JFrame {
         pngPlotQualityLabel.setText("PNG Plot Quality");
         pngPlotQualityLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
-        programComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose AMET Script to Execute", "    - Scatter Plots -", "Multiple Networks Model/Ob Scatterplot (select stats only)", "GGPlot Scatterplot (multi network, single run)", "Interactive Multiple Network Scatterplot", "Interactive Multiple Simulation Scatterplot", "Single Network Model/Ob Scatterplot (includes all stats)", "Density Scatterplot (single run, single network)", "GGPlot Density Scatterplot (single run, single network)", "Model/Model Scatterplot (multiple networks)", "Model/Model Density Scatterplot (single network)", "Scatterplot of Percentiles (single network, single run)", "Ozone Skill Scatterplot (single network, mult runs)", "Binned MB &amp; RMSE Scatterplots (single net., mult. run)", "Interactive Binned Plot (single net., mult. run)", "Multi Simulation Scatter plot (single network, mult runs)", "Soil Scatter plot (single network, mult runs)", "    - Time Series Plots -", "Dygraph Time-series Plot ", "Plotly Muli-simulation Timeseries", "Multi-Network Time-series Plot (mult. net., single run)", "Multi-Species Time-series Plot (mult. species, single run)", "Model-to-Model Time-series Plot (single net., multi run)", "Year-long Monthly Statistics Plot (single network)", "    - Spatial Plots -", "Species Statistics and Spatial Plots (multi networks)", "Interactive Species Statistics and Spatial Plots (multi networks)", "Spatial Plot (multi networks)", "Interactive Spatial Plot (multi networks)", "Model/Model Diff Spatial Plot (multi network, multi run)", "Interactive Model/Model Diff Spatial Plot (multi network, multi run)", "Model/Model Species Diff Spatial Plot (multi network, multi run)", "Spatial Plot of Bias/Error Difference (multi network, multi run)", "Interactive Spatial Plot of Bias/Error Difference (multi networks)", "Ratio Spatial Plot to total PM2.5 (multi network, multi run)", "    - Box Plots -", "Boxplot (single network, multi run)", "GGPlot Boxplot (single network, multi run)", "Plotly Boxplot (single network, multi run)", "Day of Week Boxplot (single network, multiple runs)", "Hourly Boxplot (single network, multiple runs)", "8hr Average Boxplot (single network, hourly data, can be slow)", "Roselle Boxplot (single network, multiple simulations)", "    - Stacked Bar Plots -", "PM2.5 Stacked Bar Plot (CSN or IMPROVE, multi run)", "PM2.5 Stacked Bar Plot AE6 (CSN or IMPROVE, multi run)", "Interactive Stacked Bar Plot", "GGPlot Stacked Bar Plot", "Stacked Bar Plot Time Series", "Soil Stacked Bar Plot (CSN or IMPROVE,multi run)", "Soil Stacked Bar Plot Multi (CSN and IMPROVE,single run)", "Multi-Panel Stacked Bar Plot (full year data required)", "Multi-Panel Stacked Bar Plot AE6 (full year data)", "Multi-Panel, Mulit Run Stacked Bar Plot AE6 (full year data)", "    - Misc Scripts -", "Kelly Plot (single species, single network, full year data)", "Multisim Kelly Plot (single species, single network, multi sim)", "Species Statistics (multi species, single network)", "Create raw data csv file (single network, single simulation)", "\"Soccergoal\" plot (multiple networks)", "\"Bugle\" plot (multiple networks)", "Histogram (single network/species only)", "CDF, Q-Q, Taylor Plots (single network, multi run)", "    - Experimental Scripts (may not work correctly) -", "Create PAVE/VERDI Obs Overlay File (hourly/daily data only)", "Log-Log Model/Ob Scatterplot (multiple networks)", "Spectral Analysis (single network, single run, experimental)", "PM Ratio Spatial Plot (multi network, single run)" }));
+        programComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose AMET Script to Execute", "    - Scatter Plots -", "Multiple Networks Model/Ob Scatterplot (select stats only)", "GGPlot Scatterplot (multi network, single run)", "Interactive Multiple Network Scatterplot", "Interactive Multiple Simulation Scatterplot", "Single Network Model/Ob Scatterplot (includes all stats)", "Density Scatterplot (single run, single network)", "GGPlot Density Scatterplot (single run, single network)", "Model/Model Scatterplot (multiple networks)", "Model/Model Density Scatterplot (single network)", "Scatterplot of Percentiles (single network, single run)", "Ozone Skill Scatterplot (single network, mult runs)", "Binned MB &amp; RMSE Scatterplots (single net., mult. run)", "Interactive Binned Plot (single net., mult. run)", "Multi Simulation Scatter plot (single network, mult runs)", "Soil Scatter plot (single network, mult runs)", "    - Time Series Plots -", "Time-Series Plot (single network, multiple sites averages)", "Dygraph Time-series Plot", "Plotly Multi-simulation Timeseries", "Plotly Multi-network Timeseries", "Multi-Network Time-series Plot (mult. net., single run)", "Multi-Species Time-series Plot (mult. species, single run)", "Model-to-Model Time-series Plot (single net., multi run)", "Year-long Monthly Statistics Plot (single network)", "    - Spatial Plots -", "Species Statistics and Spatial Plots (multi networks)", "Interactive Species Statistics and Spatial Plots (multi networks)", "Spatial Plot (multi networks)", "Interactive Spatial Plot (multi networks)", "Model/Model Diff Spatial Plot (multi network, multi run)", "Interactive Model/Model Diff Spatial Plot (multi network, multi run)", "Model/Model Species Diff Spatial Plot (multi network, multi run)", "Spatial Plot of Bias/Error Difference (multi network, multi run)", "Interactive Spatial Plot of Bias/Error Difference (multi networks)", "Ratio Spatial Plot to total PM2.5 (multi network, multi run)", "    - Box Plots -", "Boxplot (single network, multi run)", "GGPlot Boxplot (single network, multi run)", "Plotly Boxplot (single network, multi run)", "Day of Week Boxplot (single network, multiple runs)", "Hourly Boxplot (single network, multiple runs)", "8hr Average Boxplot (single network, hourly data, can be slow)", "Roselle Boxplot (single network, multiple simulations)", "    - Stacked Bar Plots -", "PM2.5 Stacked Bar Plot (CSN or IMPROVE, multi run)", "PM2.5 Stacked Bar Plot AE6 (CSN or IMPROVE, multi run)", "Interactive Stacked Bar Plot", "GGPlot Stacked Bar Plot", "Stacked Bar Plot Time Series", "Soil Stacked Bar Plot (CSN or IMPROVE,multi run)", "Soil Stacked Bar Plot Multi (CSN and IMPROVE,single run)", "Multi-Panel Stacked Bar Plot (full year data required)", "Multi-Panel Stacked Bar Plot AE6 (full year data)", "Multi-Panel, Mulit Run Stacked Bar Plot AE6 (full year data)", "    - Misc Scripts -", "Kelly Plot (single species, single network, full year data)", "Multisim Kelly Plot (single species, single network, multi sim)", "Species Statistics (multi species, single network)", "Create raw data csv file (single network, single simulation)", "\"Soccergoal\" plot (multiple networks)", "\"Bugle\" plot (multiple networks)", "Histogram (single network/species only)", "CDF, Q-Q, Taylor Plots (single network, multi run)", "    - Experimental Scripts (may not work correctly) -", "Create PAVE/VERDI Obs Overlay File (hourly/daily data only)", "Log-Log Model/Ob Scatterplot (multiple networks)", "Spectral Analysis (single network, single run, experimental)", "PM Ratio Spatial Plot (multi network, single run)" }));
 
         programToRunInfoLabel.setColumns(20);
         programToRunInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1544,7 +2213,7 @@ public class AMETForm extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(runProgramButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -1573,16 +2242,19 @@ public class AMETForm extends javax.swing.JFrame {
 
     private void runProgramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runProgramButtonActionPerformed
         saveVariables();
+//        run_program = programFormat(programComboBox.getSelectedItem().toString());
+        query = queryGenerator();
+        System.out.println(query);
         //TODO: check data for errors
-        //TODO: construct run_info.r file
+        createRunInfo();
         //TODO: execute program with required files
         
         //test area
-        System.out.println(query);
+        System.out.println(year_start);
         //test area
         
-        AdvancedForm af = new AdvancedForm();
-        af.setVisible(true);
+//        AdvancedForm af = new AdvancedForm();
+//        af.setVisible(true);
     }//GEN-LAST:event_runProgramButtonActionPerformed
 
     private void soccergoalBugleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soccergoalBugleButtonActionPerformed
@@ -1591,7 +2263,7 @@ public class AMETForm extends javax.swing.JFrame {
     }//GEN-LAST:event_soccergoalBugleButtonActionPerformed
 
     private void ametPlotAxisVuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ametPlotAxisVuttonActionPerformed
-        AMETPlotAxisOptions paoForm = new AMETPlotAxisOptions(this);
+        AMETPlotAxisOptionsForm paoForm = new AMETPlotAxisOptionsForm(this);
         paoForm.setVisible(true);
     }//GEN-LAST:event_ametPlotAxisVuttonActionPerformed
 
@@ -1625,32 +2297,19 @@ public class AMETForm extends javax.swing.JFrame {
         asForm.setVisible(true);
     }//GEN-LAST:event_advancedSpeciesButtonActionPerformed
 
-    public static void main(String args[]) {
-        // Set look and feel
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(AMETForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(AMETForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(AMETForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(AMETForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
+    private void projectModelRunSpecificationComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectModelRunSpecificationComboBox1ActionPerformed
+        // fill out the project run information
+    }//GEN-LAST:event_projectModelRunSpecificationComboBox1ActionPerformed
 
-        // Create and display the form
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AMETForm().setVisible(true);
-            }
-        });
-    }
+    private void geographyCriteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_geographyCriteriaActionPerformed
+        GeographicCriteriaForm gcForm = new GeographicCriteriaForm(this);
+        gcForm.setVisible(true);
+    }//GEN-LAST:event_geographyCriteriaActionPerformed
+
+    private void databaseSpecificationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databaseSpecificationComboBoxActionPerformed
+        //TODO fill out project model run combo boxes
+    }//GEN-LAST:event_databaseSpecificationComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AQObservationNetworkInfoLabel;
@@ -1762,8 +2421,15 @@ public class AMETForm extends javax.swing.JFrame {
     private javax.swing.JLabel programToRunLabel;
     private javax.swing.JLabel projectDetailsLabel;
     private javax.swing.JPanel projectDetailsPanel;
-    private javax.swing.JComboBox<String> projectModelRunSpecificationComboBox;
+    private javax.swing.JComboBox<String> projectModelRunSpecificationComboBox1;
+    private javax.swing.JComboBox<String> projectModelRunSpecificationComboBox2;
+    private javax.swing.JComboBox<String> projectModelRunSpecificationComboBox3;
+    private javax.swing.JComboBox<String> projectModelRunSpecificationComboBox4;
+    private javax.swing.JComboBox<String> projectModelRunSpecificationComboBox5;
+    private javax.swing.JComboBox<String> projectModelRunSpecificationComboBox6;
+    private javax.swing.JComboBox<String> projectModelRunSpecificationComboBox7;
     private javax.swing.JLabel projectModelRunSpecificationLabel;
+    private javax.swing.JLabel projectModelRunSpecificationLabel1;
     private javax.swing.JPanel regionAreaPanel;
     private javax.swing.JButton runProgramButton;
     private javax.swing.JButton scatterPlotButton;
@@ -1780,6 +2446,7 @@ public class AMETForm extends javax.swing.JFrame {
     private javax.swing.JTextField siteIDTextField;
     private javax.swing.JCheckBox soasCheckBox;
     private javax.swing.JButton soccergoalBugleButton;
+    private javax.swing.JButton soccergoalBugleButton1;
     private javax.swing.JButton spacialPlotButton;
     private javax.swing.JCheckBox specialCheckBox;
     private javax.swing.JComboBox<String> speciesComboBox;

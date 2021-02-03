@@ -1,7 +1,4 @@
 package com.mycompany.javaguiproject;
-
-import com.mycompany.javaguiproject.AMETForm0;
-
 /**
  *
  * @author Mdspa
@@ -9,8 +6,10 @@ import com.mycompany.javaguiproject.AMETForm0;
 public class Main {
     
     public static void main(String[] args) {
+        // Set look and feel
+        
+        // Create a new AMETForm
         AMETForm form = new AMETForm();
-//        AMETForm form = new AMETForm();
         form.setVisible(true);
     }
 }

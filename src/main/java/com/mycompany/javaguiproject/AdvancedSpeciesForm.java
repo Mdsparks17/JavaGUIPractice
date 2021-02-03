@@ -39,7 +39,7 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
         customSpeciesUnitTextField = new javax.swing.JTextField();
         customSpeciesNameLabel = new javax.swing.JLabel();
         customSpeciesUnitLabel = new javax.swing.JLabel();
-        saveBurtton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -67,9 +67,19 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
 
         customSpeciesUnitLabel.setText("Enter the units for your sutom species. ");
 
-        saveBurtton.setText("Save");
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,7 +98,7 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
                     .addComponent(customSpeciesNameLabel)
                     .addComponent(customSpeciesUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(saveBurtton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -115,7 +125,7 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
                 .addComponent(customSpeciesUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveBurtton)
+                    .addComponent(saveButton)
                     .addComponent(cancelButton))
                 .addGap(21, 21, 21))
         );
@@ -136,6 +146,20 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        form.custom_species = form.textFormat(manualTextField.getText());
+        form.custom_species_name = form.textFormat(customSpeciesNameTextField.getText());
+        form.custom_units = form.textFormat(customSpeciesUnitTextField.getText());
+        //TODO: set up abilty to custom SQL query the species
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -149,7 +173,7 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
     private javax.swing.JTextArea manualInfoLabel;
     private javax.swing.JTextField manualSpeciesTextField;
     private javax.swing.JTextField manualTextField;
-    private javax.swing.JButton saveBurtton;
+    private javax.swing.JButton saveButton;
     private javax.swing.JTextArea speciesQueryInfoLabel;
     // End of variables declaration//GEN-END:variables
 }

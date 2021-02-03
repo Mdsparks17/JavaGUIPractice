@@ -285,16 +285,16 @@ public class SoccergoalBugleForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        form.soccerplot_opt = statisticsComboBox.getSelectedItem().toString();
-        form.nmb_max = nmbMinMaxTextField.getText();
-        form.nmb_int = nmbIntervalTextField.getText();
-        form.nme_max = nmeMaxTextField.getText();
-        form.nme_int = nmeIntervalTextField.getText();
-        form.mb_max = mbMinMaxTextField.getText();
-        form.me_min = meMinTextField.getText();
-        form.me_max = meMaxTextField.getText();
-        form.rmse_min = rmseMinTextField.getText();
-        form.rmse_max = rmseMaxTextField.getText();
+        form.soccerplot_opt = form.textFormat(statisticsComboBox.getSelectedItem().toString());
+        form.nmb_max = form.textFormat(nmbMinMaxTextField.getText());
+        form.nmb_int = form.textFormat(nmbIntervalTextField.getText());
+        form.nme_max = form.textFormat(nmeMaxTextField.getText());
+        form.nme_int = form.textFormat(nmeIntervalTextField.getText());
+        form.mb_max = form.textFormat(mbMinMaxTextField.getText());
+        form.me_min = form.textFormat(meMinTextField.getText());
+        form.me_max = form.textFormat(meMaxTextField.getText());
+        form.rmse_min = form.textFormat(rmseMinTextField.getText());
+        form.rmse_max = form.textFormat(rmseMaxTextField.getText());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
