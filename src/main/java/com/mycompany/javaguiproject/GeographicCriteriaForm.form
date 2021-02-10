@@ -117,19 +117,23 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="none"/>
+                <StringItem index="0" value="None"/>
                 <StringItem index="1" value="Rural"/>
                 <StringItem index="2" value="Suburban"/>
                 <StringItem index="3" value="Urban"/>
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationSettingsComboBoxActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextArea" name="manualInfoLabel">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
@@ -153,7 +157,7 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="none"/>
+                <StringItem index="0" value="None"/>
                 <StringItem index="1" value="IMPROVE"/>
                 <StringItem index="2" value="CSN"/>
                 <StringItem index="3" value="CASTNET"/>
@@ -166,6 +170,7 @@
         </Component>
         <Component class="javax.swing.JTextArea" name="manualInfoLabel1">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
@@ -178,6 +183,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="commonSitesCheckBox">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
 
@@ -227,11 +235,11 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="nmbMinMaxLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nmbMinMaxTextField" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="lat1" min="-2" pref="99" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="nmbInntervalLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="nmbIntervalTextField" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="lat2" min="-2" pref="99" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="nmbInntervalLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="55" max="32767" attributes="0"/>
@@ -243,9 +251,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="nmbMinMaxLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nmbMinMaxTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lat1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="nmbInntervalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nmbIntervalTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lat2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="nmbInntervalLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -259,9 +267,9 @@
                     <Property name="text" type="java.lang.String" value="Lat between   "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="nmbMinMaxTextField">
+                <Component class="javax.swing.JTextField" name="lat1">
                 </Component>
-                <Component class="javax.swing.JTextField" name="nmbIntervalTextField">
+                <Component class="javax.swing.JTextField" name="lat2">
                 </Component>
                 <Component class="javax.swing.JLabel" name="nmbInntervalLabel">
                   <Properties>
@@ -292,11 +300,11 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="nmbMinMaxLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nmbMinMaxTextField1" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="lon1" min="-2" pref="99" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="nmbInntervalLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="nmbIntervalTextField1" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="lon2" min="-2" pref="99" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="nmbInntervalLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -307,9 +315,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="nmbMinMaxLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nmbMinMaxTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lon1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="nmbInntervalLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nmbIntervalTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lon2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="nmbInntervalLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -321,9 +329,9 @@
                     <Property name="text" type="java.lang.String" value="Long between"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="nmbMinMaxTextField1">
+                <Component class="javax.swing.JTextField" name="lon1">
                 </Component>
-                <Component class="javax.swing.JTextField" name="nmbIntervalTextField1">
+                <Component class="javax.swing.JTextField" name="lon2">
                 </Component>
                 <Component class="javax.swing.JLabel" name="nmbInntervalLabel1">
                   <Properties>
@@ -339,6 +347,7 @@
             </Container>
             <Component class="javax.swing.JTextArea" name="manualInfoLabel2">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="0"/>

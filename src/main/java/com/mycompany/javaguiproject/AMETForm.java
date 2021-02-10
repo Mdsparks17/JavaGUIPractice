@@ -5,6 +5,11 @@
  */
 package com.mycompany.javaguiproject;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.UIManager;
 
 /**
@@ -80,11 +85,11 @@ public class AMETForm extends javax.swing.JFrame {
     public String bin_by_mod = "\"\"";
     public String inc_error = "\"\"";
     public String trend_line = "\"y\"";
-    public String coverage_limit = "75";
+    public int coverage_limit = 75;
     public String all_valid = "\"y\"";
     public String all_valid_amon = "\"\"";
     public String aggregate_data = "\"\"";
-    public String num_obs_limit = "1";
+    public int num_obs_limit = 1;
     public String soccerplot_opt = "1";
     public String overlay_opt = "\"\""; 
     public String png_res = "300";
@@ -112,8 +117,8 @@ public class AMETForm extends javax.swing.JFrame {
     public String inc_median_lines = "\"\"";
     public String remove_mean = "\"\"";
     public String overlap_boxes = "\"\"";
-    public String avg_func = "\"\"";
-    public String avg_func_name = "\"\"";
+    public String avg_func = "\"mean\"";
+    public String avg_func_name = "\"mean\"";
     public String stat_func = "\"\"";
     public String line_width = "\"1\"";
     public String custom_title = "\"\"";
@@ -128,13 +133,13 @@ public class AMETForm extends javax.swing.JFrame {
     public String abs_range_max = "NULL";
     public String diff_range_min = "NULL";
     public String diff_range_max = "NULL";
-    public String rmse_range_max = "\"\"";
+    public String rmse_range_max = "NULL";
     public String hist_max = "NULL";
     public String quantile_min = "0.001";
     public String quantile_max = "0.999";
     public String symbsizfac = "1";
     public String plot_radius = "0";
-    public String outlier_radius = "20";
+    public String outlier_radius = "40";
     public String fill_opacity = "0.8";
     public String remove_negatives = "\"y\"";
     public String use_avg_stats = "\"\"";
@@ -162,11 +167,25 @@ public class AMETForm extends javax.swing.JFrame {
     public String day_end = "\"\"";
     public String greyscale = "\"\"";
     public String inc_counties = "\"y\"";
-    public String obs_per_day_limit = "0";
+    public int obs_per_day_limit = 0;
     public String figdir = "\"\"";
     public String map_type = "1";
-    public String img_height = "NULL";
-    public String img_width = "NULL";
+    public int img_height;
+    public int img_width;
+    public String discovaq = "\"\"";
+    public String site_id = "\"\"";
+    public String start_hour = "\"\"";
+    public String end_hour = "\"\"";
+    public String season = "\"\"";
+    public String month = "\"\"";
+    public String poCode = "\"\"";
+    public String lat1 = "";
+    public String lat2 = "";
+    public String lon1 = "";
+    public String lon2 = "";
+    //naming variables
+    public String project_id = "";
+    public String stat_id = "";
     
     //creates a new AMETForm
     public AMETForm() {
@@ -226,6 +245,7 @@ public class AMETForm extends javax.swing.JFrame {
         inc_calnex = checkBoxFormat(calnexCheckBox);
         inc_soas = checkBoxFormat(soasCheckBox);
         inc_special = checkBoxFormat(specialCheckBox);
+        discovaq = textFormat(discoverWindowsComboBox.getSelectedItem().toString());
         dates = "";
         averaging = textFormat(temporalAveragingComboBox.getSelectedItem().toString());
 //        site;
@@ -235,7 +255,7 @@ public class AMETForm extends javax.swing.JFrame {
         if (state.equals("Include all states")) {
             state = "\"All\"";
         } else {
-            state = textFormat(stateComboBox.getSelectedItem().toString());
+            state = "'" + state + "'";
         }
         System.out.println(state);
         
@@ -263,8 +283,21 @@ public class AMETForm extends javax.swing.JFrame {
             day_end  = ed.substring(8, 10);
         }    
         
-        img_height = textFormat(heightTextField.getText());
-        img_width = textFormat(widthTextField.getText());
+        start_hour = textFormat(startHourComboBox.getSelectedItem().toString());
+        end_hour = textFormat(endHourComboBox.getSelectedItem().toString());
+        season = textFormat(seasonalAnalysisComboBox.getSelectedItem().toString());
+        month = textFormat(monthlyAnalysisComboBox.getSelectedItem().toString());
+        poCode = textFormat(POCodeComboBox.getSelectedItem().toString());
+        
+        
+        img_height = numFormat(heightTextField.getText());
+        img_width = numFormat(widthTextField.getText());
+        
+        if (textFormat(siteIDTextField.getText()).equals("\"\"")) {
+            site_id = "\"All\"";
+        } else {
+            site_id = textFormat(siteIDTextField.getText());
+        }
         
 //        inc_valid_amon; //does not exist?
 //        stat_func; //does not exist?
@@ -660,16 +693,32 @@ public class AMETForm extends javax.swing.JFrame {
     
     //formats strings to be "" for run_info if empty/not selected
     public String textFormat(String str){
-        if (str.equals("") || str.equals(" ")) {
+        if (str.equals("") || str.equals(" ") || str.equals("None")) {
             return "\"\"";
         } else {
             return "\"" + str + "\"";
         }
     }
     
+    //converts GUI inputs into a num format (without any quotations!), returns 0 if input string not convertable to type double
+    public int numFormat(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch(Exception e) {
+            return 0;
+        }
+    }
+    
+    public String numNullFormat(String str) {
+        if (str.isEmpty() || str.isBlank() || str == null) {
+            return "NULL";
+        } else {
+            return str;
+        }
+    }
+    
     //assigning program names values to run_program combo box fields
-    public String programFormat(String str) {
-        String name = "";
+    public void programFormat(String str) {
         switch(str) {
             //Scatter Plots
             case "Multiple Networks Model/Ob Scatterplot (select stats only)":
@@ -867,27 +916,622 @@ public class AMETForm extends javax.swing.JFrame {
             default:
                 errorWindow("Not a Valid Program", "This error is thrown when the run program combo box detects an input that is not associated with any program. Please make another selection.");
         }
-        return "";
     }
     
+    //assigning values to hour feilds
+    public String hourFormat(String str) {
+        String hour = "";
+        switch(str) {
+            case "\"12AM\"":
+                hour = "00";
+                break;
+            case "\"1AM\"":
+                hour = "01";
+                break;
+            case "\"2AM\"":
+                hour = "02";
+                break;
+            case "\"3AM\"":
+                hour = "03";
+                break;
+            case "\"4AM\"":
+                hour = "04";
+                break;
+            case "\"5AM\"":
+                hour = "05";
+                break;
+            case "\"6AM\"":
+                hour = "06";
+                break;
+            case "\"7AM\"":
+                hour = "07";
+                break;
+            case "\"8AM\"":
+                hour = "08";
+                break;
+            case "\"9AM\"":
+                hour = "09";
+                break;
+            case "\"10AM\"":
+                hour = "10";
+                break;
+            case "\"11AM\"":
+                hour = "11";
+                break;
+            case "\"12PM\"":
+                hour = "12";
+                break;
+            case "\"1PM\"":
+                hour = "13";
+                break;
+            case "\"2PM\"14":
+                hour = "";
+                break;
+            case "\"3PM\"":
+                hour = "15";
+                break;
+            case "\"4PM\"":
+                hour = "16";
+                break;
+            case "\"5PM\"":
+                hour = "17";
+                break;
+            case "\"6PM\"":
+                hour = "18";
+                break;
+            case "\"7PM\"":
+                hour = "19";
+                break;
+            case "\"8PM\"":
+                hour = "20";
+                break;
+            case "\"9PM\"":
+                hour = "21";
+                break;
+            case "\"10PM\"":
+                hour = "22";
+                break;
+            case "\"11PM\"":
+                hour = "23";
+                break;
+            default:
+                break;
+        }
+        return hour;
+    }
+
     //general error window call
     public void errorWindow(String title, String message) {
         ErrorWindow ew = new ErrorWindow(title, message);
         ew.setVisible(true);
     }
     
+    //output window
+    public void outputWindow() {
+        Output output = new Output();
+        switch(run_program) {
+            case "R_Stats_Plots.R":
+                break;
+//            case "R_Stats_Plots.R": //???
+//                break;
+            case "AQ_Raw_Data.R":
+                break;
+            case "AQ_Scatterplot.R":
+                output.newFile("scatterplot.pdf", "Mod/Ob Scatterplot (PDF)");
+                output.newFile("scatterplot.png", "Mod/Ob Scatterplot (PNG)");
+                output.newFile("scatterplot.csv", "Scatterplot Data (CSV)");
+                break;
+            case "AQ_Scatterplot_single.R":
+                output.newFile("scatterplot_single.pdf", "Mod/Ob Scatterplot (PDF)");
+                output.newFile("scatterplot_single.png", "Mod/Ob Scatterplot (PNG)");
+                output.newFile("scatterplot_single.csv", "Scatterplot Data (CSV)");
+                break;
+            case "AQ_Scatterplot_density.R":
+                output.newFile("scatterplot_density.pdf", "Mod/Ob Scatterplot (PDF)");
+                output.newFile("scatterplot_density.png", "Mod/Ob Scatterplot (PNG)");
+                output.newFile("scatterplot_density.csv", "Scatterplot Data (CSV)");
+                break;
+            case "AQ_Scatterplot_log.R":
+                output.newFile("scatterplot_log.pdf", "Model/Ob Log-Log Scatterplot (PDF)");
+                output.newFile("scatterplot_log.png", "Model/Ob Log-Log Scatterplot (PNG)");
+                output.newFile("scatterplot_log.csv", "Scatterplot Data (CSV File)");
+                break;
+            case "AQ_Scatterplot_mtom.R":
+                output.newFile("scatterplot_mtom.pdf", "Model/Model Scatterplot (PDF)");
+                output.newFile("scatterplot_mtom.png", "Model/Model Scatterplot (PNG)");
+                break;
+            case "AQ_Scatterplot_percentiles.R":
+                output.newFile("scatterplot_percentiles.pdf", "Percentile Scatterplot (PDF)");
+                output.newFile("scatterplot_percentiles.png", "Percentile Scatterplot (PNG)");
+                break;
+            case "AQ_Scatterplot_soil.R":
+                output.newFile("scatterplot_soil.pdf", "Model/Ob Soil Scatterplot (PDF)");
+                output.newFile("scatterplot_soil.png", "Model/Ob Soil Scatterplot (PNG)");
+                break;
+            case "AQ_Scatterplot_skill.R":
+                output.newFile("scatterplot_skill.pdf", "Skill Plot (PDF)");
+                output.newFile("scatterplot_skill.png", "Skill Plot (PNG)");
+                output.newFile("scatterplot_skill.csv", "Skill Plot Data (CSV)");
+                break;
+            case "AQ_Scatterplot_bins.R":
+                output.newFile("scatterplot_bins.png", "Mean Bias Plot (PNG)");
+                output.newFile("scatterplot_bins.pdf", "Mean Bias Plot (PDF)");
+                output.newFile("scatterplot_bins.csv", "Raw Data File (CSV)");
+                break;
+            case "AQ_Scatterplot_multi.R":
+                output.newFile("scatterplot.pdf", "Scatterplot (PDF)");
+                output.newFile("scatterplot.png", "Scatterplot (PNG)");
+                output.newFile("scatterplot.csv", "Scatterplot Data (CSV)");
+                break;
+            case "AQ_Soccerplot.R":
+                output.newFile("soccerplot.png", "Soccergoal Plot (PNG)");
+                output.newFile("soccerplot.pdf", "Soccergoal Plot (PDF)");
+                break;
+            case "AQ_Bugleplot.R":
+                output.newFile("bugleplot_bias.png", "Bugle Plot Bias (PNG)");
+                output.newFile("bugleplot_error.png", "Bugle Plot Error (PNG)");
+                output.newFile("bugleplot_error.pdf", "Bugle Plot Error (PDF)");
+                break;
+            case "AQ_Timeseries.R":
+                output.newFile("bias_timeseries.pdf", "Time Series Plot (PDF)(Bias)");
+                output.newFile("rmse_timeseries.pdf", "Time Series Plot (PDF)(RMSE)");
+                output.newFile("corr_timeseries.pdf", "Time Series Plot (PDF)(Corr)");
+                output.newFile("bias_timeseries.png", "Time Series Plot (PNG)(Bias)");
+                output.newFile("rmse_timeseries.png", "Time Series Plot (PNG)(RMSE)");
+                output.newFile("corr_timeseries.png", "Time Series Plot (PNG)(Corr)");
+                output.newFile("timeseries.csv", "Timeseries Data (CSV)");
+                break;
+            case "AQ_Timeseries_multi_networks.R":
+                output.newFile("timeseries.pdf", "Timeseries Plot (PDF)");
+                output.newFile("timeseries.png", "Timeseries Plot (PNG)");
+                output.newFile("timeseries.csv", "Timeseries Data (CSV)");
+                break;
+            case "AQ_Timeseries_MtoM.R":
+                output.newFile("timeseries_mtom.pdf", "Timeseries Plot (PDF)");
+                output.newFile("timeseries_mtom.png", "Timeseries Plot (PNG)");
+                output.newFile("timeseries_mtom.csv", "Timeseries Data (CSV)");
+                break;
+            case "AQ_Boxplot_Hourly.R":
+                output.newFile("boxplot_hourly.pdf", "Boxplot (PDF format)");
+                output.newFile("boxplot_hourly.png", "Boxplot (PNG format)");
+                output.newFile("boxplot_data.csv", "Median Data (CSV format)");
+                break;
+            case "AQ_Boxplot_MDA8.R":
+                output.newFile("boxplot_MDA8.pdf", "MDA8 Boxplot (PDF)");
+                output.newFile("boxplot_MDA8.png", "MDA8 Boxplot (PNG)");
+                break;
+            case "AQ_Boxplot.R":
+                output.newFile("boxplot_all.png", "Boxplot (PNG)");
+                output.newFile("boxplot_all.pdf", "Boxplot (PDF)");
+                output.newFile("boxplot_bias.png", "Bias Boxplot (PNG)");
+                output.newFile("boxplot_bias.pdf", "Bias Boxplot (PDF)");
+                output.newFile("boxplot_norm_bias.png", "Normalized Bias Boxplot (PNG)");
+                output.newFile("boxplot_norm_bias.pdf", "Normalized Bias Boxplot (PDF)");
+                break;
+            case "AQ_Boxplot_DofW.R":
+                output.newFile("boxplot_dow.pdf", "Day of Week Boxplot (PDF)");
+                output.newFile("boxplot_dow.png", "Day of Week Boxplot (PNG)");
+                break;
+            case "AQ_Boxplot_Roselle.R":
+                output.newFile("boxplot_roselle.png", "Roselle Boxplot (PNG)");
+                output.newFile("boxplot_bias_roselle.png", "Roselle Boxplot Bias (PNG)");
+                output.newFile("boxplot_roselle.pdf", "Roselle Boxplot (PDF)");
+                output.newFile("boxplot_bias_roselle.pdf", "Roselle Boxplot Bias (PDF)");
+                break;
+            case "AQ_Stacked_Barplot.R":
+                output.newFile("stacked_barplot.png", "Stacked Barplot (PNG)");
+                output.newFile("stacked_barplot.pdf", "Stacked Barplot (PDF)");
+                output.newFile("stacked_barplot.csv", "Barplot Data (CSV)");
+                break;
+            case "AQ_Stacked_Barplot_panel.R":
+                output.newFile("stacked_barplot_panel.png", "Stacked Barplot (PNG)");
+                output.newFile("stacked_barplot_panel.pdf", "Stacked Barplot (PDF)");
+                output.newFile("stacked_barplot_panel.csv", "Barplot Data (CSV)");
+                break;
+            case "AQ_Stacked_Barplot_panel_AE6.R":
+                output.newFile("stacked_barplot_panel_AE6.png", "Stacked Barplot (PNG)");
+                output.newFile("stacked_barplot_panel_AE6.pdf", "Stacked Barplot (PDF)");
+                output.newFile("stacked_barplot_panel_AE6.csv", "Barplot Data (CSV)");
+                break;
+            case "AQ_Stacked_Barplot_AE6.R":
+                output.newFile("stacked_barplot_AE6.png", "Stacked Barplot (PNG)");
+                output.newFile("stacked_barplot_AE6.pdf", "Stacked Barplot (PDF)");
+                output.newFile("stacked_barplot_AE6.csv", "Barplot Data (CSV");
+                break;
+            case "AQ_Stacked_Barplot_panel_AE6_multi.R":
+                output.newFile("stacked_barplot_panel_AE6.png", "Stacked Barplot (PNG)");
+                output.newFile("stacked_barplot_panel_AE6.pdf", "Stacked Barplot (PDF)");
+                output.newFile("stacked_barplot_panel_AE6.csv", "Barplot Data (CSV)");
+                break;
+            case "AQ_Stacked_Barplot_soil.R":
+                output.newFile("stacked_barplot_soil.png", "Stacked Barplot (PNG)");
+                output.newFile("stacked_barplot_soil.pdf", "Stacked Barplot (PDF)");
+                output.newFile("stacked_barplot_soil.csv", "Barplot Data (CSV)");
+                break;
+            case "AQ_Stacked_Barplot_soil_multi.R":
+                output.newFile("stacked_barplot_soil.png", "Stacked Barplot (PNG)");
+                output.newFile("stacked_barplot_soil.pdf", "Stacked Barplot (PDF)");
+                output.newFile("stacked_barplot_soil.csv", "Barplot Data (CSV)");
+                break;
+            case "AQ_Overlay_File.R":
+                output.newFile("overlay.ncf", "PAVE Obs Overlay File (IOAPI file)");
+                break;
+            case "AQ_Monthly_Stat_Plot.R":
+                output.newFile("plot1.pdf", "Obs/Mod Plot (PDF)");
+                output.newFile("plot1.png", "Obs/Mod Plot (PNG)");
+                output.newFile("stats.csv", "Monthly Stat File (CSV)");
+                output.newFile("statsplot1.pdf", "NMB/NME/Corr Plot (PDF)");
+                output.newFile("statsplot1.png", "NMB/NME/Corr Plot (PNG)");
+                output.newFile("statsplot2.pdf", "MdnB/MdnE/RMSE Plot (PDF)");
+                output.newFile("statsplot2.png", "MdnB/MdnE/RMSE Plot (PNG)");
+                break;
+            case "AQ_Plot_Spatial.R":
+                output.newFile("spatialplot_obs.png", "Obs (PNG)");
+                output.newFile("spatialplot_mod.png", "Model (PNG)");
+                output.newFile("spatialplot_diff.png", "Difference (PNG)");
+                output.newFile("spatialplot_ratio.png", "Ratio (PNG)");
+                output.newFile("spatialplot_obs.pdf", "Obs (PDF)");
+                output.newFile("spatialplot_mod.pdf", "Model (PDF)");
+                output.newFile("spatialplot_diff.pdf", "Difference (PDF)");
+                output.newFile("spatialplot_ratio.pdf", "Ratio (PDF)");
+                break;
+            case "AQ_Plot_Spatial_Ratio.R":
+                output.newFile("spatialplot_ratio_obs.png", "Obs Spatial Plot (PNG)");
+                output.newFile("spatialplot_ratio_mod.png", "Model Spatial Plot (PNG)");
+                output.newFile("spatialplot_ratio_diff.png", "Difference Plot (PNG)");
+                output.newFile("spatialplot_ratio_obs.pdf", "Obs Spatial Plot (PDF)");
+                output.newFile("spatialplot_ratio_mod.pdf", "Model Spatial Plot (PDF)");
+                output.newFile("spatialplot_ratio_diff.pdf", "Difference Plot (PDF)");
+                break;
+            case "AQ_Plot_Spatial_MtoM.R":
+                output.newFile("spatialplot_MtoM_Diff_Avg.png", "MtoM Diff Avg Plot (PNG)");
+                output.newFile("spatialplot_MtoM_Diff_Max.png", "MtoM Diff Max Plot (PNG)");
+                output.newFile("spatialplot_MtoM_Diff_Min.png", "MtoM Diff Min Plot (PNG)");
+                output.newFile("spatialplot_MtoM_Diff_Avg.pdf", "MtoM Diff Avg Plot (PDF)");
+                output.newFile("spatialplot_MtoM_Diff_Max.pdf", "MtoM Diff Max Plot (PDF)");
+                output.newFile("spatialplot_MtoM_Diff_Min.pdf", "MtoM Diff Min Plot (PDF)");
+                break;
+            case "AQ_Plot_Spatial_Diff.R":
+                output.newFile("spatial_plot_Bias_1.png", "Run 1 Bias Plot (PNG)");
+                output.newFile("spatial_plot_Bias_1.pdf", "Run 1 Bias Plot (PDF)");
+                output.newFile("spatial_plot_Error_1.png", "Run 1 Error Plot (PNG)");
+                output.newFile("spatial_plot_Error_1.pdf", "Run 1 Error Plot (PDF)");
+                output.newFile("spatial_plot_Bias_2.png", "Run 2 Bias Plot (PNG)");
+                output.newFile("spatial_plot_Bias_2.pdf", "Run 2 Bias Plot (PDF)");
+                output.newFile("spatial_plot_Error_2.png", "Run 2 Error Plot (PNG)");
+                output.newFile("spatial_plot_Error_2.pdf", "Run 2 Error Plot (PDF)");
+                output.newFile("spatial_plot_Bias_Diff.png", "Bias Difference Plot (PNG)");
+                output.newFile("spatial_plot_Bias_Diff.pdf", "Bias Difference Plot (PDF)");
+                output.newFile("spatial_plot_Error_Diff.png", "Error Difference Plot (PNG)");
+                output.newFile("spatial_plot_Error_Diff.pdf", "Error Difference Plot (PDF)");
+                output.newFile("spatial_plot_Bias_Diff_Hist.png", "Bias Diff Hist Plot (PNG)");
+                output.newFile("spatial_plot_Error_Diff_Hist.png", "Error Diff Hist Plot (PNG)");
+                output.newFile("spatial_plot_Error_Diff_Hist.pdf", "Error Diff Hist Plot (PDF)");
+                output.newFile("spatial_plot_diff.csv", "Plot Data File (CSV)");
+                break;
+            case "AQ_Histogram.R":
+                output.newFile("", "");
+                break;
+            case "AQ_Temporal_Plots.R":
+                output.newFile("", "");
+                break;
+            case "AQ_Spectal_Analysis.R":
+                output.newFile("", "");
+                break;
+            default:
+                break;  
+        }
+        output.setVisible(true);
+    }
+    
+    //generates my sql query with parameters
     public String queryGenerator() {
         String str = " and s.state_id=d.stat_id";
         //states
+        if (!state.equals("\"All\"")) { str = str + " and s.state=" + state;}
         //zeroprecip
+//        if (zeroprecip.equals("\"\"")) { str = str + " and d.precip_ob > 0";}
         //inc_valid
+//        if (inc_valid.equals("\"y\"")) { str = + " and d.valid_code != ' '"; }
         //inc_valid_amon
-        //rpo, regions, countries, etc
-        //stat_id
-        //date formatting for query
+        //RPO
+        switch(rpo) {
+            case "\"VISTAS\"":
+                str = str + " and (s.state='AL' or s.state='FL' or s.state='GA' or s.state='KY' or s.state='MS' or s.state='NC' or s.state='SC' or s.state='TN' or s.state='VA' or s.state='WV')";
+                break;
+            case "\"CENRAP\"":
+                str = str + " and (s.state='NE' or s.state='KS' or s.state='OK' or s.state='TX' or s.state='MN' or s.state='IA' or s.state='MO' or s.state='AR' or s.state='LA')";
+                break;
+            case "\"MANE=VU\"":
+                str = str + " and (s.state='CT' or s.state='DE' or s.state='DC' or s.state='ME' or s.state='MD' or s.state='MA' or s.state='NH' or s.state='NJ' or s.state='NY' or s.state='PA' or s.state='RI' or s.state='VT')";
+                break;
+            case "\"LADCO\"":
+                str = str + " and (s.state='IL' or s.state='IN' or s.state='MI' or s.state='OH' or s.state='WI')";
+                break;
+            case "\"WRAP\"":
+                str = str + " and (s.state='AK' or s.state='CA' or s.state='OR' or s.state='WA' or s.state='AZ' or s.state='NM' or s.state='CO' or s.state='UT' or s.state='WY' or s.state='SD' or s.state='ND' or s.state='MT' or s.state='ID' or s.state='NV')";
+                break;
+            default:
+                break;
+        }
+        //PCA
+        switch(pca) {
+            case "\"Northeast (Ozone)\"":
+                str = str + " and (s.state='ME' or s.state='NH' or s.state='VT' or s.state='MA' or s.state='NY' or s.state='NJ' or s.state='MD' or s.state='DE' or s.state='CT' or s.state='RI' or s.state='PA' or s.state='DC')";
+                break;
+            case "\"Great Lakes (Ozone)\"":
+                str = str + " and (s.state='MI' or s.state='IL' or s.state='OH' or s.state='IN' or s.state='WI')";
+                break;
+            case "\"Mid-Atlantic (Ozone)\"":
+                str = str + " and (s.state='WV' or s.state='KY' or s.state='TN' or s.state='VA' or s.state='NC' or s.state='SC' or s.state='GA' or s.state='AL')";
+                break;
+            case "\"Southwest (Ozone)\"":
+                str = str + " and (s.state='LA' or s.state='MS' or s.state='MO' or s.state='TX' or s.state='OK')";
+                break;
+            case "\"Northeast (Aerosols)\"":
+                str = str + " and (s.state='ME' or s.state='NH' or s.state='VT' or s.state='MA' or s.state='NY' or s.state='NJ' or s.state='MD' or s.state='DE' or s.state='CT' or s.state='RI' or s.state='PA' or s.state='DC' or s.state='VA' or s.state='WV')";
+                break;
+            case "\"Great Lakes (Aerosols)\"":
+                str = str + " and (s.state='OH' or s.state='MI' or s.state='IN' or s.state='IL' or s.state='WI')";
+                break;
+            case "\"Southeast (Aerosols)\"":
+                str = str + " and (s.state='NC' or s.state='SC' or s.state='GA' or s.state='FL')";
+                break;
+            case "\"Lower Midwest (Aerosols)\"":
+                str = str + " and (s.state='KY' or s.state='TN' or s.state='MS' or s.state='AL' or s.state='LA' or s.state='MO' or s.state='OK' or s.state='AR')";
+                break;
+            case "\"West (Aerosols)\"":
+                //TODO: set up West
+                break;
+            default:
+                break;
+        }
+        //Climate Regions
+        switch(clim_reg) {
+            case "\"Central\"":
+                str = str + " and (s.state='IL' or s.state='IN' or s.state='KY' or s.state='MO' or s.state='OH' or s.state='TN' or s.state='WV')";
+                break;
+            case "\"East-North Central\"":
+                str = str + " and (s.state='IA' or s.state='MI' or s.state='MN' or s.state='WI')";
+                break;
+            case "\"Northeast\"":
+                str = str + " and (s.state='CT' or s.state='DE' or s.state='ME' or s.state='MD' or s.state='MA' or s.state='NH' or s.state='NJ' or s.state='NY' or s.state='PA' or s.state='RI' or s.state='VT')";
+                break;
+            case "\"Northwest\"":
+                str = str + " and (s.state='ID' or s.state='OR' or s.state='WA')";
+                break;
+            case "\"South\"":
+                str = str + " and (s.state='AR' or s.state='KS' or s.state='LA' or s.state='MS' or s.state='OK' or s.state='TX')";
+                break;
+            case "\"Southeast\"":
+                str = str + " and (s.state='AL' or s.state='FL' or s.state='GA' or s.state='SC' or s.state='NC' or s.state='VA')";
+                break;
+            case "\"Southwest\"":
+                str = str + " and (s.state='AZ' or s.state='CO' or s.state='NM' or s.state='UT')";
+                break;
+            case "\"West\"":
+                str = str + " and (s.state='CA' or s.state='NV')";
+                break;
+            case "\"West-North Central\"":
+                str = str + " and (s.state='MT' or s.state='NE' or s.state='ND' or s.state='SD' or s.state='WY')";
+                break;
+            default:
+                break;
+        }
+        //DISCOVER-AQ REGIONS
+        switch(discovaq) {
+            case "\"4-km Window\"":
+                str = str + " and (d.stat_id='Appalac005' or d.stat_id='Billeri011' or d.stat_id='Brookha017' or d.stat_id='CCNY032' or d.stat_id='COVE_SE041' or d.stat_id='Dayton043' or d.stat_id='DRAGON_044' or d.stat_id='DRAGON_045' or d.stat_id='DRAGON_046' or d.stat_id='DRAGON_047' or d.stat_i"
+                        + "d='DRAGON_048' or d.stat_id='DRAGON_050' or d.stat_id='DRAGON_051' or d.stat_id='DRAGON_052' or d.stat_id='DRAGON_053' or d.stat_id='DRAGON_054' or d.stat_id='DRAGON_055' or d.stat_id='DRAGON_057' or d.stat_id='DRAGON_058' or d.stat_id='DRAGON_059' or d.stat_id='DRAGON_06"
+                        + "1' or d.stat_id='DRAGON_063' or d.stat_id='DRAGON_065' or d.stat_id='DRAGON_068' or d.stat_id='DRAGON_069' or d.stat_id='DRAGON_070' or d.stat_id='DRAGON_071' or d.stat_id='DRAGON_072' or d.stat_id='DRAGON_073' or d.stat_id='DRAGON_074' or d.stat_id='DRAGON_078' or d.stat"
+                        + "_id='DRAGON_080' or d.stat_id='DRAGON_082' or d.stat_id='DRAGON_083' or d.stat_id='DRAGON_084' or d.stat_id='DRAGON_086' or d.stat_id='DRAGON_087' or d.stat_id='DRAGON_088' or d.stat_id='DRAGON_090' or d.stat_id='DRAGON_093' or d.stat_id='DRAGON_096' or d.stat_id='DRAGON_"
+                        + "097' or d.stat_id='DRAGON_098' or d.stat_id='DRAGON_099' or d.stat_id='Easton_101' or d.stat_id='Egbert102' or d.stat_id='Georgia115' or d.stat_id='GSFC118' or d.stat_id='Harvard122' or d.stat_id='LISCO140' or d.stat_id='SERC187' or d.stat_id='Toronto207' or d.stat_id='UM"
+                        + "BC215' or d.stat_id='Wallops223' or d.stat_id='090010017' or d.stat_id='090011123' or d.stat_id='090013007' or d.stat_id='090019003' or d.stat_id='090031003' or d.stat_id='090050005' or d.stat_id='090070007' or d.stat_id='090090027' or d.stat_id='090093002' or d.stat_id='"
+                        + "090110124' or d.stat_id='090131001' or d.stat_id='100010002' or d.stat_id='100031007' or d.stat_id='100031010' or d.stat_id='100031013' or d.stat_id='100032004' or d.stat_id='100051002' or d.stat_id='100051003' or d.stat_id='110010041' or d.stat_id='110010043' or d.stat_i"
+                        + "d='130550001' or d.stat_id='130590002' or d.stat_id='130670003' or d.stat_id='130730001' or d.stat_id='130850001' or d.stat_id='130890002' or d.stat_id='130970004' or d.stat_id='131210055' or d.stat_id='131350002' or d.stat_id='132130003' or d.stat_id='132230003' or d.sta"
+                        + "t_id='132450091' or d.stat_id='132470001' or d.stat_id='210130002' or d.stat_id='210131002' or d.stat_id='210190017' or d.stat_id='210373002' or d.stat_id='210430500' or d.stat_id='210670012' or d.stat_id='210890007' or d.stat_id='211130001' or d.stat_id='211930003' or d."
+                        + "stat_id='211950002' or d.stat_id='211990003' or d.stat_id='240030014' or d.stat_id='240051007' or d.stat_id='240053001' or d.stat_id='240090011' or d.stat_id='240130001' or d.stat_id='240150003' or d.stat_id='240170010' or d.stat_id='240210037' or d.stat_id='240230002' or"
+                        + " d.stat_id='240251001' or d.stat_id='240259001' or d.stat_id='240290002' or d.stat_id='240313001' or d.stat_id='240330030' or d.stat_id='240338003' or d.stat_id='240430009' or d.stat_id='245100054' or d.stat_id='250010002' or d.stat_id='250034002' or d.stat_id='250051002'"
+                        + " or d.stat_id='250070001' or d.stat_id='250092006' or d.stat_id='250095005' or d.stat_id='250130008' or d.stat_id='250150103' or d.stat_id='250154002' or d.stat_id='250170009' or d.stat_id='250171102' or d.stat_id='250213003' or d.stat_id='250250041' or d.stat_id='2502500"
+                        + "42' or d.stat_id='250270015' or d.stat_id='250270024' or d.stat_id='260490021' or d.stat_id='260492001' or d.stat_id='260630007' or d.stat_id='260910007' or d.stat_id='260990009' or d.stat_id='260991003' or d.stat_id='261250001' or d.stat_id='261470005' or d.stat_id='2616"
+                        + "10008' or d.stat_id='261630001' or d.stat_id='261630019' or d.stat_id='330050007' or d.stat_id='330111011' or d.stat_id='330115001' or d.stat_id='340010006' or d.stat_id='340030006' or d.stat_id='340071001' or d.stat_id='340110007' or d.stat_id='340130003' or d.stat_id='3"
+                        + "40150002' or d.stat_id='340170006' or d.stat_id='340190001' or d.stat_id='340210005' or d.stat_id='340230011' or d.stat_id='340250005' or d.stat_id='340273001' or d.stat_id='340290006' or d.stat_id='340315001' or d.stat_id='360010012' or d.stat_id='360050133' or d.stat_id"
+                        + "='360130006' or d.stat_id='360130011' or d.stat_id='360150003' or d.stat_id='360270007' or d.stat_id='360290002' or d.stat_id='360410005' or d.stat_id='360430005' or d.stat_id='360530006' or d.stat_id='360551007' or d.stat_id='360610135' or d.stat_id='360631006' or d.stat"
+                        + "_id='360650004' or d.stat_id='360671015' or d.stat_id='360715001' or d.stat_id='360750003' or d.stat_id='360790005' or d.stat_id='360810124' or d.stat_id='360830004' or d.stat_id='360850067' or d.stat_id='360870005' or d.stat_id='360910004' or d.stat_id='361010003' or d.s"
+                        + "tat_id='361030002' or d.stat_id='361030004' or d.stat_id='361030009' or d.stat_id='361111005' or d.stat_id='361173001' or d.stat_id='361192004' or d.stat_id='370030004' or d.stat_id='370110002' or d.stat_id='370210030' or d.stat_id='370270003' or d.stat_id='370330001' or "
+                        + "d.stat_id='370370004' or d.stat_id='370510008' or d.stat_id='370511003' or d.stat_id='370590003' or d.stat_id='370630015' or d.stat_id='370650099' or d.stat_id='370670022' or d.stat_id='370670028' or d.stat_id='370670030' or d.stat_id='370671008' or d.stat_id='370690001' "
+                        + "or d.stat_id='370750001' or d.stat_id='370770001' or d.stat_id='370810013' or d.stat_id='370870035' or d.stat_id='370870036' or d.stat_id='370990005' or d.stat_id='371010002' or d.stat_id='371070004' or d.stat_id='371090004' or d.stat_id='371170001' or d.stat_id='37119004"
+                        + "1' or d.stat_id='371191005' or d.stat_id='371191009' or d.stat_id='371290002' or d.stat_id='371450003' or d.stat_id='371470006' or d.stat_id='371570099' or d.stat_id='371590021' or d.stat_id='371590022' or d.stat_id='371730002' or d.stat_id='371790003' or d.stat_id='37183"
+                        + "0014' or d.stat_id='371830016' or d.stat_id='371990004' or d.stat_id='390030009' or d.stat_id='390071001' or d.stat_id='390090004' or d.stat_id='390170004' or d.stat_id='390170018' or d.stat_id='390230001' or d.stat_id='390230003' or d.stat_id='390250022' or d.stat_id='39"
+                        + "0271002' or d.stat_id='390350034' or d.stat_id='390350060' or d.stat_id='390350064' or d.stat_id='390355002' or d.stat_id='390410002' or d.stat_id='390490029' or d.stat_id='390490037' or d.stat_id='390490081' or d.stat_id='390550004' or d.stat_id='390570006' or d.stat_id="
+                        + "'390610006' or d.stat_id='390610040' or d.stat_id='390810017' or d.stat_id='390830002' or d.stat_id='390850003' or d.stat_id='390850007' or d.stat_id='390870011' or d.stat_id='390870012' or d.stat_id='390890005' or d.stat_id='390930018' or d.stat_id='390950024' or d.stat_"
+                        + "id='390950027' or d.stat_id='390950034' or d.stat_id='390970007' or d.stat_id='390990013' or d.stat_id='391030004' or d.stat_id='391090005' or d.stat_id='391130037' or d.stat_id='391331001' or d.stat_id='391510016' or d.stat_id='391510022' or d.stat_id='391514005' or d.st"
+                        + "at_id='391530020' or d.stat_id='391550009' or d.stat_id='391550011' or d.stat_id='391650007' or d.stat_id='391670004' or d.stat_id='391730003' or d.stat_id='420010002' or d.stat_id='420030008' or d.stat_id='420030010' or d.stat_id='420030067' or d.stat_id='420031005' or d"
+                        + ".stat_id='420050001' or d.stat_id='420070002' or d.stat_id='420070005' or d.stat_id='420070014' or d.stat_id='420110006' or d.stat_id='420110011' or d.stat_id='420130801' or d.stat_id='420170012' or d.stat_id='420210011' or d.stat_id='420270100' or d.stat_id='420290100' o"
+                        + "r d.stat_id='420334000' or d.stat_id='420430401' or d.stat_id='420431100' or d.stat_id='420450002' or d.stat_id='420490003' or d.stat_id='420550001' or d.stat_id='420590002' or d.stat_id='420630004' or d.stat_id='420690101' or d.stat_id='420692006' or d.stat_id='420710007"
+                        + "' or d.stat_id='420710012' or d.stat_id='420730015' or d.stat_id='420770004' or d.stat_id='420791100' or d.stat_id='420791101' or d.stat_id='420810100' or d.stat_id='420850100' or d.stat_id='420890002' or d.stat_id='420910013' or d.stat_id='420950025' or d.stat_id='420958"
+                        + "000' or d.stat_id='420990301' or d.stat_id='421010004' or d.stat_id='421010024' or d.stat_id='421174000' or d.stat_id='421250005' or d.stat_id='421250200' or d.stat_id='421255001' or d.stat_id='421290006' or d.stat_id='421290008' or d.stat_id='421330008' or d.stat_id='421"
+                        + "330011' or d.stat_id='440030002' or d.stat_id='440071010' or d.stat_id='440090007' or d.stat_id='450010001' or d.stat_id='450030003' or d.stat_id='450070005' or d.stat_id='450150002' or d.stat_id='450190046' or d.stat_id='450210002' or d.stat_id='450250001' or d.stat_id='"
+                        + "450310003' or d.stat_id='450370001' or d.stat_id='450450016' or d.stat_id='450451003' or d.stat_id='450730001' or d.stat_id='450770002' or d.stat_id='450790007' or d.stat_id='450790021' or d.stat_id='450791001' or d.stat_id='450830009' or d.stat_id='450910006' or d.stat_i"
+                        + "d='470010101' or d.stat_id='470090101' or d.stat_id='470090102' or d.stat_id='470651011' or d.stat_id='470654003' or d.stat_id='470890002' or d.stat_id='470930021' or d.stat_id='470931020' or d.stat_id='471050109' or d.stat_id='471210104' or d.stat_id='471550101' or d.sta"
+                        + "t_id='471550102' or d.stat_id='471632002' or d.stat_id='471632003' or d.stat_id='500030004' or d.stat_id='510030001' or d.stat_id='510130020' or d.stat_id='510330001' or d.stat_id='510360002' or d.stat_id='510410004' or d.stat_id='510590030' or d.stat_id='510610002' or d."
+                        + "stat_id='510690010' or d.stat_id='510850003' or d.stat_id='510870014' or d.stat_id='511071005' or d.stat_id='511130003' or d.stat_id='511390004' or d.stat_id='511530009' or d.stat_id='511611004' or d.stat_id='511630003' or d.stat_id='511650003' or d.stat_id='511790001' or"
+                        + " d.stat_id='511970002' or d.stat_id='515100009' or d.stat_id='518000004' or d.stat_id='518000005' or d.stat_id='540030003' or d.stat_id='540110006' or d.stat_id='540250003' or d.stat_id='540291004' or d.stat_id='540390010' or d.stat_id='540610003' or d.stat_id='540690010'"
+                        + " or d.stat_id='541071002' or d.stat_id='090010010' or d.stat_id='090013005' or d.stat_id='090032006' or d.stat_id='090091123' or d.stat_id='090092123' or d.stat_id='090113002' or d.stat_id='100010003' or d.stat_id='100031003' or d.stat_id='100031012' or d.stat_id='1100100"
+                        + "42' or d.stat_id='130630091' or d.stat_id='130670004' or d.stat_id='130892001' or d.stat_id='131150003' or d.stat_id='131210032' or d.stat_id='131210039' or d.stat_id='131390003' or d.stat_id='132450005' or d.stat_id='132950002' or d.stat_id='210190002' or d.stat_id='2106"
+                        + "70014' or d.stat_id='211510003' or d.stat_id='240031003' or d.stat_id='240330025' or d.stat_id='245100006' or d.stat_id='245100007' or d.stat_id='245100008' or d.stat_id='245100040' or d.stat_id='250035001' or d.stat_id='250051004' or d.stat_id='250096001' or d.stat_id='2"
+                        + "50130016' or d.stat_id='250132009' or d.stat_id='250230004' or d.stat_id='250250002' or d.stat_id='250250027' or d.stat_id='250250043' or d.stat_id='250270016' or d.stat_id='250270023' or d.stat_id='261150005' or d.stat_id='261630005' or d.stat_id='261630015' or d.stat_id"
+                        + "='261630016' or d.stat_id='261630025' or d.stat_id='261630033' or d.stat_id='261630036' or d.stat_id='261630038' or d.stat_id='261630039' or d.stat_id='330111015' or d.stat_id='330150018' or d.stat_id='340011006' or d.stat_id='340030003' or d.stat_id='340070009' or d.stat"
+                        + "_id='340071007' or d.stat_id='340150004' or d.stat_id='340171003' or d.stat_id='340172002' or d.stat_id='340210008' or d.stat_id='340218001' or d.stat_id='340230006' or d.stat_id='340270004' or d.stat_id='340292002' or d.stat_id='340310005' or d.stat_id='340390004' or d.s"
+                        + "tat_id='340390006' or d.stat_id='340392003' or d.stat_id='340410006' or d.stat_id='340410007' or d.stat_id='360010005' or d.stat_id='360050080' or d.stat_id='360290005' or d.stat_id='360470122' or d.stat_id='360590008' or d.stat_id='360610079' or d.stat_id='360610128' or "
+                        + "d.stat_id='360610134' or d.stat_id='360632008' or d.stat_id='360710002' or d.stat_id='360850055' or d.stat_id='361191002' or d.stat_id='370010002' or d.stat_id='370210034' or d.stat_id='370350004' or d.stat_id='370510009' or d.stat_id='370570002' or d.stat_id='370610002' "
+                        + "or d.stat_id='370650004' or d.stat_id='370710016' or d.stat_id='370810014' or d.stat_id='370870012' or d.stat_id='370990006' or d.stat_id='371110004' or d.stat_id='371190003' or d.stat_id='371190042' or d.stat_id='371190043' or d.stat_id='371210001' or d.stat_id='37123000"
+                        + "1' or d.stat_id='371550005' or d.stat_id='371830020' or d.stat_id='371890003' or d.stat_id='371910005' or d.stat_id='390090003' or d.stat_id='390170003' or d.stat_id='390170015' or d.stat_id='390170016' or d.stat_id='390230005' or d.stat_id='390290020' or d.stat_id='39029"
+                        + "0022' or d.stat_id='390350038' or d.stat_id='390350045' or d.stat_id='390350065' or d.stat_id='390351002' or d.stat_id='390490024' or d.stat_id='390490025' or d.stat_id='390570005' or d.stat_id='390610014' or d.stat_id='390610042' or d.stat_id='390615001' or d.stat_id='39"
+                        + "0810001' or d.stat_id='390811001' or d.stat_id='390851001' or d.stat_id='390933002' or d.stat_id='390950026' or d.stat_id='390950028' or d.stat_id='390990005' or d.stat_id='390990006' or d.stat_id='390990014' or d.stat_id='391130032' or d.stat_id='391137001' or d.stat_id="
+                        + "'391330002' or d.stat_id='391450013' or d.stat_id='391450019' or d.stat_id='391510017' or d.stat_id='391510020' or d.stat_id='391530017' or d.stat_id='391530023' or d.stat_id='391550005' or d.stat_id='391550006' or d.stat_id='420030002' or d.stat_id='420030064' or d.stat_"
+                        + "id='420030092' or d.stat_id='420030093' or d.stat_id='420031008' or d.stat_id='420031301' or d.stat_id='420033007' or d.stat_id='420410101' or d.stat_id='420950027' or d.stat_id='421010047' or d.stat_id='421010055' or d.stat_id='421010057' or d.stat_id='421010449' or d.st"
+                        + "at_id='421010649' or d.stat_id='421011002' or d.stat_id='440070022' or d.stat_id='440070026' or d.stat_id='440070027' or d.stat_id='440070028' or d.stat_id='450190048' or d.stat_id='450410003' or d.stat_id='450450009' or d.stat_id='450450015' or d.stat_id='450630008' or d"
+                        + ".stat_id='450790019' or d.stat_id='470090011' or d.stat_id='470110103' or d.stat_id='470111002' or d.stat_id='470650006' or d.stat_id='470650031' or d.stat_id='470654002' or d.stat_id='470930028' or d.stat_id='470931013' or d.stat_id='470931017' or d.stat_id='471050108' o"
+                        + "r d.stat_id='471070101' or d.stat_id='471071002' or d.stat_id='471450004' or d.stat_id='471450103' or d.stat_id='471451001' or d.stat_id='471631007' or d.stat_id='471730105' or d.stat_id='510350001' or d.stat_id='510410003' or d.stat_id='510470002' or d.stat_id='510870015"
+                        + "' or d.stat_id='511010003' or d.stat_id='511870004' or d.stat_id='515100020' or d.stat_id='515200006' or d.stat_id='516300004' or d.stat_id='516500008' or d.stat_id='516700010' or d.stat_id='516800015' or d.stat_id='517100024' or d.stat_id='517700011' or d.stat_id='517700"
+                        + "015' or d.stat_id='517750011' or d.stat_id='518100008' or d.stat_id='518400002' or d.stat_id='540090005' or d.stat_id='540391005' or d.stat_id='540490006' or d.stat_id='540511002' or d.stat_id='540810002' or d.stat_id='090010012' or d.stat_id='100031008' or d.stat_id='110"
+                        + "010023' or d.stat_id='131210048' or d.stat_id='250094005' or d.stat_id='250250040' or d.stat_id='330110020' or d.stat_id='340131003' or d.stat_id='340171002' or d.stat_id='340390003' or d.stat_id='360050112' or d.stat_id='360050113' or d.stat_id='360291013' or d.stat_id='"
+                        + "360291014' or d.stat_id='360470052' or d.stat_id='360470118' or d.stat_id='360470121' or d.stat_id='360590005' or d.stat_id='360652001' or d.stat_id='360670017' or d.stat_id='360810120' or d.stat_id='360850111' or d.stat_id='370130151' or d.stat_id='370670023' or d.stat_i"
+                        + "d='371290006' or d.stat_id='390010001' or d.stat_id='390133002' or d.stat_id='390350051' or d.stat_id='390350053' or d.stat_id='390490005' or d.stat_id='390490034' or d.stat_id='390610021' or d.stat_id='390810018' or d.stat_id='390810020' or d.stat_id='390850006' or d.sta"
+                        + "t_id='390951003' or d.stat_id='391051001' or d.stat_id='391130028' or d.stat_id='391130034' or d.stat_id='391150004' or d.stat_id='391450020' or d.stat_id='391450021' or d.stat_id='391450022' or d.stat_id='391530022' or d.stat_id='391570006' or d.stat_id='420010001' or d."
+                        + "stat_id='420030003' or d.stat_id='420030031' or d.stat_id='420030038' or d.stat_id='420033006' or d.stat_id='420037004' or d.stat_id='420951000' or d.stat_id='421230004' or d.stat_id='440070012' or d.stat_id='450430011' or d.stat_id='450430012' or d.stat_id='450630009' or"
+                        + " d.stat_id='450630010' or d.stat_id='450770003' or d.stat_id='470110102' or d.stat_id='471450104' or d.stat_id='471453009' or d.stat_id='471630007' or d.stat_id='471730107' or d.stat_id='517600024' or d.stat_id='540090007' or d.stat_id='540090011' or d.stat_id='540290005'"
+                        + " or d.stat_id='540290007' or d.stat_id='540290008' or d.stat_id='540290009' or d.stat_id='540290015' or d.stat_id='540990004' or d.stat_id='540990005' or d.stat_id='ABT147' or d.stat_id='ANA115' or d.stat_id='ARE128' or d.stat_id='BEL116' or d.stat_id='BFT142' or d.stat_i"
+                        + "d='BWR139' or d.stat_id='CAT175' or d.stat_id='CDR119' or d.stat_id='CKT136' or d.stat_id='CND125' or d.stat_id='COW137' or d.stat_id='CTH110' or d.stat_id='DCP114' or d.stat_id='EGB181' or d.stat_id='GRS420' or d.stat_id='KEF112' or d.stat_id='LRL117' or d.stat_id='MKG11"
+                        + "3' or d.stat_id='PAR107' or d.stat_id='PED108' or d.stat_id='PNF126' or d.stat_id='PSU106' or d.stat_id='QAK172' or d.stat_id='SHN418' or d.stat_id='SPD111' or d.stat_id='UVL124' or d.stat_id='VPI120' or d.stat_id='WSP144' or d.stat_id='130590001' or d.stat_id='540390011'"
+                        + " or d.stat_id='BRIG1' or d.stat_id='CACO1' or d.stat_id='COHU1' or d.stat_id='DOSO1' or d.stat_id='EGBE1' or d.stat_id='FRRE1' or d.stat_id='GRSM1' or d.stat_id='JARI1' or d.stat_id='LIGO1' or d.stat_id='LYBR1' or d.stat_id='MAVI1' or d.stat_id='MOMO1' or d.stat_id='PACK1"
+                        + "' or d.stat_id='QUCI1' or d.stat_id='QURE1' or d.stat_id='ROMA1' or d.stat_id='SHEN1' or d.stat_id='SHRO1' or d.stat_id='SWAN1' or d.stat_id='WASH1' or d.stat_id='CT15' or d.stat_id='KY22' or d.stat_id='KY35' or d.stat_id='MA01' or d.stat_id='MA08' or d.stat_id='MD07' or "
+                        + "d.stat_id='MD08' or d.stat_id='MD13' or d.stat_id='MD15' or d.stat_id='MD18' or d.stat_id='MD99' or d.stat_id='MI51' or d.stat_id='MI52' or d.stat_id='NC03' or d.stat_id='NC06' or d.stat_id='NC25' or d.stat_id='NC29' or d.stat_id='NC34' or d.stat_id='NC35' or d.stat_id='N"
+                        + "C36' or d.stat_id='NC41' or d.stat_id='NC45' or d.stat_id='NJ00' or d.stat_id='NJ99' or d.stat_id='NY01' or d.stat_id='NY08' or d.stat_id='NY10' or d.stat_id='NY52' or d.stat_id='NY68' or d.stat_id='NY96' or d.stat_id='NY99' or d.stat_id='OH17' or d.stat_id='OH49' or d.st"
+                        + "at_id='OH54' or d.stat_id='OH71' or d.stat_id='PA00' or d.stat_id='PA15' or d.stat_id='PA18' or d.stat_id='PA29' or d.stat_id='PA42' or d.stat_id='PA47' or d.stat_id='PA72' or d.stat_id='SC05' or d.stat_id='SC06' or d.stat_id='TN00' or d.stat_id='TN04' or d.stat_id='TN11'"
+                        + " or d.stat_id='VA00' or d.stat_id='VA13' or d.stat_id='VA24' or d.stat_id='VA28' or d.stat_id='VA98' or d.stat_id='VA99' or d.stat_id='VT01' or d.stat_id='WV04' or d.stat_id='WV05' or d.stat_id='WV18')  ";
+                break;
+            case "\"1-km Window\"":
+               str = str + " and (d.stat_id='DRAGON_164' or d.stat_id='DRAGON_165' or d.stat_id='DRAGON_167'or d.stat_id='DRAGON_168' or d.stat_id='DRAGON_169' or d.stat_id='DRAGON_171' or d.stat_id='DRAGON_172' or d.stat_id='DRAGON_173' or d.stat_id='DRAGON_174' or d.stat_id='DRAGON_175' or d.stat"
+                       + "_id='DRAGON_176' or d.stat_id='DRAGON_178' or d.stat_id='DRAGON_180' or d.stat_id='DRAGON_181' or d.stat_id='DRAGON_183' or d.stat_id='DRAGON_185' or d.stat_id='DRAGON_187' or d.stat_id='DRAGON_190' or d.stat_id='DRAGON_191' or d.stat_id='DRAGON_192' or d.stat_id='DRAGON_1"
+                       + "93' or d.stat_id='DRAGON_194' or d.stat_id='DRAGON_195' or d.stat_id='DRAGON_196' or d.stat_id='DRAGON_207' or d.stat_id='DRAGON_216' or d.stat_id='DRAGON_219' or d.stat_id='DRAGON_224' or d.stat_id='DRAGON_225' or d.stat_id='DRAGON_230' or d.stat_id='DRAGON_231' or d.stat"
+                       + "_id='DRAGON_234' or d.stat_id='DRAGON_237' or d.stat_id='DRAGON_243' or d.stat_id='DRAGON_250' or d.stat_id='DRAGON_252' or d.stat_id='DRAGON_253' or d.stat_id='Easton_260' or d.stat_id='GSFC303' or d.stat_id='SERC592' or d.stat_id='UMBC680' or d.stat_id='Wallops696' or d."
+                       + "stat_id='100010002' or d.stat_id='100010003' or d.stat_id='100031003' or d.stat_id='100031007' or d.stat_id='100031008' or d.stat_id='100031012' or d.stat_id='100032004' or d.stat_id='100051002' or d.stat_id='110010041' or d.stat_id='110010042' or d.stat_id='110010043' or "
+                       + "d.stat_id='240031003' or d.stat_id='240051007' or d.stat_id='240053001' or d.stat_id='240150003' or d.stat_id='240251001' or d.stat_id='240290002' or d.stat_id='240313001' or d.stat_id='240330025' or d.stat_id='240330030' or d.stat_id='240338003' or d.stat_id='240430009' o"
+                       + "r d.stat_id='245100006' or d.stat_id='245100007' or d.stat_id='245100008' or d.stat_id='245100040' or d.stat_id='340070009' or d.stat_id='340071007' or d.stat_id='340110007' or d.stat_id='340150004' or d.stat_id='420010001' or d.stat_id='420290100' or d.stat_id='420410101'"
+                       + " or d.stat_id='420430401' or d.stat_id='420450002' or d.stat_id='420710007' or d.stat_id='420750100' or d.stat_id='420910013' or d.stat_id='421010004' or d.stat_id='421010014' or d.stat_id='421010047' or d.stat_id='421010055' or d.stat_id='421010057' or d.stat_id='42101006"
+                       + "3' or d.stat_id='421010449' or d.stat_id='421010649' or d.stat_id='421011002' or d.stat_id='421330008' or d.stat_id='510030001' or d.stat_id='510130020' or d.stat_id='510330001' or d.stat_id='510470002' or d.stat_id='510590030' or d.stat_id='510690010' or d.stat_id='510870"
+                       + "014' or d.stat_id='510870015' or d.stat_id='511010003' or d.stat_id='511071005' or d.stat_id='511130003' or d.stat_id='511870004' or d.stat_id='515100009' or d.stat_id='515100020' or d.stat_id='516300004' or d.stat_id='518400002' or d.stat_id='540030003' or d.stat_id='1000"
+                       + "31010' or d.stat_id='100031013' or d.stat_id='100051003' or d.stat_id='240030014' or d.stat_id='240090011' or d.stat_id='240130001' or d.stat_id='240170010' or d.stat_id='240199991' or d.stat_id='240210037' or d.stat_id='240259001' or d.stat_id='240339991' or d.stat_id='24"
+                       + "5100054' or d.stat_id='340071001' or d.stat_id='340150002' or d.stat_id='420010002' or d.stat_id='420019991' or d.stat_id='420431100' or d.stat_id='420550001' or d.stat_id='420710012' or d.stat_id='420990301' or d.stat_id='421010024' or d.stat_id='421330011' or d.stat_id='"
+                       + "510610002' or d.stat_id='510850003' or d.stat_id='511530009' or d.stat_id='511790001' or d.stat_id='110010023' or d.stat_id='517600024' or d.stat_id='ARE128' or d.stat_id='BEL116' or d.stat_id='BWR139' or d.stat_id='SHN418' or d.stat_id='SHEN1' or d.stat_id='WASH1' or d.st"
+                       + "at_id='MD07' or d.stat_id='MD13' or d.stat_id='MD15' or d.stat_id='MD18' or d.stat_id='MD99' or d.stat_id='PA00' or d.stat_id='PA47' or d.stat_id='VA00' or d.stat_id='VA28' or d.stat_id='VA98' ) ";
+               break;
+            case "\"2-km Window SJV\"":
+                str = str + " and (d.stat_id = '060010007' or d.stat_id = '060010009' or d.stat_id = '060010011' or d.stat_id = '060050002' or d.stat_id = '060070007' or d.stat_id = '060070008' or d.stat_id = '060090001' or d.stat_id = '060111002' or d.stat_id = '060130002' or d.stat_id = '06013100"
+                        + "2' or d.stat_id = '060131004' or d.stat_id = '060170010' or d.stat_id = '060190007' or d.stat_id = '060190011' or d.stat_id = '060190242' or d.stat_id = '060192009' or d.stat_id = '060194001' or d.stat_id = '060195001' or d.stat_id = '060210003' or d.stat_id = '060290007'"
+                        + " or d.stat_id = '060290008' or d.stat_id = '060290011' or d.stat_id = '060290014' or d.stat_id = '060290232' or d.stat_id = '060292012' or d.stat_id = '060295002' or d.stat_id = '060296001' or d.stat_id = '060310500' or d.stat_id = '060311004' or d.stat_id = '060333001' o"
+                        + "r d.stat_id = '060370002' or d.stat_id = '060370016' or d.stat_id = '060370113' or d.stat_id = '060371002' or d.stat_id = '060371103' or d.stat_id = '060371201' or d.stat_id = '060371302' or d.stat_id = '060371602' or d.stat_id = '060371701' or d.stat_id = '060374002' or "
+                        + "d.stat_id = '060374006' or d.stat_id = '060375005' or d.stat_id = '060376012' or d.stat_id = '060379033' or d.stat_id = '060390004' or d.stat_id = '060390500' or d.stat_id = '060392010' or d.stat_id = '060410001' or d.stat_id = '060430003' or d.stat_id = '060470003' or d."
+                        + "stat_id = '060530002' or d.stat_id = '060530008' or d.stat_id = '060531003' or d.stat_id = '060550003' or d.stat_id = '060570005' or d.stat_id = '060590007' or d.stat_id = '060591003' or d.stat_id = '060592022' or d.stat_id = '060595001' or d.stat_id = '060610003' or d.st"
+                        + "at_id = '060610004' or d.stat_id = '060610006' or d.stat_id = '060612002' or d.stat_id = '060658001' or d.stat_id = '060658005' or d.stat_id = '060659001' or d.stat_id = '060670002' or d.stat_id = '060670006' or d.stat_id = '060670010' or d.stat_id = '060670011' or d.stat"
+                        + "_id = '060670012' or d.stat_id = '060670014' or d.stat_id = '060675003' or d.stat_id = '060690002' or d.stat_id = '060690003' or d.stat_id = '060710012' or d.stat_id = '060711004' or d.stat_id = '060712002' or d.stat_id = '060750005' or d.stat_id = '060771002' or d.stat_i"
+                        + "d = '060773005' or d.stat_id = '060790005' or d.stat_id = '060792006' or d.stat_id = '060793001' or d.stat_id = '060794002' or d.stat_id = '060798001' or d.stat_id = '060798005' or d.stat_id = '060798006' or d.stat_id = '060811001' or d.stat_id = '060830008' or d.stat_id "
+                        + "= '060830011' or d.stat_id = '060831008' or d.stat_id = '060831013' or d.stat_id = '060831014' or d.stat_id = '060831018' or d.stat_id = '060831021' or d.stat_id = '060831025' or d.stat_id = '060832004' or d.stat_id = '060832011' or d.stat_id = '060833001' or d.stat_id = "
+                        + "'060834003' or d.stat_id = '060850005' or d.stat_id = '060852009' or d.stat_id = '060870007' or d.stat_id = '060871003' or d.stat_id = '060890004' or d.stat_id = '060890007' or d.stat_id = '060890009' or d.stat_id = '060893003' or d.stat_id = '060950004' or d.stat_id = '0"
+                        + "60953003' or d.stat_id = '060970003' or d.stat_id = '060971003' or d.stat_id = '060990005' or d.stat_id = '060990006' or d.stat_id = '061010003' or d.stat_id = '061030005' or d.stat_id = '061070006' or d.stat_id = '061070009' or d.stat_id = '061072002' or d.stat_id = '061"
+                        + "072010' or d.stat_id = '061090005' or d.stat_id = '061110007' or d.stat_id = '061110009' or d.stat_id = '061111004' or d.stat_id = '061112002' or d.stat_id = '061113001' or d.stat_id = '061130004' or d.stat_id = '061131003' or d.stat_id = '320310016' or d.stat_id = '32031"
+                        + "0020' or d.stat_id = '320310025' or d.stat_id = '320311005' or d.stat_id = '320312002' or d.stat_id = '320312009' or d.stat_id = '060130006' or d.stat_id = '060131001' or d.stat_id = '060132001' or d.stat_id = '060195025' or d.stat_id = '060290016' or d.stat_id = '0602900"
+                        + "17' or d.stat_id = '060310004' or d.stat_id = '060374004' or d.stat_id = '060410004' or d.stat_id = '060431001' or d.stat_id = '060472510' or d.stat_id = '060510001' or d.stat_id = '060510005' or d.stat_id = '060510011' or d.stat_id = '060571001' or d.stat_id = '060610002"
+                        + "' or d.stat_id = '060631006' or d.stat_id = '060631009' or d.stat_id = '060650003' or d.stat_id = '060651003' or d.stat_id = '060670284' or d.stat_id = '060674001' or d.stat_id = '060710025' or d.stat_id = '060773010' or d.stat_id = '060890008' or d.stat_id = '060953001' "
+                        + "or d.stat_id = '060970001' or d.stat_id = '060970002' or d.stat_id = '060973002' or d.stat_id = '061030002' or d.stat_id = '061050002' or d.stat_id = '061132001' or d.stat_id = '060012005' or d.stat_id = '060072002' or d.stat_id = '060074001' or d.stat_id = '060110007' or"
+                        + " d.stat_id = '060132007' or d.stat_id = '060170011' or d.stat_id = '060192008' or d.stat_id = '060271023' or d.stat_id = '060271028' or d.stat_id = '060292009' or d.stat_id = '060333010' or d.stat_id = '060333011' or d.stat_id = '060333012' or d.stat_id = '060410003' or d"
+                        + ".stat_id = '060631007' or d.stat_id = '060670007' or d.stat_id = '060772010' or d.stat_id = '060792004' or d.stat_id = '060792007' or d.stat_id = '060831020' or d.stat_id = '060831022' or d.stat_id = '060831033' or d.stat_id = '060831037' or d.stat_id = '060850002' or d.s"
+                        + "tat_id = '061030006'or d.stat_id = '061073000' or d.stat_id = '061110008' or d.stat_id = '320310022' or d.stat_id = '320310030' or d.stat_id = '320311026' or d.stat_id = '320312010' or d.stat_id = 'LAV410' or d.stat_id = 'PIN414' or d.stat_id = 'SEK430' or d.stat_id = 'YO"
+                        + "S204' or d.stat_id = 'YOS404' or d.stat_id = 'BLIS1' or d.stat_id = 'DOME1' or d.stat_id = 'FRES1' or d.stat_id = 'HOOV1' or d.stat_id = 'KAIS1' or d.stat_id = 'LAVO1' or d.stat_id = 'PINN1' or d.stat_id = 'PORE1' or d.stat_id = 'RAFA1' or d.stat_id = 'SAGA1' or d.stat_id"
+                        + " = 'SEQU1' or d.stat_id = 'TRIN1' or d.stat_id = 'YOSE1' ) ";
+                break;
+            default:
+                break;
+        }
+        //site_id or stat_id
+        if (!site_id.equals("\"All\"")) {
+            str = str + " and d.stat_id='" + site_id + "'";
+            
+            String site_id_str = " ";
+            //TODO: ask wyatt
+        }
+        //date
         String sd = year_start + month_start + day_start;
         String ed = year_end + month_end + day_end;
         str = str + " and d.ob_dates BETWEEN " + sd + " and " + ed + " and d.ob_datee BETWEEN " + sd +  " and " + ed + "";
+        //hour
+        if (!start_hour.equals("\"\"") && !end_hour.equals("\"\"")) {
+            str = str + " and (d.ob_hour >= " + hourFormat(start_hour) + " and d.ob_hour <= " + hourFormat(end_hour) + ")";
+        }
+        //Season
+        switch(season) {
+            case "\"Winter (Dec,Jan,Feb)\"":
+                str = str + " and (month = 12 or month = 1 or month = 2)";
+                str = str + " and (month(d.ob_dates) = 12 or month(d.ob_dates) = 1 or month(d.ob_dates = 2))";
+                break;
+            case "\"Spring (Mar,Apr,May)\"":
+                str = str + " and (month = 3 or month = 4 or month = 5)";
+                str = str + " and (month(d.ob_dates) = 3 or month(d.ob_dates) = 4 or month(d.ob_dates = 5))";
+                break;
+            case "\"Summer (Jun,Jul,Aug)\"":
+                str = str + " and (month = 6 or month = 7 or month = 8)";
+                str = str + " and (month(d.ob_dates) = 6 or month(d.ob_dates) = 7 or month(d.ob_dates = 8))";
+                break;
+            case "\"Autumn (Sep,Oct,Nov)\"":
+                str = str + " and (month = 9 or month = 10 or month = 11)";
+                str = str + " and (month(d.ob_dates) = 9 or month(d.ob_dates) = 10 or month(d.ob_dates = 11))";
+                break;
+            default:
+                break;
+        }
+        //Month
+        switch(month) {
+            case "\"Jan\"":
+                str = str + " and month = \"01\"";
+                break;
+            case "\"Feb\"":
+                str = str + " and month = \"02\"";
+                break;
+            case "\"Mar\"":
+                str = str + " and month = \"03\"";
+                break;
+            case "\"Apr\"":
+                str = str + " and month = \"04\"";
+                break;
+            case "\"May\"":
+                str = str + " and month = \"05\"";
+                break;
+            case "\"Jun\"":
+                str = str + " and month = \"06\"";
+                break;
+            case "\"Jul\"":
+                str = str + " and month = \"07\"";
+                break;
+            case "\"Aug\"":
+                str = str + " and month = \"08\"";
+                break;
+            case "\"Sep\"":
+                str = str + " and month = \"09\"";
+                break;
+            case "\"Oct\"":
+                str = str + " and month = \"10\"";
+                break;
+            case "\"Nov\"":
+                str = str + " and month = \"11\"";
+                break;
+            case "\"Dec\"":
+                str = str + " and month = \"12\"";
+                break;
+        }
+        //POcode
+        if (!poCode.equals("\"All\"")) {
+            str = str + " and POCode = " + poCode;
+        }
+        //Geographic-Based Criterion
+        if (!lat1.equals("") && !lat2.equals("")) {
+            str = str + " and d.lat BETWEEN $lat1 and $lat2";
+        }
+        if (!lon1.equals("") && !lon2.equals("")) {
+            str = str + " and d.lon BETWEEN $lon1 and $lon2";
+        }
+        switch(loc_setting) {
+            case "\"Rural\"":
+                str = str + " and s.loc_setting=\'RURAL'";
+                break;
+            case "\"Suburban\"":
+                str = str + " and s.loc_setting=\'SUBURBAN'";
+                break;
+            case "\"Urban\"":
+                str = str + " and s.loc_setting=\'URBAN AND CENTER CITY'";
+                break;
+        }
         return str;
     }
     
@@ -933,12 +1577,14 @@ public class AMETForm extends javax.swing.JFrame {
         worldRegionInfoLabel = new javax.swing.JLabel();
         discoverWindowsLabel = new javax.swing.JLabel();
         siteIDPanel = new javax.swing.JPanel();
-        siteIDLabel = new javax.swing.JLabel();
+        ozonePCALink = new javax.swing.JLabel();
         siteIDTextField = new javax.swing.JTextField();
         siteIDLoadInfoLabel = new javax.swing.JTextArea();
         siteIDInfoLabel = new javax.swing.JTextArea();
         siteIDLoadTextField = new javax.swing.JTextField();
         soccergoalBugleButton1 = new javax.swing.JButton();
+        siteIDLabel1 = new javax.swing.JLabel();
+        aerosolPCALink = new javax.swing.JLabel();
         worldRegionComboBox = new javax.swing.JComboBox<>();
         discoverWindowsComboBox = new javax.swing.JComboBox<>();
         networkSpeciesPanel = new javax.swing.JPanel();
@@ -1234,10 +1880,17 @@ public class AMETForm extends javax.swing.JFrame {
         discoverWindowsLabel.setText("Discover-AQ 4-km and 1-km Windows");
         discoverWindowsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
-        siteIDLabel.setText("Site ID");
-        siteIDLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        ozonePCALink.setText("Map of Ozone PCA Regions");
+        ozonePCALink.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        ozonePCALink.setForeground(new java.awt.Color(51, 51, 255));
+        ozonePCALink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ozonePCALinkMouseClicked(evt);
+            }
+        });
 
         siteIDLoadInfoLabel.setColumns(20);
+        siteIDLoadInfoLabel.setEditable(false);
         siteIDLoadInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         siteIDLoadInfoLabel.setLineWrap(true);
         siteIDLoadInfoLabel.setRows(5);
@@ -1246,6 +1899,7 @@ public class AMETForm extends javax.swing.JFrame {
         siteIDLoadInfoLabel.setOpaque(false);
 
         siteIDInfoLabel.setColumns(20);
+        siteIDInfoLabel.setEditable(false);
         siteIDInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         siteIDInfoLabel.setLineWrap(true);
         siteIDInfoLabel.setRows(5);
@@ -1260,6 +1914,18 @@ public class AMETForm extends javax.swing.JFrame {
             }
         });
 
+        siteIDLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        siteIDLabel1.setText("Site ID");
+
+        aerosolPCALink.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        aerosolPCALink.setForeground(new java.awt.Color(51, 51, 255));
+        aerosolPCALink.setText("Map of Aerosol PCA Regions");
+        aerosolPCALink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aerosolPCALinkMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout siteIDPanelLayout = new javax.swing.GroupLayout(siteIDPanel);
         siteIDPanel.setLayout(siteIDPanelLayout);
         siteIDPanelLayout.setHorizontalGroup(
@@ -1267,20 +1933,24 @@ public class AMETForm extends javax.swing.JFrame {
             .addGroup(siteIDPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(siteIDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(siteIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siteIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siteIDLoadInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siteIDInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siteIDLoadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(soccergoalBugleButton1))
+                    .addComponent(soccergoalBugleButton1)
+                    .addComponent(ozonePCALink, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aerosolPCALink, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(siteIDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(siteIDPanelLayout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(siteIDLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(200, Short.MAX_VALUE)))
         );
         siteIDPanelLayout.setVerticalGroup(
             siteIDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(siteIDPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(siteIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(41, 41, 41)
                 .addComponent(siteIDInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(siteIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1288,9 +1958,18 @@ public class AMETForm extends javax.swing.JFrame {
                 .addComponent(siteIDLoadInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(siteIDLoadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
+                .addGap(18, 18, 18)
                 .addComponent(soccergoalBugleButton1)
+                .addGap(18, 18, 18)
+                .addComponent(ozonePCALink, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aerosolPCALink, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(siteIDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(siteIDPanelLayout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(siteIDLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(509, Short.MAX_VALUE)))
         );
 
         worldRegionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "North America", "U.S. & Canada", "South America", "Europe", "Asia" }));
@@ -1710,6 +2389,7 @@ public class AMETForm extends javax.swing.JFrame {
         hourRangeLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         hourRangeInfoLabel.setColumns(20);
+        hourRangeInfoLabel.setEditable(false);
         hourRangeInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         hourRangeInfoLabel.setLineWrap(true);
         hourRangeInfoLabel.setRows(5);
@@ -1746,11 +2426,11 @@ public class AMETForm extends javax.swing.JFrame {
 
         startHourLabel.setText("Start Hour");
 
-        startHourComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM" }));
+        startHourComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM" }));
 
         endHourLabel.setText("End Hour");
 
-        endHourComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM" }));
+        endHourComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM" }));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1778,6 +2458,7 @@ public class AMETForm extends javax.swing.JFrame {
         seasonalAnalysisLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         seasonalAnalysisInfoLabel.setColumns(20);
+        seasonalAnalysisInfoLabel.setEditable(false);
         seasonalAnalysisInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         seasonalAnalysisInfoLabel.setLineWrap(true);
         seasonalAnalysisInfoLabel.setRows(5);
@@ -1791,6 +2472,7 @@ public class AMETForm extends javax.swing.JFrame {
         monthlyAnalysisLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         monthlyAnalysisInfoLabel.setColumns(20);
+        monthlyAnalysisInfoLabel.setEditable(false);
         monthlyAnalysisInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         monthlyAnalysisInfoLabel.setLineWrap(true);
         monthlyAnalysisInfoLabel.setRows(5);
@@ -1806,6 +2488,7 @@ public class AMETForm extends javax.swing.JFrame {
         POCodeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         negativeValuesInfoLabel.setColumns(20);
+        negativeValuesInfoLabel.setEditable(false);
         negativeValuesInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         negativeValuesInfoLabel.setLineWrap(true);
         negativeValuesInfoLabel.setRows(5);
@@ -1817,6 +2500,7 @@ public class AMETForm extends javax.swing.JFrame {
         negativeValuesLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         POCodeInfoLabel.setColumns(20);
+        POCodeInfoLabel.setEditable(false);
         POCodeInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         POCodeInfoLabel.setLineWrap(true);
         POCodeInfoLabel.setRows(5);
@@ -1832,6 +2516,7 @@ public class AMETForm extends javax.swing.JFrame {
         aggrigateDataCheckBox.setText("Aggrigate Data");
 
         temporalAveragingInfoLabel.setColumns(20);
+        temporalAveragingInfoLabel.setEditable(false);
         temporalAveragingInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         temporalAveragingInfoLabel.setLineWrap(true);
         temporalAveragingInfoLabel.setRows(5);
@@ -1843,6 +2528,7 @@ public class AMETForm extends javax.swing.JFrame {
         temporalAveragingLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         aggregateDataInfoLabel.setColumns(20);
+        aggregateDataInfoLabel.setEditable(false);
         aggregateDataInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         aggregateDataInfoLabel.setLineWrap(true);
         aggregateDataInfoLabel.setRows(5);
@@ -1968,6 +2654,7 @@ public class AMETForm extends javax.swing.JFrame {
         programComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose AMET Script to Execute", "    - Scatter Plots -", "Multiple Networks Model/Ob Scatterplot (select stats only)", "GGPlot Scatterplot (multi network, single run)", "Interactive Multiple Network Scatterplot", "Interactive Multiple Simulation Scatterplot", "Single Network Model/Ob Scatterplot (includes all stats)", "Density Scatterplot (single run, single network)", "GGPlot Density Scatterplot (single run, single network)", "Model/Model Scatterplot (multiple networks)", "Model/Model Density Scatterplot (single network)", "Scatterplot of Percentiles (single network, single run)", "Ozone Skill Scatterplot (single network, mult runs)", "Binned MB &amp; RMSE Scatterplots (single net., mult. run)", "Interactive Binned Plot (single net., mult. run)", "Multi Simulation Scatter plot (single network, mult runs)", "Soil Scatter plot (single network, mult runs)", "    - Time Series Plots -", "Time-Series Plot (single network, multiple sites averages)", "Dygraph Time-series Plot", "Plotly Multi-simulation Timeseries", "Plotly Multi-network Timeseries", "Multi-Network Time-series Plot (mult. net., single run)", "Multi-Species Time-series Plot (mult. species, single run)", "Model-to-Model Time-series Plot (single net., multi run)", "Year-long Monthly Statistics Plot (single network)", "    - Spatial Plots -", "Species Statistics and Spatial Plots (multi networks)", "Interactive Species Statistics and Spatial Plots (multi networks)", "Spatial Plot (multi networks)", "Interactive Spatial Plot (multi networks)", "Model/Model Diff Spatial Plot (multi network, multi run)", "Interactive Model/Model Diff Spatial Plot (multi network, multi run)", "Model/Model Species Diff Spatial Plot (multi network, multi run)", "Spatial Plot of Bias/Error Difference (multi network, multi run)", "Interactive Spatial Plot of Bias/Error Difference (multi networks)", "Ratio Spatial Plot to total PM2.5 (multi network, multi run)", "    - Box Plots -", "Boxplot (single network, multi run)", "GGPlot Boxplot (single network, multi run)", "Plotly Boxplot (single network, multi run)", "Day of Week Boxplot (single network, multiple runs)", "Hourly Boxplot (single network, multiple runs)", "8hr Average Boxplot (single network, hourly data, can be slow)", "Roselle Boxplot (single network, multiple simulations)", "    - Stacked Bar Plots -", "PM2.5 Stacked Bar Plot (CSN or IMPROVE, multi run)", "PM2.5 Stacked Bar Plot AE6 (CSN or IMPROVE, multi run)", "Interactive Stacked Bar Plot", "GGPlot Stacked Bar Plot", "Stacked Bar Plot Time Series", "Soil Stacked Bar Plot (CSN or IMPROVE,multi run)", "Soil Stacked Bar Plot Multi (CSN and IMPROVE,single run)", "Multi-Panel Stacked Bar Plot (full year data required)", "Multi-Panel Stacked Bar Plot AE6 (full year data)", "Multi-Panel, Mulit Run Stacked Bar Plot AE6 (full year data)", "    - Misc Scripts -", "Kelly Plot (single species, single network, full year data)", "Multisim Kelly Plot (single species, single network, multi sim)", "Species Statistics (multi species, single network)", "Create raw data csv file (single network, single simulation)", "\"Soccergoal\" plot (multiple networks)", "\"Bugle\" plot (multiple networks)", "Histogram (single network/species only)", "CDF, Q-Q, Taylor Plots (single network, multi run)", "    - Experimental Scripts (may not work correctly) -", "Create PAVE/VERDI Obs Overlay File (hourly/daily data only)", "Log-Log Model/Ob Scatterplot (multiple networks)", "Spectral Analysis (single network, single run, experimental)", "PM Ratio Spatial Plot (multi network, single run)" }));
 
         programToRunInfoLabel.setColumns(20);
+        programToRunInfoLabel.setEditable(false);
         programToRunInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         programToRunInfoLabel.setLineWrap(true);
         programToRunInfoLabel.setRows(5);
@@ -1982,6 +2669,7 @@ public class AMETForm extends javax.swing.JFrame {
         customTitleLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         plotlyImageSizeInfoLabel.setColumns(20);
+        plotlyImageSizeInfoLabel.setEditable(false);
         plotlyImageSizeInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         plotlyImageSizeInfoLabel.setLineWrap(true);
         plotlyImageSizeInfoLabel.setRows(5);
@@ -2029,6 +2717,7 @@ public class AMETForm extends javax.swing.JFrame {
         pngPlotQualityComboBox.setSelectedIndex(1);
 
         pngPlotQualityInfoLabel.setColumns(20);
+        pngPlotQualityInfoLabel.setEditable(false);
         pngPlotQualityInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         pngPlotQualityInfoLabel.setLineWrap(true);
         pngPlotQualityInfoLabel.setRows(5);
@@ -2133,7 +2822,7 @@ public class AMETForm extends javax.swing.JFrame {
                 .addComponent(customSQLQueryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(customSQLQueryButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout programPanelLayout = new javax.swing.GroupLayout(programPanel);
@@ -2242,19 +2931,18 @@ public class AMETForm extends javax.swing.JFrame {
 
     private void runProgramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runProgramButtonActionPerformed
         saveVariables();
-//        run_program = programFormat(programComboBox.getSelectedItem().toString());
+        System.out.println("Program: " + run_program);
+        programFormat(programComboBox.getSelectedItem().toString());
+        System.out.println("Program: " + run_program);
         query = queryGenerator();
-        System.out.println(query);
         //TODO: check data for errors
         createRunInfo();
         //TODO: execute program with required files
+        outputWindow();
         
-        //test area
-        System.out.println(year_start);
-        //test area
         
-//        AdvancedForm af = new AdvancedForm();
-//        af.setVisible(true);
+       //test code
+//        System.out.println("Program: " + run_program);
     }//GEN-LAST:event_runProgramButtonActionPerformed
 
     private void soccergoalBugleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soccergoalBugleButtonActionPerformed
@@ -2310,6 +2998,24 @@ public class AMETForm extends javax.swing.JFrame {
         //TODO fill out project model run combo boxes
     }//GEN-LAST:event_databaseSpecificationComboBoxActionPerformed
 
+    private void ozonePCALinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ozonePCALinkMouseClicked
+        try {
+        File myFile = new File("./resources/Ozone_PCA_Regions.png");
+        Desktop.getDesktop().open(myFile);
+        } catch (IOException e1) {
+           e1.printStackTrace();
+        }  
+    }//GEN-LAST:event_ozonePCALinkMouseClicked
+
+    private void aerosolPCALinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aerosolPCALinkMouseClicked
+        try {
+        File myFile = new File("./resources/Aerosol_PCA_Regions.png");
+        Desktop.getDesktop().open(myFile);
+        } catch (IOException e1) {
+           e1.printStackTrace();
+        } 
+    }//GEN-LAST:event_aerosolPCALinkMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AQObservationNetworkInfoLabel;
@@ -2329,6 +3035,7 @@ public class AMETForm extends javax.swing.JFrame {
     private javax.swing.JLabel advancedPlotSpcificationlabel;
     private javax.swing.JButton advancedSpeciesButton;
     private javax.swing.JCheckBox aeronetCheckBox;
+    private javax.swing.JLabel aerosolPCALink;
     private javax.swing.JCheckBox aganetCheckBox;
     private javax.swing.JTextArea aggregateDataInfoLabel;
     private javax.swing.JLabel aggrgateDataLabel;
@@ -2410,6 +3117,7 @@ public class AMETForm extends javax.swing.JFrame {
     private javax.swing.JPanel networkSpeciesPanel;
     private javax.swing.JCheckBox noaaESRLCheckBox;
     private javax.swing.JButton overlayFileButton;
+    private javax.swing.JLabel ozonePCALink;
     private javax.swing.JTextArea plotlyImageSizeInfoLabel;
     private javax.swing.JLabel plotlyImageSizeLabel;
     private javax.swing.JComboBox<String> pngPlotQualityComboBox;
@@ -2439,7 +3147,7 @@ public class AMETForm extends javax.swing.JFrame {
     private javax.swing.JTextArea seasonalAnalysisInfoLabel;
     private javax.swing.JLabel seasonalAnalysisLabel;
     private javax.swing.JTextArea siteIDInfoLabel;
-    private javax.swing.JLabel siteIDLabel;
+    private javax.swing.JLabel siteIDLabel1;
     private javax.swing.JTextArea siteIDLoadInfoLabel;
     private javax.swing.JTextField siteIDLoadTextField;
     private javax.swing.JPanel siteIDPanel;

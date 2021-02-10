@@ -428,6 +428,7 @@
             </Container>
             <Component class="javax.swing.JTextArea" name="quantileInfoLabel">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="0"/>
@@ -523,6 +524,7 @@
         </Container>
         <Component class="javax.swing.JTextArea" name="spatialOptionsLabel">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
@@ -575,6 +577,7 @@
         </Container>
         <Component class="javax.swing.JTextArea" name="symbolSizeLabel">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
@@ -593,6 +596,7 @@
         </Component>
         <Component class="javax.swing.JTextArea" name="symbolSpatialPlotLabel">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
@@ -611,6 +615,7 @@
         </Component>
         <Component class="javax.swing.JTextArea" name="symbolOutlierLabel">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
@@ -629,6 +634,7 @@
         </Component>
         <Component class="javax.swing.JTextArea" name="opacityLabel">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
@@ -658,7 +664,7 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="5">
                 <StringItem index="0" value="Open Street Map: Default"/>
-                <StringItem index="1" value="Open Stree Map: Black and White"/>
+                <StringItem index="1" value="Open Street Map: Black and White"/>
                 <StringItem index="2" value="Open TOPO Map"/>
                 <StringItem index="3" value="ESRI World Imagery"/>
                 <StringItem index="4" value="HERE Hybrid Data"/>

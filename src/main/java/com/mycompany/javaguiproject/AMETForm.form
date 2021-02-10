@@ -636,23 +636,29 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="siteIDLabel" min="-2" pref="231" max="-2" attributes="0"/>
                                   <Component id="siteIDTextField" min="-2" pref="185" max="-2" attributes="0"/>
                                   <Component id="siteIDLoadInfoLabel" alignment="0" min="-2" pref="417" max="-2" attributes="0"/>
                                   <Component id="siteIDInfoLabel" alignment="0" min="-2" pref="417" max="-2" attributes="0"/>
                                   <Component id="siteIDLoadTextField" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
                                   <Component id="soccergoalBugleButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ozonePCALink" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
+                                  <Component id="aerosolPCALink" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="24" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="siteIDLabel1" min="-2" pref="231" max="-2" attributes="0"/>
+                                  <EmptySpace pref="200" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="siteIDLabel" min="-2" pref="24" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="siteIDInfoLabel" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="siteIDTextField" min="-2" max="-2" attributes="0"/>
@@ -660,27 +666,45 @@
                               <Component id="siteIDLoadInfoLabel" min="-2" pref="51" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="siteIDLoadTextField" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="soccergoalBugleButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="ozonePCALink" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="aerosolPCALink" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="siteIDLabel1" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace pref="509" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="siteIDLabel">
+                    <Component class="javax.swing.JLabel" name="ozonePCALink">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Site ID"/>
+                        <Property name="text" type="java.lang.String" value="Map of Ozone PCA Regions"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="16" style="1"/>
                         </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="33" red="33" type="rgb"/>
+                        </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ozonePCALinkMouseClicked"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="siteIDTextField">
                     </Component>
                     <Component class="javax.swing.JTextArea" name="siteIDLoadInfoLabel">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="11" style="0"/>
                         </Property>
@@ -694,6 +718,7 @@
                     <Component class="javax.swing.JTextArea" name="siteIDInfoLabel">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="11" style="0"/>
                         </Property>
@@ -712,6 +737,28 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="geographyCriteriaActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="siteIDLabel1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Site ID"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="16" style="1"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="aerosolPCALink">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Map of Aerosol PCA Regions"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="16" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="33" red="33" type="rgb"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="aerosolPCALinkMouseClicked"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -1386,6 +1433,7 @@
                 <Component class="javax.swing.JTextArea" name="hourRangeInfoLabel">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="0"/>
                     </Property>
@@ -1477,31 +1525,32 @@
                     <Component class="javax.swing.JComboBox" name="startHourComboBox">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="24">
-                            <StringItem index="0" value="12AM"/>
-                            <StringItem index="1" value="1AM"/>
-                            <StringItem index="2" value="2AM"/>
-                            <StringItem index="3" value="3AM"/>
-                            <StringItem index="4" value="4AM"/>
-                            <StringItem index="5" value="5AM"/>
-                            <StringItem index="6" value="6AM"/>
-                            <StringItem index="7" value="7AM"/>
-                            <StringItem index="8" value="8AM"/>
-                            <StringItem index="9" value="9AM"/>
-                            <StringItem index="10" value="10AM"/>
-                            <StringItem index="11" value="11AM"/>
-                            <StringItem index="12" value="12PM"/>
-                            <StringItem index="13" value="1PM"/>
-                            <StringItem index="14" value="2PM"/>
-                            <StringItem index="15" value="3PM"/>
-                            <StringItem index="16" value="4PM"/>
-                            <StringItem index="17" value="5PM"/>
-                            <StringItem index="18" value="6PM"/>
-                            <StringItem index="19" value="7PM"/>
-                            <StringItem index="20" value="8PM"/>
-                            <StringItem index="21" value="9PM"/>
-                            <StringItem index="22" value="10PM"/>
-                            <StringItem index="23" value="11PM"/>
+                          <StringArray count="25">
+                            <StringItem index="0" value="None"/>
+                            <StringItem index="1" value="12AM"/>
+                            <StringItem index="2" value="1AM"/>
+                            <StringItem index="3" value="2AM"/>
+                            <StringItem index="4" value="3AM"/>
+                            <StringItem index="5" value="4AM"/>
+                            <StringItem index="6" value="5AM"/>
+                            <StringItem index="7" value="6AM"/>
+                            <StringItem index="8" value="7AM"/>
+                            <StringItem index="9" value="8AM"/>
+                            <StringItem index="10" value="9AM"/>
+                            <StringItem index="11" value="10AM"/>
+                            <StringItem index="12" value="11AM"/>
+                            <StringItem index="13" value="12PM"/>
+                            <StringItem index="14" value="1PM"/>
+                            <StringItem index="15" value="2PM"/>
+                            <StringItem index="16" value="3PM"/>
+                            <StringItem index="17" value="4PM"/>
+                            <StringItem index="18" value="5PM"/>
+                            <StringItem index="19" value="6PM"/>
+                            <StringItem index="20" value="7PM"/>
+                            <StringItem index="21" value="8PM"/>
+                            <StringItem index="22" value="9PM"/>
+                            <StringItem index="23" value="10PM"/>
+                            <StringItem index="24" value="11PM"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1517,31 +1566,32 @@
                     <Component class="javax.swing.JComboBox" name="endHourComboBox">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="24">
-                            <StringItem index="0" value="12AM"/>
-                            <StringItem index="1" value="1AM"/>
-                            <StringItem index="2" value="2AM"/>
-                            <StringItem index="3" value="3AM"/>
-                            <StringItem index="4" value="4AM"/>
-                            <StringItem index="5" value="5AM"/>
-                            <StringItem index="6" value="6AM"/>
-                            <StringItem index="7" value="7AM"/>
-                            <StringItem index="8" value="8AM"/>
-                            <StringItem index="9" value="9AM"/>
-                            <StringItem index="10" value="10AM"/>
-                            <StringItem index="11" value="11AM"/>
-                            <StringItem index="12" value="12PM"/>
-                            <StringItem index="13" value="1PM"/>
-                            <StringItem index="14" value="2PM"/>
-                            <StringItem index="15" value="3PM"/>
-                            <StringItem index="16" value="4PM"/>
-                            <StringItem index="17" value="5PM"/>
-                            <StringItem index="18" value="6PM"/>
-                            <StringItem index="19" value="7PM"/>
-                            <StringItem index="20" value="8PM"/>
-                            <StringItem index="21" value="9PM"/>
-                            <StringItem index="22" value="10PM"/>
-                            <StringItem index="23" value="11PM"/>
+                          <StringArray count="25">
+                            <StringItem index="0" value="None"/>
+                            <StringItem index="1" value="12AM"/>
+                            <StringItem index="2" value="1AM"/>
+                            <StringItem index="3" value="2AM"/>
+                            <StringItem index="4" value="3AM"/>
+                            <StringItem index="5" value="4AM"/>
+                            <StringItem index="6" value="5AM"/>
+                            <StringItem index="7" value="6AM"/>
+                            <StringItem index="8" value="7AM"/>
+                            <StringItem index="9" value="8AM"/>
+                            <StringItem index="10" value="9AM"/>
+                            <StringItem index="11" value="10AM"/>
+                            <StringItem index="12" value="11AM"/>
+                            <StringItem index="13" value="12PM"/>
+                            <StringItem index="14" value="1PM"/>
+                            <StringItem index="15" value="2PM"/>
+                            <StringItem index="16" value="3PM"/>
+                            <StringItem index="17" value="4PM"/>
+                            <StringItem index="18" value="5PM"/>
+                            <StringItem index="19" value="6PM"/>
+                            <StringItem index="20" value="7PM"/>
+                            <StringItem index="21" value="8PM"/>
+                            <StringItem index="22" value="9PM"/>
+                            <StringItem index="23" value="10PM"/>
+                            <StringItem index="24" value="11PM"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1562,6 +1612,7 @@
                 <Component class="javax.swing.JTextArea" name="seasonalAnalysisInfoLabel">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="0"/>
                     </Property>
@@ -1599,6 +1650,7 @@
                 <Component class="javax.swing.JTextArea" name="monthlyAnalysisInfoLabel">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="0"/>
                     </Property>
@@ -1736,6 +1788,7 @@
                     <Component class="javax.swing.JTextArea" name="negativeValuesInfoLabel">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="11" style="0"/>
                         </Property>
@@ -1757,6 +1810,7 @@
                     <Component class="javax.swing.JTextArea" name="POCodeInfoLabel">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="11" style="0"/>
                         </Property>
@@ -1796,6 +1850,7 @@
                     <Component class="javax.swing.JTextArea" name="temporalAveragingInfoLabel">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="11" style="0"/>
                         </Property>
@@ -1817,6 +1872,7 @@
                     <Component class="javax.swing.JTextArea" name="aggregateDataInfoLabel">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="11" style="0"/>
                         </Property>
@@ -2014,6 +2070,7 @@
                 <Component class="javax.swing.JTextArea" name="programToRunInfoLabel">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="0"/>
                     </Property>
@@ -2045,6 +2102,7 @@
                 <Component class="javax.swing.JTextArea" name="plotlyImageSizeInfoLabel">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="0"/>
                     </Property>
@@ -2137,6 +2195,7 @@
                 <Component class="javax.swing.JTextArea" name="pngPlotQualityInfoLabel">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="0"/>
                     </Property>
@@ -2195,7 +2254,7 @@
                               <Component id="customSQLQueryLabel" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="customSQLQueryButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="221" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

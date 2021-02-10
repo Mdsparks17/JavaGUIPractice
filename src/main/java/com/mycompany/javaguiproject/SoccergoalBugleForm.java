@@ -285,16 +285,16 @@ public class SoccergoalBugleForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        form.soccerplot_opt = form.textFormat(statisticsComboBox.getSelectedItem().toString());
-        form.nmb_max = form.textFormat(nmbMinMaxTextField.getText());
-        form.nmb_int = form.textFormat(nmbIntervalTextField.getText());
-        form.nme_max = form.textFormat(nmeMaxTextField.getText());
-        form.nme_int = form.textFormat(nmeIntervalTextField.getText());
-        form.mb_max = form.textFormat(mbMinMaxTextField.getText());
-        form.me_min = form.textFormat(meMinTextField.getText());
-        form.me_max = form.textFormat(meMaxTextField.getText());
-        form.rmse_min = form.textFormat(rmseMinTextField.getText());
-        form.rmse_max = form.textFormat(rmseMaxTextField.getText());
+        form.soccerplot_opt = plotOptionFormat(statisticsComboBox.getSelectedItem().toString());
+        form.nmb_max = form.numNullFormat(nmbMinMaxTextField.getText());
+        form.nmb_int = form.numNullFormat(nmbIntervalTextField.getText());
+        form.nme_max = form.numNullFormat(nmeMaxTextField.getText());
+        form.nme_int = form.numNullFormat(nmeIntervalTextField.getText());
+        form.mb_max = form.numNullFormat(mbMinMaxTextField.getText());
+        form.me_min = form.numNullFormat(meMinTextField.getText());
+        form.me_max = form.numNullFormat(meMaxTextField.getText());
+        form.rmse_min = form.numNullFormat(rmseMinTextField.getText());
+        form.rmse_max = form.numNullFormat(rmseMaxTextField.getText());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
@@ -304,7 +304,18 @@ public class SoccergoalBugleForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-  
+  private String plotOptionFormat(String str) {
+        switch(str) {
+            case "NMB vs.NME":
+                return "1";
+            case "FB vs. FE":
+                return "2";
+            case "NMdnB vs. NMdnE":
+                return "3";  
+            default:
+                return "";
+        }
+  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;

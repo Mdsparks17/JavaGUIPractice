@@ -40,15 +40,15 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         nmbMinMaxLabel = new javax.swing.JLabel();
-        nmbMinMaxTextField = new javax.swing.JTextField();
-        nmbIntervalTextField = new javax.swing.JTextField();
+        lat1 = new javax.swing.JTextField();
+        lat2 = new javax.swing.JTextField();
         nmbInntervalLabel = new javax.swing.JLabel();
         nmbInntervalLabel2 = new javax.swing.JLabel();
         advancedSpeciesSettingsLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         nmbMinMaxLabel1 = new javax.swing.JLabel();
-        nmbMinMaxTextField1 = new javax.swing.JTextField();
-        nmbIntervalTextField1 = new javax.swing.JTextField();
+        lon1 = new javax.swing.JTextField();
+        lon2 = new javax.swing.JTextField();
         nmbInntervalLabel1 = new javax.swing.JLabel();
         nmbInntervalLabel3 = new javax.swing.JLabel();
         manualInfoLabel2 = new javax.swing.JTextArea();
@@ -60,8 +60,14 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
         advancedSpeciesSettingsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         advancedSpeciesSettingsLabel.setText("Site Landuse (AQS Only)");
 
-        locationSettingsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none", "Rural", "Suburban", "Urban" }));
+        locationSettingsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Rural", "Suburban", "Urban" }));
+        locationSettingsComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationSettingsComboBoxActionPerformed(evt);
+            }
+        });
 
+        manualInfoLabel.setEditable(false);
         manualInfoLabel.setColumns(20);
         manualInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         manualInfoLabel.setLineWrap(true);
@@ -73,8 +79,9 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
         advancedSpeciesSettingsLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         advancedSpeciesSettingsLabel1.setText("Subset by AQS co-Network");
 
-        aqsCoNetworkComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none", "IMPROVE", "CSN", "CASTNET" }));
+        aqsCoNetworkComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "IMPROVE", "CSN", "CASTNET" }));
 
+        manualInfoLabel1.setEditable(false);
         manualInfoLabel1.setColumns(20);
         manualInfoLabel1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         manualInfoLabel1.setLineWrap(true);
@@ -82,6 +89,8 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
         manualInfoLabel1.setText("Isolate AQS evaluation data by whether the site location setting is decribed as rural, suburban, or urban. Only applies to AQS sites.");
         manualInfoLabel1.setWrapStyleWord(true);
         manualInfoLabel1.setOpaque(false);
+
+        commonSitesCheckBox.setSelected(true);
 
         nmbMinMaxLabel.setText("Lat between   ");
 
@@ -97,11 +106,11 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(nmbMinMaxLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nmbMinMaxTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lat1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nmbInntervalLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nmbIntervalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lat2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nmbInntervalLabel2)
                 .addContainerGap(55, Short.MAX_VALUE))
@@ -111,9 +120,9 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nmbMinMaxLabel)
-                    .addComponent(nmbMinMaxTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lat1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nmbInntervalLabel)
-                    .addComponent(nmbIntervalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lat2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nmbInntervalLabel2))
                 .addGap(2, 2, 2))
         );
@@ -135,11 +144,11 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(nmbMinMaxLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nmbMinMaxTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lon1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nmbInntervalLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nmbIntervalTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lon2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nmbInntervalLabel3)
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -148,12 +157,13 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(nmbMinMaxLabel1)
-                .addComponent(nmbMinMaxTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(nmbInntervalLabel1)
-                .addComponent(nmbIntervalTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(nmbInntervalLabel3))
         );
 
+        manualInfoLabel2.setEditable(false);
         manualInfoLabel2.setColumns(20);
         manualInfoLabel2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         manualInfoLabel2.setLineWrap(true);
@@ -279,6 +289,10 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         form.loc_setting = form.textFormat(locationSettingsComboBox.getSelectedItem().toString());
         form.common_sites = form.checkBoxFormat(commonSitesCheckBox);
+        form.lat1 = lat1.getText();
+        form.lat2 = lat2.getText();
+        form.lon1 = lon1.getText();
+        form.lon2 = lon2.getText();
         //TODO: AQS  co network setup
         setVisible(false);
         dispose();
@@ -288,6 +302,10 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void locationSettingsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationSettingsComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_locationSettingsComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -302,7 +320,11 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextField lat1;
+    private javax.swing.JTextField lat2;
     private javax.swing.JComboBox<String> locationSettingsComboBox;
+    private javax.swing.JTextField lon1;
+    private javax.swing.JTextField lon2;
     private javax.swing.JTextArea manualInfoLabel;
     private javax.swing.JTextArea manualInfoLabel1;
     private javax.swing.JTextArea manualInfoLabel2;
@@ -310,11 +332,7 @@ public class GeographicCriteriaForm extends javax.swing.JFrame {
     private javax.swing.JLabel nmbInntervalLabel1;
     private javax.swing.JLabel nmbInntervalLabel2;
     private javax.swing.JLabel nmbInntervalLabel3;
-    private javax.swing.JTextField nmbIntervalTextField;
-    private javax.swing.JTextField nmbIntervalTextField1;
     private javax.swing.JLabel nmbMinMaxLabel;
     private javax.swing.JLabel nmbMinMaxLabel1;
-    private javax.swing.JTextField nmbMinMaxTextField;
-    private javax.swing.JTextField nmbMinMaxTextField1;
     // End of variables declaration//GEN-END:variables
 }

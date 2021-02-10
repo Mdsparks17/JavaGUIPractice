@@ -129,6 +129,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         errorCheckBox.setText(" Include error on interactive binned plot ");
 
+        trendLineCheckBox.setSelected(true);
         trendLineCheckBox.setText(" Include trend line on ggplot scatter plot ");
 
         javax.swing.GroupLayout plotOptionsPanelLayout = new javax.swing.GroupLayout(plotOptionsPanel);
@@ -563,7 +564,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         network1Label.setText("Network 1");
 
-        symbolComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Circle", "Triangle", "Square", "Diamond", "Star", "Burst ", "X" }));
+        symbolComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Circle", "Triangle", "Square", "Diamond", "Star", "Burst", "X" }));
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -585,7 +586,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         network2Label.setText("Network 2");
 
-        symbolComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Triangle", "Circle", "Square", "Diamond", "Star", "Burst ", "X" }));
+        symbolComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Triangle", "Circle", "Square", "Diamond", "Star", "Burst", "X" }));
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -607,7 +608,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         network3Label.setText("Network 3");
 
-        symbolComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Square", "Circle", "Triangle", "Diamond", "Star", "Burst ", "X" }));
+        symbolComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Square", "Circle", "Triangle", "Diamond", "Star", "Burst", "X" }));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -629,7 +630,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         network4Label.setText("Network 4");
 
-        symbolComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diamond", "Circle", "Triangle", "Square", "Star", "Burst ", "X" }));
+        symbolComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diamond", "Circle", "Triangle", "Square", "Star", "Burst", "X" }));
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -651,7 +652,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         network5Label.setText("Network 5");
 
-        symbolComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Star", "Circle", "Triangle", "Square", "Diamond", "Burst ", "X" }));
+        symbolComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Star", "Circle", "Triangle", "Square", "Diamond", "Burst", "X" }));
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -673,7 +674,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         network6Label.setText("Network 6");
 
-        symbolComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Burst ", "Circle", "Triangle", "Square", "Diamond", "Star", "X" }));
+        symbolComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Burst", "Circle", "Triangle", "Square", "Diamond", "Star", "X" }));
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -695,7 +696,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
 
         network7Label.setText("Network 7");
 
-        symbolComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "X", "Circle", "Triangle", "Square", "Diamond", "Star", "Burst " }));
+        symbolComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "X", "Circle", "Triangle", "Square", "Diamond", "Star", "Burst" }));
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -873,7 +874,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 + form.checkBoxFormat(medianBiasCheckBox) + ","
                 + form.checkBoxFormat(medianErrorCheckBox) + ","
                 + form.checkBoxFormat(fractionalBiasCheckBox) + ","
-                + form.checkBoxFormat(fractionalErrorCheckBox) + ",";
+                + form.checkBoxFormat(fractionalErrorCheckBox);
         return str + ")";
     }
     
@@ -887,7 +888,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 + "\"" + colorFormat(colorComboBox11.getSelectedItem().toString()) + "\","
                 + "\"" + colorFormat(colorComboBox13.getSelectedItem().toString()) + "\","
                 + "\"" + colorFormat(colorComboBox15.getSelectedItem().toString()) + "\"";
-        return str;
+        return str + ")";
     }
     private String plotColors2Format() {
         String str = "c("
@@ -950,7 +951,7 @@ public class ScatterPlotOptionsForm extends javax.swing.JFrame {
                 color = "green4";
                 break;
             case "Orange":
-                color = "orange3";
+                color = "orange2";
                 break;
             case "Brown":
                 color = "brown";

@@ -237,6 +237,7 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        quantileInfoLabel.setEditable(false);
         quantileInfoLabel.setColumns(20);
         quantileInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         quantileInfoLabel.setLineWrap(true);
@@ -333,6 +334,7 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        spatialOptionsLabel.setEditable(false);
         spatialOptionsLabel.setColumns(20);
         spatialOptionsLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         spatialOptionsLabel.setLineWrap(true);
@@ -365,6 +367,7 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
                 .addComponent(countiesCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        symbolSizeLabel.setEditable(false);
         symbolSizeLabel.setColumns(20);
         symbolSizeLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         symbolSizeLabel.setLineWrap(true);
@@ -375,6 +378,7 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
 
         symbolSizeTextField.setText("1");
 
+        symbolSpatialPlotLabel.setEditable(false);
         symbolSpatialPlotLabel.setColumns(20);
         symbolSpatialPlotLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         symbolSpatialPlotLabel.setLineWrap(true);
@@ -385,6 +389,7 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
 
         symbolSpatialPlotTextField.setText("0");
 
+        symbolOutlierLabel.setEditable(false);
         symbolOutlierLabel.setColumns(20);
         symbolOutlierLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         symbolOutlierLabel.setLineWrap(true);
@@ -395,6 +400,7 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
 
         symbolOutlierTextField.setText("40");
 
+        opacityLabel.setEditable(false);
         opacityLabel.setColumns(20);
         opacityLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         opacityLabel.setLineWrap(true);
@@ -408,7 +414,7 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
         spacialPlotOptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         spacialPlotOptionsLabel.setText("Spatial Plot Options");
 
-        spatialPlotOptionsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open Street Map: Default", "Open Stree Map: Black and White", "Open TOPO Map", "ESRI World Imagery", "HERE Hybrid Data" }));
+        spatialPlotOptionsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open Street Map: Default", "Open Street Map: Black and White", "Open TOPO Map", "ESRI World Imagery", "HERE Hybrid Data" }));
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -517,30 +523,47 @@ public class SpatialPlotOptionsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        form.num_ints = form.textFormat(numIntervalTextField.getText());
-        form.rmse_range_max = form.textFormat(rmseRangeMaxTextField.getText());
-        form.perc_error_max = form.textFormat(errorRangeMaxTextField.getText());
-        form.abs_error_max = form.textFormat(absErrorRangeMaxTextField.getText());
-        form.perc_range_min = form.textFormat(rangeMinTextField.getText());
-        form.perc_range_max = form.textFormat(rangeMaxTextField.getText());
-        form.abs_range_min = form.textFormat(absRangeMinTextField.getText());
-        form.abs_range_max = form.textFormat(absRangeMaxTextField.getText());
-        form.diff_range_min = form.textFormat(differenceMinTextField.getText());
-        form.diff_range_max = form.textFormat(differenceMaxTextField.getText());
-        form.hist_max = form.textFormat(histogramMaxTextField.getText());
-        form.quantile_min = form.textFormat(quantileMinTextField.getText());
-        form.quantile_max = form.textFormat(quantileMaxTextField.getText());
+        form.num_ints = form.numNullFormat(numIntervalTextField.getText());
+        form.rmse_range_max = form.numNullFormat(rmseRangeMaxTextField.getText());
+        form.perc_error_max = form.numNullFormat(errorRangeMaxTextField.getText());
+        form.abs_error_max = form.numNullFormat(absErrorRangeMaxTextField.getText());
+        form.perc_range_min = form.numNullFormat(rangeMinTextField.getText());
+        form.perc_range_max = form.numNullFormat(rangeMaxTextField.getText());
+        form.abs_range_min = form.numNullFormat(absRangeMinTextField.getText());
+        form.abs_range_max = form.numNullFormat(absRangeMaxTextField.getText());
+        form.diff_range_min = form.numNullFormat(differenceMinTextField.getText());
+        form.diff_range_max = form.numNullFormat(differenceMaxTextField.getText());
+        form.hist_max = form.numNullFormat(histogramMaxTextField.getText());
+        form.quantile_min = form.numNullFormat(quantileMinTextField.getText());
+        form.quantile_max = form.numNullFormat(quantileMaxTextField.getText());
         form.greyscale = form.checkBoxFormat(greyscaleCheckBox);
         form.inc_counties = form.checkBoxFormat(countiesCheckBox);
-        form.symbsizfac = form.textFormat(symbolSizeTextField.getText());
-        form.plot_radius = form.textFormat(symbolSpatialPlotTextField.getText());
-        form.outlier_radius = form.textFormat(symbolOutlierTextField.getText());
-        form.fill_opacity = form.textFormat(opacityTextField.getText());
-        form.map_type = form.textFormat(spatialPlotOptionsComboBox.getSelectedItem().toString());
+        form.symbsizfac = form.numNullFormat(symbolSizeTextField.getText());
+        form.plot_radius = form.numNullFormat(symbolSpatialPlotTextField.getText());
+        form.outlier_radius = form.numNullFormat(symbolOutlierTextField.getText());
+        form.fill_opacity = form.numNullFormat(opacityTextField.getText());
+        form.map_type = mapTypeFormat(spatialPlotOptionsComboBox.getSelectedItem().toString());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private String mapTypeFormat(String str) {
+        switch(str) {
+            case "Open Street Map: Default":
+                return "1";
+            case "Open Street Map: Black and White":
+                return "2";
+            case "Open TOPO Map":
+                return "3";
+            case "ESRI World Imagery":
+                return "4";
+            case "HERE Hybrid Data":
+                return "5";
+            default:
+                return "";
+        }
+    }
+    
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         setVisible(false);
         dispose();

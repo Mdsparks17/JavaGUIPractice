@@ -74,8 +74,8 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        boxPlotOptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         boxPlotOptionsLabel.setText("Box Plot Options");
+        boxPlotOptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         includeWhiskersCheckBox.setText(" Include whiskers on boxplot ");
 
@@ -121,8 +121,8 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        StackedBarchartOptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         StackedBarchartOptionsLabel.setText("Stacked Barchart Options");
+        StackedBarchartOptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         includeCSNFRMCheckBox.setSelected(true);
         includeCSNFRMCheckBox.setText(" Include CSN FRM adjustment ");
@@ -154,10 +154,11 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        timeSeriesPlotOptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         timeSeriesPlotOptionsLabel.setText("Time Series Plot Options");
+        timeSeriesPlotOptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         chooseAveragingLabel.setColumns(20);
+        chooseAveragingLabel.setEditable(false);
         chooseAveragingLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         chooseAveragingLabel.setLineWrap(true);
         chooseAveragingLabel.setRows(5);
@@ -165,7 +166,7 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         chooseAveragingLabel.setWrapStyleWord(true);
         chooseAveragingLabel.setOpaque(false);
 
-        chooseAveragingComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mean", "Medium", "Sum" }));
+        chooseAveragingComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mean", "medium", "sum" }));
 
         includeLegendCheckBox.setSelected(true);
         includeLegendCheckBox.setText(" Include legend on time series plots ");
@@ -183,6 +184,7 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         subtractPeriodCheckBox.setText(" Subtract period mean from time series plots ");
 
         specifyMinimumLabel.setColumns(20);
+        specifyMinimumLabel.setEditable(false);
         specifyMinimumLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         specifyMinimumLabel.setLineWrap(true);
         specifyMinimumLabel.setRows(5);
@@ -190,13 +192,23 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         specifyMinimumLabel.setWrapStyleWord(true);
         specifyMinimumLabel.setOpaque(false);
 
+        specifyMinimumTextField.setText("0");
+        specifyMinimumTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                specifyMinimumTextFieldActionPerformed(evt);
+            }
+        });
+
         specifyTimeCheckBox.setColumns(20);
+        specifyTimeCheckBox.setEditable(false);
         specifyTimeCheckBox.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         specifyTimeCheckBox.setLineWrap(true);
         specifyTimeCheckBox.setRows(5);
         specifyTimeCheckBox.setText("Specify time series line widths");
         specifyTimeCheckBox.setWrapStyleWord(true);
         specifyTimeCheckBox.setOpaque(false);
+
+        specifyTimeTextArea.setText("1");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -261,8 +273,8 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        scatterPlotoptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         scatterPlotoptionsLabel.setText("Scatter Plot Options");
+        scatterPlotoptionsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         includeRunInfoCheckBox.setSelected(true);
         includeRunInfoCheckBox.setText(" Include run info text on plots");
@@ -270,6 +282,7 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         includeZeroPrecipitationCheckBox.setToolTipText("");
 
         includeZeroPrecipitationLabel.setColumns(20);
+        includeZeroPrecipitationLabel.setEditable(false);
         includeZeroPrecipitationLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         includeZeroPrecipitationLabel.setLineWrap(true);
         includeZeroPrecipitationLabel.setRows(5);
@@ -281,6 +294,7 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         includeValidObservationsCheckBox.setToolTipText("");
 
         observeValidObservationsLabel.setColumns(20);
+        observeValidObservationsLabel.setEditable(false);
         observeValidObservationsLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         observeValidObservationsLabel.setLineWrap(true);
         observeValidObservationsLabel.setRows(5);
@@ -289,6 +303,7 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         observeValidObservationsLabel.setOpaque(false);
 
         minCompleteLabel.setColumns(20);
+        minCompleteLabel.setEditable(false);
         minCompleteLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         minCompleteLabel.setLineWrap(true);
         minCompleteLabel.setRows(5);
@@ -299,6 +314,7 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         minCompleteTextField.setText("75");
 
         minObservationsLabel.setColumns(20);
+        minObservationsLabel.setEditable(false);
         minObservationsLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         minObservationsLabel.setLineWrap(true);
         minObservationsLabel.setRows(5);
@@ -443,8 +459,8 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         form.run_info_text = form.checkBoxFormat(includeRunInfoCheckBox);
         //TODO: precipitation
         form.all_valid = form.checkBoxFormat(includeValidObservationsCheckBox);
-        form.coverage_limit = form.textFormat(minCompleteTextField.getText());
-        form.num_obs_limit = form.textFormat(minObservationsTextField.getText());
+        form.coverage_limit = form.numFormat(minCompleteTextField.getText());
+        form.num_obs_limit = form.numFormat(minObservationsTextField.getText());
         form.inc_whiskers = form.checkBoxFormat(includeWhiskersCheckBox);
         form.inc_ranges = form.checkBoxFormat(includeRangeCheckBox);
         form.inc_median_lines = form.checkBoxFormat(includeMedianLinesCheckBox);
@@ -460,7 +476,7 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         form.inc_rmse = form.checkBoxFormat(includeRMSECheckBox);
         form.inc_corr = form.checkBoxFormat(includeCorrelationCheckBox);
         form.use_var_mean = form.checkBoxFormat(subtractPeriodCheckBox);
-        form.obs_per_day_limit = form.textFormat(specifyMinimumTextField.getText());
+        form.obs_per_day_limit = form.numFormat(specifyMinimumTextField.getText());
         form.line_width = form.textFormat(specifyTimeTextArea.getText());
         setVisible(false);
         dispose();
@@ -470,6 +486,10 @@ public class AMETModleEvalStatsPlotsForm extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void specifyMinimumTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specifyMinimumTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_specifyMinimumTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

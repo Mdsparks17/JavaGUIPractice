@@ -43,6 +43,7 @@ public class CustomMySQLQueryForm extends javax.swing.JFrame {
         customMySQLQueryLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         customMySQLQueryLabel.setText("Add Custom MySQL Query");
 
+        mySQLInfoLabel.setEditable(false);
         mySQLInfoLabel.setColumns(20);
         mySQLInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         mySQLInfoLabel.setLineWrap(true);

@@ -94,11 +94,12 @@
         <Component class="javax.swing.JComboBox" name="overlayComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Hourly"/>
-                <StringItem index="1" value="Daily"/>
-                <StringItem index="2" value="1hr Max (use with hourly data)"/>
-                <StringItem index="3" value="8hr Max (use with hourly data)"/>
+              <StringArray count="5">
+                <StringItem index="0" value="None"/>
+                <StringItem index="1" value="Hourly"/>
+                <StringItem index="2" value="Daily"/>
+                <StringItem index="3" value="1hr Max (use with hourly data)"/>
+                <StringItem index="4" value="8hr Max (use with hourly data)"/>
               </StringArray>
             </Property>
           </Properties>
@@ -109,6 +110,7 @@
         </Component>
         <Component class="javax.swing.JTextArea" name="overlayFileInfoLabel">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>

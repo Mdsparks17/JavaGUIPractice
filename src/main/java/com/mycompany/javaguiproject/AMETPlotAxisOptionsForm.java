@@ -239,6 +239,7 @@ public class AMETPlotAxisOptionsForm extends javax.swing.JFrame {
                 .addComponent(xLabelAngleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        ametPlotAxisOptionsInfoLabel.setEditable(false);
         ametPlotAxisOptionsInfoLabel.setColumns(20);
         ametPlotAxisOptionsInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ametPlotAxisOptionsInfoLabel.setLineWrap(true);
@@ -304,16 +305,16 @@ public class AMETPlotAxisOptionsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        form.x_axis_min = form.textFormat(xMinTextField.getText());
-        form.x_axis_max = form.textFormat(xMaxTextField.getText());
-        form.y_axis_min = form.textFormat(yMinTextField.getText());
-        form.y_axis_max = form.textFormat(yMaxTextField.getText());
-        form.bias_y_axis_min = form.textFormat(biasYMinTextField.getText());
-        form.bias_y_axis_max = form.textFormat(biasYMaxTextField.getText());
-        form.density_zlim = form.textFormat(densityTextField.getText());
-        form.num_dens_bins = form.textFormat(densityNumBinsTextField.getText());
-        form.max_limit = form.textFormat(skillPlotMaxTextField.getText());
-        form.x_label_angle = form.textFormat(xLabelAngleTextField.getText());
+        form.x_axis_min = form.numNullFormat(xMinTextField.getText());
+        form.x_axis_max = form.numNullFormat(xMaxTextField.getText());
+        form.y_axis_min = form.numNullFormat(yMinTextField.getText());
+        form.y_axis_max = form.numNullFormat(yMaxTextField.getText());
+        form.bias_y_axis_min = form.numNullFormat(biasYMinTextField.getText());
+        form.bias_y_axis_max = form.numNullFormat(biasYMaxTextField.getText());
+        form.density_zlim = form.numNullFormat(densityTextField.getText());
+        form.num_dens_bins = form.numNullFormat(densityNumBinsTextField.getText());
+        form.max_limit = form.numNullFormat(skillPlotMaxTextField.getText());
+        form.x_label_angle = form.numNullFormat(xLabelAngleTextField.getText());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed

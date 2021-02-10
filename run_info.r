@@ -1,7 +1,7 @@
 ### Indicate this as a MET database query ###
 ### Use MySQL database for queries
 #### Main Database Query String ###
-query<- and s.state_id=d.stat_id and d.ob_dates BETWEEN 20210201 and 20210203 and d.ob_datee BETWEEN 20210201 and 20210203
+query<- and s.state_id=d.stat_id and d.ob_dates BETWEEN """""" and """""" and d.ob_datee BETWEEN """""" and """"""
 ### Process ID number ###
 pid<-""
 ### Database Name ###
@@ -73,10 +73,10 @@ png_from_html<-""
 png_res<-"Medium"
 x_label_angle<-0
 ### Plotly Options ###
-img_height<-"NULL"
-img_width<-"NULL"
+img_height<-0
+img_width<-0
 ### Flag for Time Averaging ###
-averaging<-"None"
+averaging<-""
 remove_negatives<-"Yes"
 use_avg_stats<-""
 aggregate_data""
@@ -88,8 +88,8 @@ inc_rmse<-""
 inc_corr<-""
 use_var_mean<-""
 obs_per_day_limit<-0
-avg_func<-""
-avg_func_name<-""
+avg_func<-"mean"
+avg_func_name<-"mean"
 line_width<-"1"
 ### Kelly Plot Options ###
 nmb_max<-NULL
@@ -107,11 +107,11 @@ site<-""
 ### States to Include ###
 state<-"All"
 ### Regional Planning Organizations to Include ###
-rpo<-"None"
+rpo<-""
 ### Priciple Component Analysis (PCA) Region ###
-pca<-"None"
+pca<-""
 ### Climate Region ###
-clim_reg<-"None"
+clim_reg<-""
 ### Binned Plot Options ###
 pca_flag<-""
 inc_error<-""
@@ -152,12 +152,12 @@ stat_file<-""
 ### Spatial Plot Options ###
 symbsizfac<-1
 plot_radius<-0
-outlier_radius<-20
+outlier_radius<-40
 fill_opacity<-0.8
 num_ints<-NULL
 perc_error_max<-NULL
 abs_error_max<-NULL
-rmse_range_max<-""
+rmse_range_max<-NULL
 perc_range_min<-NULL
 perc_range_max<-NULL
 abs_range_min<-NULL
@@ -182,12 +182,12 @@ plot_colors<-c("grey60","red","blue","green4","yellow3","orange2","brown","purpl
 plot_colors2<-c("grey60","red","blue","green4","yellow3","orange2","brown","purple")
 plot_symbols<-c(16,17,15,18,11,8,4)
 ### Start and End Year/Month ###
-year_start<-2021
-year_end<-2021
-month_start<-02
-month_end<-02
-day_start<-01
-day_end<-03
+year_start<-""
+year_end<-""
+month_start<-""
+month_end<-""
+day_start<-""
+day_end<-""
 #############################
 ### Setup Networks Arrays ###
 #############################

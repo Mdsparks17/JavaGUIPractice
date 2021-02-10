@@ -43,8 +43,9 @@ public class OverlayFileOptionsForm extends javax.swing.JFrame {
         overlayFileLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         overlayFileLabel.setText("Overlay File Options");
 
-        overlayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hourly", "Daily", "1hr Max (use with hourly data)", "8hr Max (use with hourly data)" }));
+        overlayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Hourly", "Daily", "1hr Max (use with hourly data)", "8hr Max (use with hourly data)" }));
 
+        overlayFileInfoLabel.setEditable(false);
         overlayFileInfoLabel.setColumns(20);
         overlayFileInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         overlayFileInfoLabel.setLineWrap(true);
@@ -127,6 +128,21 @@ public class OverlayFileOptionsForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private String overlayFormat(String str) {
+        switch(str) {
+            case"Hourly":
+                return "1";
+            case"Daily":
+                return "2";
+            case"1hr Max (use with hourly data)":
+                return "3";
+            case"8hr Max (use with hourly data)":
+                return "4";
+            default:
+                return "";
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JPanel mainPanel;

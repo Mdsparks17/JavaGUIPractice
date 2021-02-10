@@ -47,6 +47,7 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
         advancedSpeciesSettingsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         advancedSpeciesSettingsLabel.setText("Advanced Species Settings");
 
+        speciesQueryInfoLabel.setEditable(false);
         speciesQueryInfoLabel.setColumns(20);
         speciesQueryInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         speciesQueryInfoLabel.setLineWrap(true);
@@ -55,6 +56,7 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
         speciesQueryInfoLabel.setWrapStyleWord(true);
         speciesQueryInfoLabel.setOpaque(false);
 
+        manualInfoLabel.setEditable(false);
         manualInfoLabel.setColumns(20);
         manualInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         manualInfoLabel.setLineWrap(true);
@@ -65,7 +67,7 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
 
         customSpeciesNameLabel.setText("Enter a name for your custom species.");
 
-        customSpeciesUnitLabel.setText("Enter the units for your sutom species. ");
+        customSpeciesUnitLabel.setText("Enter the units for your custom species. ");
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -134,9 +136,7 @@ public class AdvancedSpeciesForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
